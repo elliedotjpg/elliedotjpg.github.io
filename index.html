@@ -3,20 +3,40 @@
    <head>
       <title>elliedotjpg.github.io</title>
    </head>
+
+   <!-- STYLE -->
    <style>
     body {background-image: url('BG.svg');}
+
     .responsive{
         width: 100%;
         height: auto;
         z-index: 1;
     }
+
     .aboutme{
         width: 100%;
         height: auto;
         z-index: 2;
     }
+
+    .homeButton{
+        border: none;
+        color: blue;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        
+    }
    </style>
+
+   <!-- BODY -->
    <body>
+    <button class="homeButton">Home</button>
     <main>
         <img src="homeContent.png" class="responsive">
         <img src="aboutMeContent.png" class="aboutme">
