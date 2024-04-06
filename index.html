@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>elliedotjpg.github.io</title>
+      <title>Ellie Acharon | A Portfolio</title>
    </head>
 
    <!-- STYLE -->
@@ -30,13 +30,36 @@
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
-        
+        position: sticky;
     }
+
+    .navbar{
+        overflow: hidden;
+        background-color: white;
+    }
+
+    .navbar a{
+        float: center;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        font-size: 17px;
+        height: 50px;
+        width: 100px;
+        background-color: #EBF8FF;
+    }
+
    </style>
 
    <!-- BODY -->
    <body>
-    <button class="homeButton">Home</button>
+    <div class="navbar">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+    
     <main>
         <img src="homeContent.png" class="responsive">
         <img src="aboutMeContent.png" class="aboutme">
