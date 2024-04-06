@@ -20,37 +20,31 @@
         z-index: 2;
     }
 
-    .homeButton{
-        border: none;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        position: sticky;
-    }
-
     .navbar{
-        text-align: center;
+        display: flex;
+        text-align: left;
         position: fixed;
         overflow: hidden;
         padding-right: 50px;
         padding-left: 50px;
-        margin: 30px 30px;
+        margin: auto 30px;
         background-color: white;
-        border-radius: 40px;
-        width: 100%;
+        border-radius: 0px 40px 40px 0px;
+        width: 800px;
+        max-width: 80%;
+        margin: 30px;
+        margin-left: 0px;
+        box-sizing: border-box;
         height: auto;
         box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
     }
 
     .navbar a{
+        position: relative;
         float: center;
         color: #2B3E70;
         text-align: center;
-        padding: 20px 20px;
+        padding: 20px;
         margin: 10px;
         font-family: 'Montserrat';
         font-weight: bold;
@@ -58,18 +52,24 @@
         letter-spacing: 2px;
         font-variant: small-caps;
         height: 10px;
-        width: 150px;
+        width: 800px;
         background-color: white;
         text-decoration: none;
     }
 
     .navbar nav{
-        width: 100%;
+        width: 80%;
         position: relative;
         display: flex;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
-        
+    }
+
+    .line{
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 4px;
     }
 
    </style>
@@ -77,18 +77,22 @@
 
    <!-- BODY -->
    <body>
-    <div class="navbar">
-            <nav>
-                
-                <a class="active" href="#home">home</a>
-                <a href="#news">about me</a>
-                <a href="#contact">portfolio</a>
-            </nav>
+    <div class="navbar"> 
+        <nav>
+            <a class="active" href="#home">home</a>
+            <img src="line.png" class="line">
+            <a href="#aboutme">about</a>
+            <img src="line.png" class="line">
+            <a href="#portfolio">portfolio</a>
+        </nav>
     </div>
-    
+
     <main>
-        <img src="homeContent.png" class="responsive">
-        <img src="aboutMeContent.png" class="aboutme">
+        <img src="homeContent.png" class="responsive" id="home">
+        <div class="aboutContainer" id="aboutme">
+            <img src="aboutMeContent.png" class="aboutme">
+        </div>
+        
     </main>
    </body>
 </html>
