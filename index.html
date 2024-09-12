@@ -1,12 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
    <head>
-      <title>Ellie Acharon | A Portfolio yeye</title>
-   </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellie Acharon | A Portfolio</title>
+    <script src="script.js" defer></script>
 
-   <!-- STYLE -->
+    <!-- STYLE -->
    <style>
     body {background-image: url('BG.svg');}
+
+    #myImg{
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    #myImg:hover {opacity: 0.7;}
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal Content (Image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+    /* Caption of Modal Image (Image Text) - Same Width as the Image */
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+
+    /* Add Animation - Zoom in the Modal */
+    .modal-content, #caption {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+        from {transform:scale(0)}
+        to {transform:scale(1)}
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 700px){
+        .modal-content {
+    width: 100%;
+}
+    }
 
     .responsive{
         width: 100%;
@@ -20,26 +98,125 @@
         z-index: 2;
     }
 
-    div.gallery{
-        margin: 5px;
+    .download-btn{
+        margin:20px 30px 20px 0px;
+        transition:margin 0.2s ease-in-out;
+    }
+
+    .download-btn{
+        margin-top: -10;
+    }
+
+    .knowMore{
+        margin:60px;
+        padding:40px;
+        border:1px solid #ccc;
+        border-radius:30px;
+        width:650px;
+        height:130px;
+        background-color:#fff;
+    }
+
+    .flexContainer{
+        display:flex;
+    }
+
+    .hLine{
+        border:2px #ccc;
+        height:100px;
+    }
+
+    .galleryContainer{
+        margin:60px;
+        width:device-width;
+        height:1100px;
+        padding:40px;
+        background-color: #fff;
+        border:1px solid #ccc;
+        border-radius:30px;
+    }
+
+    div.galleryDirectory{
+        width:250px;
+        height:950px;
+        padding:20px 20px 0px 20px;
+        background-color: #fff;
         border: 1px solid #ccc;
+        border-radius:20px;
+    }
+
+    .galleryDirectory button{
+        border-radius: 30px;
+        font-family: Montserrat;
+        font-weight: 600;
+        display:block;
+        background-color: inherit;
+        color:black;
+        margin:10px 10px 10px 0px;
+        padding:20px;
+        width:100%;
+        border:none;
+        text-align:left;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .galleryDirectory button:hover{
+        background-color:#ddd;
+        margin:10px 10px 10px 0px;
+        padding:20px;
+        color:#2B3E70;
+    }
+
+    .galleryDirectory button.active{
+        transition:0.3s;
+        background-color:#2B3E70;
+        padding:20px;
+        font-weight:bold;
+        color:#fff;
+    }
+
+    .galleryDirectoryContent{
+        overflow-x: auto;
+        float:left;
+        padding:20px;
+        margin:20px;
+        border: 1px solid #ccc;
+        border-radius:30px;
+        width:100%;
+        border:none;
+        height:900px;
+    }
+
+    div.gallery-preview{
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
         float: left;
-        width: 180px;
+        width: 200px;
+        background-color: #fff;
     }
 
-    div.gallery:hover{
-        border: 1px solid #777;
+    div.gallery-preview:hover{
+        border: 1px solid #ccc;
+        cursor:pointer;
+        margin-top:20px;
+        transition:0.3s;
     }
 
-    div.gallery img {
-        width: 100%;
-        height: auto;
+    div.gallery-preview img {
+        border-radius: 25px 25px 0px 0px;
+        margin: 0px 0px 20px 0px;
+        object-fit:cover;
+        width: 200px;
+        height: 200px;
+        float:left;
     }
 
     div.desc {
-        padding: 15px;
+        padding: 15px 15px 35px 15px;
         text-align: center;
-    }
+    } 
 
     .navbar{
         display: flex;
@@ -94,6 +271,8 @@
     }
 
    </style>
+   </head>
+
    <!-- END OF STYLE -->
 
    <!-- BODY -->
@@ -108,24 +287,132 @@
         </nav>
     </div>
 
-    <main>
+    <main style="font-family:Montserrat">
         <img src="homeContent.png" class="responsive" id="home">
 
-        <!-- About Container -->
+        <!-- ABOUT ME Container -->
         <div class="aboutContainer" id="aboutme">
             <img src="aboutMeContent.png" class="aboutme">
-        </div>
 
-        <!-- Gallery Container -->
-        <div class="gallery">
-            <a target="_blank" href="1.png">
-                <img src="1.png" alt="redraw sketch" width="600" height="400">
-            </a>
-            <div class="desc">
-                this is a description
+        <!-- PORTFOLIO Container -->
+        <div class="galleryContainer" id="portfolio" style="padding:55px 40px 60px 40px">
+            <div style="font-size:30px; letter-spacing: 2px; margin:15px; color:#2B3E70">
+                <b>my portfolio.</b>
+            </div>
+            <hr width=100% style="margin:30px 30px 30px 0px; border-radius: 100px; border-width: 2px; border-color:#2B3E70">
+
+            <div class="flexContainer">
+
+                <!-- The Tabs-->
+                <div class="galleryDirectory" style="font-family:Montserrat"> 
+                    <button class="tablinks" onclick="openTab(event,'1')">Personal Art</button>
+                    <button class="tablinks" onclick="openTab(event,'2')">Chibi Art and Stickers</button>
+                    <button class="tablinks" onclick="openTab(event,'3')">Hestia Prime Pharmaceuticals</button>
+                    <button class="tablinks" onclick="openTab(event,'4')">Bilibenta</button>
+                    <button class="tablinks" onclick="openTab(event,'5')">Paraluman Skin</button>
+                    <button class="tablinks" onclick="openTab(event,'6')">MedRx</button>
+                    <button class="tablinks" onclick="openTab(event,'7')">Cleio Multimedia Productions</button>
+                    <button class="tablinks" onclick="openTab(event,'8')">SABR Solutions Inc.</button>
+                    <button class="tablinks" onclick="openTab(event,'9')">TracVac</button>
+                    <button class="tablinks" onclick="openTab(event,'10')">Dysglopia</button>
+                    <button class="tablinks" onclick="openTab(event,'11')">Capstone Project | Dysglopia Origins</button>
+                    <button class="tablinks" onclick="openTab(event,'12')">School Projects</button>
+
+                </div>
+
+                <!-- start of gallery content-->
+                <div id="1" class="galleryDirectoryContent">
+                    <!-- Personal Projects -->
+                    <gallery-preview src="./images/personal/1.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="desc here"></gallery-preview>
+                    <gallery-preview src="./images/personal/1.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="desc here"></gallery-preview>
+                    <gallery-preview src="./images/personal/2.png" title="Seeing Red and Yellow" date="August 19, 2021" desc="An attempt at a new original character while experimenting a different coloring style."></gallery-preview>
+                
+                    <!--The Modal-->
+                    <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                    </div>
+                
+                </div>
+
+                <!-- Chibi Art and Stickers -->
+                <div id="2" class="galleryDirectoryContent">
+                    <gallery-preview src="./images/personal/chibiYoru.jpeg" title="i'll handle this." date="August 12, 2024" desc="I decided to also make chibi fanart of Yoru from Valorant as per a request on Reddit."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiAstarion.jpeg" title="all you had to do was fall for it." date="July 29, 2024" desc="Wanted to make fanart of Astarion from Baldur's Gate 3 since he's been my target love interest."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiNanobomb.jpeg" title="doing some tinkering!" date="July 7, 2024" desc="My chibi version fanart of Killjoy and Raze from Valorant."></gallery-preview>
+                    <gallery-preview src="./images/personal/genshin1.png" title="Derpy Genshin Impact Stickers" date="May 21, 2023" desc="I wanted to make cute derpy stickers of a few of my favorite Genshin Impact characters."></gallery-preview>
+
+                </div>
+
+                 <!-- Hestia Prime -->
+                <div id="3" class="galleryDirectoryContent">
+                    <gallery-preview src="./images/hestia/IG_Sep25.png" title="Happy World Pharmacists' Day (2023)" date="September 25, 2023" desc="A promotional pubmat for World Pharmacists' Day."></gallery-preview>
+                    <gallery-preview src="./images/hestia/ig-sep9.png" title="A healthy body means a healthy path to success!" date="September 9, 2023" desc="A special message from Hestia Prime for its audience to maintain a healthy body."></gallery-preview>
+                    <gallery-preview src="./images/hestia/biogesic.png" title="Relief through Biogesic!" date="August 31, 2023" desc="A promotional pubmat for Paracetamol Biogesic which can be found in Hestia Prime stores."></gallery-preview>
+                    <gallery-preview src="./images/hestia/FB_NationalHeroesDay.png" title="National Heroes Day (2023)" date="August 27, 2023" desc="A special pubmat from Hestia dedicated to the heroes of the nation - especially the pharmacists."></gallery-preview>
+                    <gallery-preview src="./images/hestia/FB_CTUJobFair.png" title="CTU Job Fair Promotion" date="August 17, 2023" desc="A promotional pubmat for Hestia Prime's appearance at the CTU Job Fair."></gallery-preview>
+                    
+                </div>
+
+                 <!-- Paraluman Skin -->
+                 <div id="5" class="galleryDirectoryContent">
+                    <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" date="December 19, 2023" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" date="December 19, 2023" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" date="December 14, 2023" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
+                    
+                </div>
+                </div>
+            <!-- end of gallery content-->
+        </div>
+        </div>
+    </div>
+         <!-- End of Gallery Container -->
+
+          <!-- Want to know more?-->
+          <div class="knowMore">
+            <div class="flexContainer">
+            <div style="letter-spacing: 2px; margin: 10px 20px 10px 10px; color:#2B3E70">
+                <b>
+                    <div>want to know more?</div>
+                    <div>here's my resume!</div>
+                </b>
+                <div class="download-btn">
+                    <a href="RaineAcharon_Resume.pdf">
+                        <img src="pdfButton.png" alt="RaineAcharon_Resume.pdf">
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:20px; letter-spacing:2px; color:#2B3E70"><b>contact me!</b></div>
+                <hr width=100% style="border-radius: 40px; border-width: 1px; border-color:#2B3E70">
+                <div><img src="contactDetails.png"></div>
             </div>
         </div>
-        
+    </div>
+
+     <!-- [End of] Want to know more?-->
+    </div>
     </main>
+
+    <!-- TEMPLATES-->
+
+    <!-- Gallery Preview Template -->
+    <template id="preview-template">
+        <div class="gallery-preview"">
+          <img id="myImg" class="preview-image" />
+          <div style="padding:20px">
+            <h1 class="preview-date" style="font-size:small; font-weight: 400; font-style: italic"></h1>
+          <h3 class="preview-title" style="font-size:medium"></h3>
+          <p class="preview-description" style="font-size:small"></p>
+          </div>
+          
+        </div>
+      </template>
+      
+      <!-- END OF TEMPLATES-->
    </body>
 </html>
