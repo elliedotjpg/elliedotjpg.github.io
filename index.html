@@ -108,11 +108,12 @@
     }
 
     .knowMore{
-        margin:60px;
+        margin:0px 60px 60px 60px;
+        float:right;
         padding:40px;
         border:1px solid #ccc;
         border-radius:30px;
-        width:650px;
+        width:45%;
         height:130px;
         background-color:#fff;
     }
@@ -136,9 +137,11 @@
         border-radius:30px;
     }
 
-    div.galleryDirectory{
-        width:250px;
-        height:950px;
+    /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 600px) {
+        div.galleryDirectory{
+        width:30%;
+        height:auto;
         padding:20px 20px 0px 20px;
         background-color: #fff;
         border: 1px solid #ccc;
@@ -188,14 +191,12 @@
         height:900px;
     }
 
-    /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 600px) {
     div.gallery-preview{
         margin: 10px;
         border: 1px solid #ccc;
         border-radius: 25px;
         float: left;
-        width: 300px;
+        width: 250px;
         background-color: #fff;
     }
 
@@ -203,8 +204,8 @@
             border-radius: 25px 25px 0px 0px;
             margin: 0px 0px 20px 0px;
             object-fit:cover;
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             float:left;
         }
 
@@ -214,11 +215,62 @@
         margin-top:20px;
         transition:0.3s;
     }
-
     }
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
+        div.galleryDirectory{
+        width:20%;
+        height:auto;
+        padding:20px 20px 0px 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius:20px;
+    }
+
+    .galleryDirectory button{
+        border-radius: 30px;
+        font-family: Montserrat;
+        font-weight: 600;
+        display:block;
+        background-color: inherit;
+        color:black;
+        margin:10px 10px 10px 0px;
+        padding:20px;
+        width:100%;
+        border:none;
+        text-align:left;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .galleryDirectory button:hover{
+        background-color:#ddd;
+        margin:10px 10px 10px 0px;
+        padding:20px;
+        color:#2B3E70;
+    }
+
+    .galleryDirectory button.active{
+        transition:0.3s;
+        background-color:#2B3E70;
+        padding:20px;
+        font-weight:bold;
+        color:#fff;
+    }
+
+    .galleryDirectoryContent{
+        overflow-x: auto;
+        float:left;
+        padding:20px;
+        margin:20px;
+        border: 1px solid #ccc;
+        border-radius:30px;
+        width:100%;
+        border:none;
+        height:900px;
+    }
+
         div.gallery-preview{
         margin: 10px;
         border: 1px solid #ccc;
@@ -407,7 +459,7 @@
           <!-- Want to know more?-->
           <div class="knowMore">
             <div class="flexContainer">
-            <div style="letter-spacing: 2px; margin: 10px 20px 10px 10px; color:#2B3E70">
+            <div style="letter-spacing: 2px; margin: 10px 20px 10px 10px; color:#2B3E70; margin-right: 70px;">
                 <b>
                     <div>want to know more?</div>
                     <div>here's my resume!</div>
@@ -419,6 +471,9 @@
                 </div>
             </div>
             <div>
+                <img src="horizontalLine.png">
+            </div>
+            <div style="margin-left: 70px;">
                 <div style="font-size:20px; letter-spacing:2px; color:#2B3E70"><b>contact me!</b></div>
                 <hr width=100% style="border-radius: 40px; border-width: 1px; border-color:#2B3E70">
                 <div><img src="contactDetails.png"></div>
