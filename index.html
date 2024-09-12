@@ -188,14 +188,25 @@
         height:900px;
     }
 
+    /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 600px) {
     div.gallery-preview{
         margin: 10px;
         border: 1px solid #ccc;
         border-radius: 25px;
         float: left;
-        width: 200px;
+        width: 300px;
         background-color: #fff;
     }
+
+    div.gallery-preview img {
+            border-radius: 25px 25px 0px 0px;
+            margin: 0px 0px 20px 0px;
+            object-fit:cover;
+            width: 300px;
+            height: 300px;
+            float:left;
+        }
 
     div.gallery-preview:hover{
         border: 1px solid #ccc;
@@ -204,15 +215,34 @@
         transition:0.3s;
     }
 
-    div.gallery-preview img {
-        border-radius: 25px 25px 0px 0px;
-        margin: 0px 0px 20px 0px;
-        object-fit:cover;
-        width: 200px;
-        height: 200px;
-        float:left;
     }
 
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        div.gallery-preview{
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        float: left;
+        width: 70px;
+        background-color: #fff;
+    }
+        div.gallery-preview img {
+            border-radius: 25px 25px 0px 0px;
+            margin: 0px 0px 20px 0px;
+            object-fit:cover;
+            width: 70px;
+            height: 70px;
+            float:left;
+        }
+
+        div.gallery-preview:hover{
+        border: 1px solid #ccc;
+        cursor:pointer;
+        margin-top:20px;
+        transition:0.3s;
+    }
+}
     div.desc {
         padding: 15px 15px 35px 15px;
         text-align: center;
@@ -323,9 +353,11 @@
                 <!-- start of gallery content-->
                 <div id="1" class="galleryDirectoryContent">
                     <!-- Personal Projects -->
-                    <gallery-preview src="./images/personal/1.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="desc here"></gallery-preview>
-                    <gallery-preview src="./images/personal/1.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="desc here"></gallery-preview>
+                    <gallery-preview src="./images/personal/rin.png" title="Rin | A Redraw + Art Challenge" date="June 23, 2024" desc="This was a piece I worked on as an art challenge with my friends. I decided to try out different rendering techniques for this one."></gallery-preview>
+                    <gallery-preview src="./images/personal/lilya.jpeg" title="Lilya | Fanart" date="May 14, 2024" desc="Fanart of Lilya from Reverse 1999. I wanted to mainly try cel shading for this one."></gallery-preview>
+                    <gallery-preview src="./images/personal/1.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="This was a redraw of one of my old artworks back in 2020 where I didn't even give the girl a face yet."></gallery-preview>
                     <gallery-preview src="./images/personal/2.png" title="Seeing Red and Yellow" date="August 19, 2021" desc="An attempt at a new original character while experimenting a different coloring style."></gallery-preview>
+                    
                 
                     <!--The Modal-->
                     <div id="myModal" class="modal">
