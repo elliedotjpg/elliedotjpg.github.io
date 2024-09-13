@@ -192,7 +192,7 @@
             overflow-x: auto;
             float:left;
             padding:15px;
-            margin:20px;    
+            margin:20px;
             border: 1px solid #ccc;
             border-radius:30px;
             width:100%;
@@ -330,6 +330,21 @@
         text-align: center;
     } 
 
+    .categoryDesc
+    {
+        font-weight:400;
+        font-size:medium;
+        margin:20px;
+        padding:0px 80px 0px 0px;
+    }
+
+    .categoryHeader
+    {
+        font-weight:600;
+        font-size:x-large;
+        margin-left:20px
+    }
+
     .navbar{
         display: flex;
         text-align: left;
@@ -436,8 +451,21 @@
 
                 <!-- ✨ START OF GALLERY CONTENT ✨-->
 
-                <!-- Personal Projects -->
+                <!-- Personal Art -->
                 <div id="1" class="galleryDirectoryContent">
+                    <!-- HEADER-->
+                    <div>
+                        <!--Title-->
+                        <div class="categoryHeader" style="color:#5d1156">
+                            Personal Art
+                        </div>
+                        <!-- Description -->
+                        <div class="categoryDesc">
+                            I properly started my journey into art back in 2019 right before COVID hit. I am the type to dabble with different kinds of art styles as well as rendering methods, though you can see in most of my works that I've mostly grown a liking to a more "anime" style. Despite this though, I still continue to experiment with the kinds of art I can do and try to improve on what I've learned in the process.
+                        </div>
+                    </div>
+
+                    <!-- END OF HEADER-->
                     
                     <!-- 2024-->
                     <gallery-preview src="./images/personal/rin.png" title="Rin | A Redraw + Art Challenge" date="June 23, 2024" desc="This was a piece I worked on as an art challenge with my friends. I decided to try out different rendering techniques for this one."></gallery-preview>
@@ -461,6 +489,15 @@
 
                 <!-- Chibi Art and Stickers -->
                 <div id="2" class="galleryDirectoryContent">
+                    
+                    <div class="categoryHeader" style="color:#b3a80c">
+                        Chibi Art and Stickers
+                    </div>
+
+                    <div class="categoryDesc">
+                        I like to make cute chibi fanart and have also opened commissions for them since they're also something fun to make. I also like to make stickers and hope to be able to sell them someday in booths.
+                    </div>
+
                     <gallery-preview src="./images/personal/chibiYoru.jpeg" title="i'll handle this." date="August 12, 2024" desc="I decided to also make chibi fanart of Yoru from Valorant as per a request on Reddit."></gallery-preview>
                     <gallery-preview src="./images/personal/chibiAstarion.jpeg" title="all you had to do was fall for it." date="July 29, 2024" desc="Wanted to make fanart of Astarion from Baldur's Gate 3 since he's been my target love interest."></gallery-preview>
                     <gallery-preview src="./images/personal/chibiNanobomb.jpeg" title="doing some tinkering!" date="July 7, 2024" desc="My chibi version fanart of Killjoy and Raze from Valorant."></gallery-preview>
@@ -472,6 +509,20 @@
 
                  <!-- Hestia Prime -->
                 <div id="3" class="galleryDirectoryContent">
+                    <!-- HEADER-->
+                    <div>
+                        <!--Title-->
+                        <div class="categoryHeader" style="color:rgb(133, 12, 12)">
+                            Hestia Prime Pharmaceuticals
+                        </div>
+                        <!-- Description -->
+                        <div class="categoryDesc">
+                            As someone who has been with two of the companies under Hestia Prime, I've also completed different kinds of tasks for Hestia itself. I created pubmats, videos, and even made their main logo from scratch. You can see most of these works below.
+                        </div>
+                    </div>
+
+                    <!-- END OF HEADER-->
+
                     <gallery-preview src="./images/hestia/IG_Sep25.png" title="Happy World Pharmacists' Day (2023)" date="September 25, 2023" desc="A promotional pubmat for World Pharmacists' Day."></gallery-preview>
                     <gallery-preview src="./images/hestia/ig-sep9.png" title="A healthy body means a healthy path to success!" date="September 9, 2023" desc="A special message from Hestia Prime for its audience to maintain a healthy body."></gallery-preview>
                     <gallery-preview src="./images/hestia/biogesic.png" title="Relief through Biogesic!" date="August 31, 2023" desc="A promotional pubmat for Paracetamol Biogesic which can be found in Hestia Prime stores."></gallery-preview>
@@ -480,14 +531,45 @@
                     
                 </div>
 
+                <!-- Bilibenta -->
+                <div id="4" class="galleryDirectoryContent">
+
+                    <!-- HEADER-->
+                    <div>
+                        <!--Title-->
+                        <div class="categoryHeader" style="color:#094e0c">
+                            Bilibenta
+                        </div>
+                        <!-- Description -->
+                        <div class="categoryDesc">
+                            This is the project that was assigned to me and my fellow interns when we were going through our On-the-Job Training or Internship at SABR Solutions Incc back in August-November 2023. For this project, I was mainly assigned to do UI/UX designs using Figma which I then helped our lead programmer implement using Vue. I and my other UI/UX designer team member also conducted a lot of research based on what the app's target audience may want the most. We created plans as well as methodically designed the app based on that research which was also done in collaboration with the initial research team.
+                        </div>
+                    </div>
+
+                    <!-- END OF HEADER-->
+                    
+                    <gallery-preview src="./images/bilibenta/0.png" title="Log In Page" date="November 2023"></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/1.png" title="Sign Up as Seller Page" date="November 2023""></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/1.2.png" title="Sign Up Page (1)" date="November 2023""></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/2.png" title="Sign Up Page (2)" date="November 2023""></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/3.png" title="Chat Page" date="November 2023""></gallery-preview>
+                    
+                </div>
+
                  <!-- Paraluman Skin -->
                  <div id="5" class="galleryDirectoryContent">
+                    <div class="categoryHeader" style="color:rgb(211, 124, 138)">
+                        Paraluman Skin
+                    </div>
+                    <div class="categoryDesc">
+                        Paraluman Skin is another company under Hestia Prime Pharmaceuticals. During our On-the-Job Training or Internship with them, I was also given the chance to help them in their promotional materials which included stickers and promotional videos. After the internship period, they also requested that we help them created 3D models as well as designs for their upcoming makeup line.
+                    </div>
+                    
                     <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" date="December 19, 2023" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" date="December 19, 2023" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" date="December 14, 2023" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
                     <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
-                    
                 </div>
 
                 <!-- MedRx -->
@@ -519,8 +601,7 @@
                     <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" date="December 19, 2023" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" date="December 14, 2023" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
-                    
+                    <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview> 
                 </div>
 
                 </div>
