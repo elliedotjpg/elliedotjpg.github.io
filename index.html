@@ -22,7 +22,8 @@
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
+        padding-top: 20px; /* Location of the box */
+        padding-bottom:20px;
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -30,14 +31,21 @@
         overflow: auto; /* Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        justify-content: center; /* Horizontally centers the modal */
+        align-items: center; /* Vertically centers the modal */
+        display: flex; /* Allows centering of the image */
     }
 
     /* Modal Content (Image) */
-    .modal-content {
-        margin: auto;
+    .modal-content img {
+        margin:0 auto;
         display: block;
-        width: 80%;
-        max-width: 700px;
+        max-width:50vw;
+        height:50vh;
+        width:auto;
+        height:auto;
+        object-fit: contain;
+        object-position:center;
     }
 
     /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -82,7 +90,7 @@
 
     @media only screen and (max-width: 700px){
         .modal-content {
-    width: 100%;
+            width: 100%;
 }
     }
 
@@ -101,10 +109,6 @@
     .download-btn{
         margin:20px 30px 20px 0px;
         transition:margin 0.2s ease-in-out;
-    }
-
-    .download-btn{
-        margin-top: -10;
     }
 
     .knowMore{
@@ -127,80 +131,87 @@
         height:100px;
     }
 
-    .galleryContainer{
-        margin:60px;
-        width:device-width;
-        height:1100px;
-        padding:40px;
-        background-color: #fff;
-        border:1px solid #ccc;
-        border-radius:30px;
-    }
-
     /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 600px) {
+
+        .portfolioTitle{
+            font-size:30px;
+        }
+
+        .galleryContainer{
+            margin:60px;
+            width:device-width;
+            height:1100px;
+            padding:40px;
+            background-color: #fff;
+            border:1px solid #ccc;
+            border-radius:30px;
+        }
+
         div.galleryDirectory{
-        width:30%;
-        height:auto;
-        padding:20px 20px 0px 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius:20px;
-    }
+            width:30%;
+            height:auto;
+            padding:20px 20px 0px 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius:20px;
+        }
 
-    .galleryDirectory button{
-        border-radius: 30px;
-        font-family: Montserrat;
-        font-weight: 600;
-        display:block;
-        background-color: inherit;
-        color:black;
-        margin:10px 10px 10px 0px;
-        padding:20px;
-        width:100%;
-        border:none;
-        text-align:left;
-        cursor:pointer;
-        transition:0.3s;
-    }
+        .galleryDirectory button{
+            border-radius: 30px;
+            font-family: Montserrat;
+            font-weight: 600;
+            display:block;
+            background-color: inherit;
+            color:black;
+            margin:10px 10px 10px 0px;
+            padding:20px;
+            width:100%;
+            border:none;
+            text-align:left;
+            cursor:pointer;
+            transition:0.3s;
+        }
 
-    .galleryDirectory button:hover{
-        background-color:#ddd;
-        margin:10px 10px 10px 0px;
-        padding:20px;
-        color:#2B3E70;
-    }
+        .galleryDirectory button:hover{
+            background-color:#ddd;
+            margin:10px 10px 10px 0px;
+            padding:20px;
+            color:#2B3E70;
+        }
 
-    .galleryDirectory button.active{
-        transition:0.3s;
-        background-color:#2B3E70;
-        padding:20px;
-        font-weight:bold;
-        color:#fff;
-    }
+        .galleryDirectory button.active{
+            transition:0.3s;
+            background-color:#2B3E70;
+            padding:20px;
+            font-weight:bold;
+            color:#fff;
+        }
 
-    .galleryDirectoryContent{
-        overflow-x: auto;
-        float:left;
-        padding:20px;
-        margin:20px;
-        border: 1px solid #ccc;
-        border-radius:30px;
-        width:100%;
-        border:none;
-        height:900px;
-    }
+        .galleryDirectoryContent{
+            overflow-x: auto;
+            float:left;
+            padding:15px;
+            margin:20px;    
+            border: 1px solid #ccc;
+            border-radius:30px;
+            width:100%;
+            border:none;
+            height:800px;
+        }
 
-    div.gallery-preview{
-        margin: 10px;
-        border: 1px solid #ccc;
-        border-radius: 25px;
-        float: left;
-        width: 250px;
-        background-color: #fff;
-    }
+        div.gallery-preview{
+            font-size: 25.5vw;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            float: left;
+            width: 250px;
+            height:25vw;
+            background-color: #fff;
+        }
 
-    div.gallery-preview img {
+        div.gallery-preview img {
             border-radius: 25px 25px 0px 0px;
             margin: 0px 0px 20px 0px;
             object-fit:cover;
@@ -209,76 +220,90 @@
             float:left;
         }
 
-    div.gallery-preview:hover{
-        border: 1px solid #ccc;
-        cursor:pointer;
-        margin-top:20px;
-        transition:0.3s;
-    }
+        div.gallery-preview:hover{
+            border: 1px solid #ccc;
+            cursor:pointer;
+            transform: translateY(-10px); /* Moves the image up without affecting the layout */
+            transition:0.3s ease;
+        }
     }
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
+        .portfolioTitle{
+            font-size:10px;
+        }
+
+        .galleryContainer{
+            margin:80px;
+            width:device-width;
+            height:1100px;
+            padding:40px;
+            background-color: #fff;
+            border:1px solid #ccc;
+            border-radius:30px;
+    }
         div.galleryDirectory{
-        width:20%;
-        height:auto;
-        padding:20px 20px 0px 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius:20px;
-    }
+            width:20%;
+            height:auto;
+            padding:20px 20px 0px 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius:20px;
+        }
 
-    .galleryDirectory button{
-        border-radius: 30px;
-        font-family: Montserrat;
-        font-weight: 600;
-        display:block;
-        background-color: inherit;
-        color:black;
-        margin:10px 10px 10px 0px;
-        padding:20px;
-        width:100%;
-        border:none;
-        text-align:left;
-        cursor:pointer;
-        transition:0.3s;
-    }
+        .galleryDirectory button{
+            border-radius: 30px;
+            font-family: Montserrat;
+            font-size:10px;
+            font-weight: 600;
+            display:block;
+            background-color: inherit;
+            color:black;
+            margin:10px 10px 10px 0px;
+            padding:20px;
+            width:100%;
+            border:none;
+            text-align:left;
+            cursor:pointer;
+            transition:0.3s;
+        }
 
-    .galleryDirectory button:hover{
-        background-color:#ddd;
-        margin:10px 10px 10px 0px;
-        padding:20px;
-        color:#2B3E70;
-    }
+        .galleryDirectory button:hover{
+            background-color:#ddd;
+            margin:10px 10px 10px 0px;
+            padding:20px;
+            color:#2B3E70;
+        }
 
-    .galleryDirectory button.active{
-        transition:0.3s;
-        background-color:#2B3E70;
-        padding:20px;
-        font-weight:bold;
-        color:#fff;
-    }
+        .galleryDirectory button.active{
+            transition:0.3s;
+            background-color:#2B3E70;
+            padding:20px;
+            font-weight:bold;
+            color:#fff;
+        }
 
-    .galleryDirectoryContent{
-        overflow-x: auto;
-        float:left;
-        padding:20px;
-        margin:20px;
-        border: 1px solid #ccc;
-        border-radius:30px;
-        width:100%;
-        border:none;
-        height:900px;
-    }
+        .galleryDirectoryContent{
+            overflow-x: auto;
+            float:left;
+            padding:20px;
+            margin:20px;
+            border: 1px solid #ccc;
+            border-radius:30px;
+            width:100%;
+            border:none;
+            height:900px;
+        }
 
         div.gallery-preview{
-        margin: 10px;
-        border: 1px solid #ccc;
-        border-radius: 25px;
-        float: left;
-        width: 70px;
-        background-color: #fff;
-    }
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            float: left;
+            width: 70px;
+            background-color: #fff;
+        }
         div.gallery-preview img {
             border-radius: 25px 25px 0px 0px;
             margin: 0px 0px 20px 0px;
@@ -289,10 +314,10 @@
         }
 
         div.gallery-preview:hover{
-        border: 1px solid #ccc;
-        cursor:pointer;
-        margin-top:20px;
-        transition:0.3s;
+            border: 1px solid #ccc;
+            cursor:pointer;
+            margin-top:20px;
+            transition:0.3s;
     }
 }
     div.desc {
@@ -378,16 +403,18 @@
 
         <!-- PORTFOLIO Container -->
         <div class="galleryContainer" id="portfolio" style="padding:55px 40px 60px 40px">
-            <div style="font-size:30px; letter-spacing: 2px; margin:15px; color:#2B3E70">
-                <b>my portfolio.</b>
+
+            <div class="portfolioTitle">
+                <div style="font-size:30px; letter-spacing: 2px; margin:15px; color:#2B3E70">
+                    <b>my portfolio.</b>
+                <hr width=100% style="margin:30px 30px 30px 0px; border-radius: 100px; border-width: 2px; border-color:#2B3E70">
             </div>
-            <hr width=100% style="margin:30px 30px 30px 0px; border-radius: 100px; border-width: 2px; border-color:#2B3E70">
 
             <div class="flexContainer">
 
                 <!-- The Tabs-->
                 <div class="galleryDirectory" style="font-family:Montserrat"> 
-                    <button class="tablinks" onclick="openTab(event,'1')">Personal Art</button>
+                    <button class="tablinks" onclick="openTab(event,'1')" id="defaultOpen">Personal Art</button>
                     <button class="tablinks" onclick="openTab(event,'2')">Chibi Art and Stickers</button>
                     <button class="tablinks" onclick="openTab(event,'3')">Hestia Prime Pharmaceuticals</button>
                     <button class="tablinks" onclick="openTab(event,'4')">Bilibenta</button>
@@ -402,22 +429,28 @@
 
                 </div>
 
-                <!-- start of gallery content-->
+                <!-- ✨ START OF GALLERY CONTENT ✨-->
+
+                <!-- Personal Projects -->
                 <div id="1" class="galleryDirectoryContent">
-                    <!-- Personal Projects -->
+                    
+                    <!-- 2024-->
                     <gallery-preview src="./images/personal/rin.png" title="Rin | A Redraw + Art Challenge" date="June 23, 2024" desc="This was a piece I worked on as an art challenge with my friends. I decided to try out different rendering techniques for this one."></gallery-preview>
                     <gallery-preview src="./images/personal/lilya.jpeg" title="Lilya | Fanart" date="May 14, 2024" desc="Fanart of Lilya from Reverse 1999. I wanted to mainly try cel shading for this one."></gallery-preview>
-                    <gallery-preview src="./images/personal/1.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="This was a redraw of one of my old artworks back in 2020 where I didn't even give the girl a face yet."></gallery-preview>
+                     
+                    <!-- 2023-->
+
+                    <!-- 2022-->
+                    
+                    <!-- 2021-->
+                    <gallery-preview src="./images/personal/purple.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="This was a redraw of one of my old artworks back in 2020 where I didn't even give the girl a face yet."></gallery-preview>
                     <gallery-preview src="./images/personal/2.png" title="Seeing Red and Yellow" date="August 19, 2021" desc="An attempt at a new original character while experimenting a different coloring style."></gallery-preview>
                     
+                    <!-- 2020 -->
                 
-                    <!--The Modal-->
-                    <div id="myModal" class="modal">
-                        <span class="close">&times;</span>
-
-                        <img class="modal-content" id="img01">
-                        <div id="caption"></div>
-                    </div>
+                    <!-- 2019 -->
+                    <gallery-preview src="./images/personal/2019-1.jpg" title="Something in the Street" date="2019" desc="I had an idea of drawing something crashing by the street I usually pass on the way to school."></gallery-preview>
+                    <gallery-preview src="./images/personal/2019-2.jpg" title="nadiaxel 30k | Draw This In Your Style" date="2019" desc="My draw this in your style entry for instagram user nadiaxel's contest."></gallery-preview>
                 
                 </div>
 
@@ -426,7 +459,9 @@
                     <gallery-preview src="./images/personal/chibiYoru.jpeg" title="i'll handle this." date="August 12, 2024" desc="I decided to also make chibi fanart of Yoru from Valorant as per a request on Reddit."></gallery-preview>
                     <gallery-preview src="./images/personal/chibiAstarion.jpeg" title="all you had to do was fall for it." date="July 29, 2024" desc="Wanted to make fanart of Astarion from Baldur's Gate 3 since he's been my target love interest."></gallery-preview>
                     <gallery-preview src="./images/personal/chibiNanobomb.jpeg" title="doing some tinkering!" date="July 7, 2024" desc="My chibi version fanart of Killjoy and Raze from Valorant."></gallery-preview>
-                    <gallery-preview src="./images/personal/genshin1.png" title="Derpy Genshin Impact Stickers" date="May 21, 2023" desc="I wanted to make cute derpy stickers of a few of my favorite Genshin Impact characters."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiArni.png" title="arnichii | commission" date="April 21, 2024" desc="A chibi commission for Twitter/X user arnichii."></gallery-preview>
+                    <gallery-preview src="./images/personal/genshin1.png" title="Derpy Valorant Stickers" date="June 6, 2023" desc="I wanted to make cute derpy stickers of a few of my favorite Valorant characters."></gallery-preview>
+                    <gallery-preview src="./images/personal/valo1.png" title="Derpy Genshin Impact Stickers" date="May 21, 2023" desc="I wanted to make cute derpy stickers of a few of my favorite Genshin Impact characters."></gallery-preview>
 
                 </div>
 
@@ -448,6 +483,43 @@
                     <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
                     <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
                     
+                </div>
+
+                <!-- MedRx -->
+                <div id="6" class="galleryDirectoryContent">
+
+                    <!-- BRANDING -->
+                    <gallery-preview src="./images/medrx/theBoard.png" title="MedRx Branding Board" date="July 21, 2021" desc="The final branding board or mockup design with the MedRx logo."></gallery-preview>
+                    <gallery-preview src="./images/medrx/medrx logo variation 1.png" title="MedRx | Logo Variation 1" date="July 20, 2021" desc="The first variation I made of the logo which mostly just has different colors."></gallery-preview>
+                    <gallery-preview src="./images/medrx/medrx logo variation 2.png" title="MedRx | Logo Variation 2" date="July 20, 2021" desc="The second variation I made of the logo which got approved to be the final."></gallery-preview>
+
+                    <!-- PUBMATS -->
+                    <gallery-preview src="./images/medrx/takeabreak.png" title="It's okay to take a break." date="September 22, 2021" desc="A special illustrated pubmat I created with MedRx's mascot telling the audience that it's okay to take a break."></gallery-preview>
+                    <gallery-preview src="./images/medrx/delata.png" title="Avoid delata variants!" date="August 25, 2021" desc="A special illustrated pubmat I created with MedRx's mascot warning the audience to avoid delata variants during COVID."></gallery-preview>
+
+                    <!-- USER INTERFACE-->
+                    <gallery-preview src="./images/medrx/signup1.jpg" title="Sign Up Page (1 of 3)" date="August 30, 2021" desc="Page 1 of the user interface and design for MedRx's Sign Up."></gallery-preview>
+                    <gallery-preview src="./images/medrx/signup2.jpg" title="Sign Up Page (2 of 3)" date="August 30, 2021" desc="Page 2 of the user interface and design for MedRx's Sign Up."></gallery-preview>
+                    <gallery-preview src="./images/medrx/signup3.jpg" title="Sign Up Page (3 of 3)" date="August 30, 2021" desc="Page 3 of the user interface and design for MedRx's Sign Up."></gallery-preview>
+                    <gallery-preview src="./images/medrx/search.png" title="Search Page" date="August 30, 2021" desc="The page where users would be able to search different medicines and the like in the app."></gallery-preview>
+                    <gallery-preview src="./images/medrx/myorders.png" title="My Orders Page" date="August 30, 2021" desc="The order page of the user when they haven't made any orders yet."></gallery-preview>
+                    <gallery-preview src="./images/medrx/mycart1.png" title="My Cart Page" date="August 30, 2021" desc="This is the My Cart page where the users would be able to see the products they've added to their cart."></gallery-preview>
+                    <gallery-preview src="./images/medrx/changePass.png" title="Password Change Page" date="August 30, 2021" desc="This is the page that will show up when a user wants to change their password."></gallery-preview>
+                </div>
+
+
+                <!-- Cleio Multimedia Productions -->
+                <div id="7" class="galleryDirectoryContent">
+                    <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" date="December 19, 2023" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" date="December 19, 2023" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" date="December 14, 2023" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
+                    
+                </div>
+
+                </div>
+                </div>
                 </div>
                 </div>
             <!-- end of gallery content-->
@@ -482,23 +554,68 @@
     </div>
 
      <!-- [End of] Want to know more?-->
+
+     <!--The Modal-->
+     <div id="myModal" class="modal" onclick="this.style.display='none'">
+        <span class="close">&times;</span>
+
+        <div class="modal-content">
+            <img id="myImg">
+
+        </div>
     </div>
+    <!-- End of the Modal -->
+
     </main>
 
     <!-- TEMPLATES-->
 
     <!-- Gallery Preview Template -->
     <template id="preview-template">
-        <div class="gallery-preview"">
-          <img id="myImg" class="preview-image" />
+        <div class="gallery-preview">
+          <img class="preview-image" onclick="onClick(this)"/>
           <div style="padding:20px">
             <h1 class="preview-date" style="font-size:small; font-weight: 400; font-style: italic"></h1>
-          <h3 class="preview-title" style="font-size:medium"></h3>
-          <p class="preview-description" style="font-size:small"></p>
+            <h3 class="preview-title" style="font-size:medium"></h3>
+            <p class="preview-description" style="font-size:small"></p>
           </div>
-          
         </div>
-      </template>
+    </template>
+
+      <script>
+        // Open Tab Function
+        function openTab(evt, projectName) {
+            // Declare all variables
+            var i, galleryDirectoryContent, tablinks;
+        
+            // Get all elements with class="galleryDirectoryContent" and hide them
+            galleryDirectoryContent = document.getElementsByClassName("galleryDirectoryContent");
+            for (i = 0; i < galleryDirectoryContent.length; i++) {
+                galleryDirectoryContent[i].style.display = "none";
+            }
+        
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+        
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(projectName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        // OnClick function
+        function onClick(element)
+        {
+            document.getElementById("myImg").src = element.src;
+            document.getElementById("myModal").style.display = "block";
+        }
+
+      </script>
       
       <!-- END OF TEMPLATES-->
    </body>
