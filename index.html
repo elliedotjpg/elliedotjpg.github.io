@@ -236,34 +236,32 @@
         }
 
         .galleryContainer{
-            margin:80px;
             width:device-width;
             height:1100px;
-            padding:40px;
+            padding:20px;
             background-color: #fff;
             border:1px solid #ccc;
-            border-radius:30px;
-    }
+    } 
         div.galleryDirectory{
             width:20%;
             height:auto;
-            padding:20px 20px 0px 20px;
+            padding:2px 20px 0px 20px;
             background-color: #fff;
             border: 1px solid #ccc;
             border-radius:20px;
         }
 
         .galleryDirectory button{
-            border-radius: 30px;
+            border-radius: 5px;
             font-family: Montserrat;
-            font-size:10px;
+            font-size:8px;
             font-weight: 600;
             display:block;
             background-color: inherit;
             color:black;
             margin:10px 10px 10px 0px;
-            padding:20px;
-            width:30%;
+            padding:5px;
+            width:100%;
             border:none;
             text-align:left;
             cursor:pointer;
@@ -273,14 +271,17 @@
         .galleryDirectory button:hover{
             background-color:#ddd;
             margin:10px 10px 10px 0px;
+            width:100%;
             padding:15px;
             color:#2B3E70;
         }
 
         .galleryDirectory button.active{
+            border-radius: 5px;
             transition:0.3s;
             background-color:#2B3E70;
             padding:15px;
+            width:100%;
             font-weight:bold;
             color:#fff;
         }
@@ -288,10 +289,10 @@
         .galleryDirectoryContent{
             overflow-x: auto;
             float:left;
-            padding:20px;
-            margin:20px;
+            padding:5px;
+            margin:5px;
             border: 1px solid #ccc;
-            border-radius:30px;
+            border-radius:15px;
             width:100%;
             border:none;
             height:900px;
@@ -299,7 +300,7 @@
 
         div.gallery-preview{
             font-size: 25.5vw;
-            margin: 10px;
+            margin: 15px;
             border: 1px solid #ccc;
             border-radius: 25px;
             float: left;
@@ -311,9 +312,10 @@
             border-radius: 25px 25px 0px 0px;
             margin: 0px 0px 20px 0px;
             object-fit:cover;
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 90px;
             float:left;
+            text-wrap:nowrap;
         }
 
         div.gallery-preview:hover{
