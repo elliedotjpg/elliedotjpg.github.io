@@ -5,425 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ellie Acharon | A Portfolio</title>
     <script src="script.js" defer></script>
-
-    <!-- STYLE -->
-   <style>
-    body {background-image: url('BG.svg');}
-
-    #myImg{
-        cursor:pointer;
-        transition:0.3s;
-    }
-
-    #myImg:hover {opacity: 0.7;}
-
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 20px; /* Location of the box */
-        padding-bottom:20px;
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        justify-content: center; /* Horizontally centers the modal */
-        align-items: center; /* Vertically centers the modal */
-    }
-
-    /* Modal Content (Image) */
-    .modal-content img {
-        margin:0 auto;
-        display: block;
-        max-width:50vw;
-        height:50vh;
-        width:auto;
-        height:auto;
-        object-fit: contain;
-        object-position:center;
-    }
-
-    /* Caption of Modal Image (Image Text) - Same Width as the Image */
-    #caption {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-        text-align: center;
-        color: #ccc;
-        padding: 10px 0;
-        height: 150px;
-    }
-
-    /* Add Animation - Zoom in the Modal */
-    .modal-content, #caption {
-        animation-name: zoom;
-        animation-duration: 0.6s;
-    }
-
-    @keyframes zoom {
-        from {transform:scale(0)}
-        to {transform:scale(1)}
-    }
-
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    @media only screen and (max-width: 700px){
-        .modal-content {
-            width: 100%;
-}
-    }
-
-    .responsive{
-        width: 100%;
-        height: auto;
-        z-index: 1;
-    }
-
-    .aboutme{
-        width: 100%;
-        height: auto;
-        z-index: 2;
-    }
-
-    .download-btn{
-        margin:20px 30px 20px 0px;
-        transition:margin 0.2s ease-in-out;
-    }
-
-    .knowMore{
-        margin:0px 60px 60px 60px;
-        float:right;
-        padding:40px;
-        border:1px solid #ccc;
-        border-radius:30px;
-        width:45%;
-        height:130px;
-        background-color:#fff;
-    }
-
-    .flexContainer{
-        display:flex;
-    }
-
-    .hLine{
-        border:2px #ccc;
-        height:100px;
-    }
-
-    /* Large devices (laptops/desktops, 992px and up) */
-    @media only screen and (min-width: 600px) {
-
-        .portfolioTitle{
-            font-size:30px;
-            letter-spacing: 2px;
-            margin:15px;
-            color:#2B3E70
-        }
-
-        .galleryContainer{
-            margin:60px;
-            width:device-width;
-            height:1100px;
-            padding:40px;
-            background-color: #fff;
-            border:1px solid #ccc;
-            border-radius:30px;
-        }
-
-        div.galleryDirectory{
-            width:30%;
-            height:auto;
-            padding:20px 20px 0px 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius:20px;
-        }
-
-        .galleryDirectory button{
-            border-radius: 30px;
-            font-family: Montserrat;
-            font-weight: 600;
-            display:block;
-            background-color: inherit;
-            color:black;
-            margin:10px 10px 10px 0px;
-            padding:20px;
-            width:100%;
-            border:none;
-            text-align:left;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        .galleryDirectory button:hover{
-            background-color:#ddd;
-            margin:10px 10px 10px 0px;
-            padding:20px;
-            color:#2B3E70;
-        }
-
-        .galleryDirectory button.active{
-            transition:0.3s;
-            background-color:#2B3E70;
-            padding:20px;
-            font-weight:bold;
-            color:#fff;
-        }
-
-        .galleryDirectoryContent{
-            overflow-x: auto;
-            float:left;
-            padding:15px;
-            margin:20px;
-            border: 1px solid #ccc;
-            border-radius:30px;
-            width:100%;
-            border:none;
-            height:800px;
-        }
-
-        div.gallery-preview{
-            font-size: 25.5vw;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 25px;
-            float: left;
-            width: 250px;
-            height:475px;
-            background-color: #fff;
-            -ms-text-size-adjust: auto;
-        }
-
-        div.gallery-preview img {
-            border-radius: 25px 25px 0px 0px;
-            margin: 0px 0px 20px 0px;
-            object-fit:cover;
-            width: 250px;
-            height: 250px;
-            float:left;
-        }
-
-        div.gallery-preview:hover{
-            border: 1px solid #ccc;
-            cursor:pointer;
-            transform: translateY(-10px); /* Moves the image up without affecting the layout */
-            transition:0.3s ease;
-        }
-    }
-
-    /* Extra small devices (phones, 600px and down) */
-    @media only screen and (max-width: 600px) {
-        .portfolioTitle{
-            font-size:10px;
-        }
-
-        .galleryContainer{
-            width:device-width;
-            height:1100px;
-            padding:20px;
-            background-color: #fff;
-            border:1px solid #ccc;
-    } 
-        div.galleryDirectory{
-            width:20%;
-            height:auto;
-            padding:2px 20px 0px 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius:20px;
-        }
-
-        .galleryDirectory button{
-            border-radius: 5px;
-            font-family: Montserrat;
-            font-size:8px;
-            font-weight: 600;
-            display:block;
-            background-color: inherit;
-            color:black;
-            margin:10px 10px 10px 0px;
-            padding:5px;
-            width:100%;
-            border:none;
-            text-align:left;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        .galleryDirectory button:hover{
-            background-color:#ddd;
-            margin:10px 10px 10px 0px;
-            width:100%;
-            padding:15px;
-            color:#2B3E70;
-        }
-
-        .galleryDirectory button.active{
-            border-radius: 5px;
-            transition:0.3s;
-            background-color:#2B3E70;
-            padding:15px;
-            width:100%;
-            font-weight:bold;
-            color:#fff;
-        }
-
-        .galleryDirectoryContent{
-            overflow-x: auto;
-            float:left;
-            padding:5px;
-            margin:5px;
-            border: 1px solid #ccc;
-            border-radius:15px;
-            width:100%;
-            border:none;
-            height:900px;
-        }
-
-        div.gallery-preview{
-            font-size: 25.5vw;
-            margin: 15px;
-            border: 1px solid #ccc;
-            border-radius: 25px;
-            float: left;
-            width: 100px;
-            height:100px;
-            background-color: #fff;
-        }
-        div.gallery-preview img {
-            border-radius: 25px 25px 0px 0px;
-            margin: 0px 0px 20px 0px;
-            object-fit:cover;
-            width: 100px;
-            height: 90px;
-            float:left;
-            text-wrap:nowrap;
-        }
-
-        div.gallery-preview:hover{
-            border: 1px solid #ccc;
-            cursor:pointer;
-            margin-top:20px;
-            transition:0.3s;
-    }
-}
-    div.desc {
-        padding: 15px 15px 35px 15px;
-        text-align: center;
-    } 
-
-    .categoryDesc
-    {
-        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        color: #5f5f5f;
-        font-weight:400;
-        font-size:medium;
-        margin:20px;
-        padding:0px 80px 0px 0px;
-    }
-
-    .categoryHeader
-    {
-        font-weight:600;
-        font-size:x-large;
-        margin-left:20px
-    }
-
-    .navbar{
-        display: flex;
-        text-align: left;
-        position: fixed;
-        overflow: hidden;
-        padding-right: 50px;
-        padding-left: 50px;
-        margin: auto 30px;
-        background-color: white;
-        border-radius: 0px 40px 40px 0px;
-        width: 800px;
-        max-width: 80%;
-        margin: 30px;
-        margin-left: 0px;
-        box-sizing: border-box;
-        height: auto;
-        box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar a{
-        position: relative;
-        float: center;
-        color: #2B3E70;
-        text-align: center;
-        padding: 20px;
-        margin: 10px;
-        font-family: 'Montserrat';
-        font-weight: bold;
-        font-size: 17px;
-        letter-spacing: 2px;
-        font-variant: small-caps;
-        height: 10px;
-        width: 800px;
-        background-color: white;
-        text-decoration: none;
-    }
-
-    .navbar nav{
-        width: 80%;
-        position: relative;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-    }
-
-    .line{
-        margin-top: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
-        width: 4px;
-    }
-
-   </style>
+    <link rel="stylesheet" href="styles.css">
    </head>
-
-   <!-- END OF STYLE -->
 
    <!-- BODY -->
    <body>
     <div class="navbar"> 
         <nav>
             <a class="active" href="#home">home</a>
-            <img src="line.png" class="line">
+            <img src="./assets/line.png" class="line">
             <a href="#aboutme">about</a>
-            <img src="line.png" class="line">
+            <img src="./assets/line.png" class="line">
             <a href="#portfolio">portfolio</a>
         </nav>
     </div>
 
     <main style="font-family:Montserrat">
-        <img src="homeContent.png" class="responsive" id="home">
+        <img src="./assets/homeContent.png" class="responsive" id="home">
 
         <!-- ABOUT ME Container -->
         <div class="aboutContainer" id="aboutme">
-            <img src="aboutMeContent.png" class="aboutme">
+            <img src="./assets/aboutMeContent.png" class="aboutme">
 
         <!-- PORTFOLIO Container -->
         <div class="galleryContainer" id="portfolio" style="padding:55px 40px 60px 40px">
@@ -471,22 +73,22 @@
                     <!-- END OF HEADER-->
                     
                     <!-- 2024-->
-                    <gallery-preview src="./images/personal/rin.png" title="Rin | A Redraw + Art Challenge" date="June 23, 2024" desc="This was a piece I worked on as an art challenge with my friends. I decided to try out different rendering techniques for this one."></gallery-preview>
-                    <gallery-preview src="./images/personal/lilya.jpeg" title="Lilya | Fanart" date="May 14, 2024" desc="Fanart of Lilya from Reverse 1999. I wanted to mainly try cel shading for this one."></gallery-preview>
+                    <gallery-preview src="./images/personal/rin.png" title="Rin | A Redraw + Art Challenge" software="Procreate" desc="This was a piece I worked on as an art challenge with my friends. I decided to try out different rendering techniques for this one."></gallery-preview>
+                    <gallery-preview src="./images/personal/lilya.jpeg" title="Lilya | Fanart" software="Procreate" desc="Fanart of Lilya from Reverse 1999. I wanted to mainly try cel shading for this one."></gallery-preview>
                      
                     <!-- 2023-->
 
                     <!-- 2022-->
                     
                     <!-- 2021-->
-                    <gallery-preview src="./images/personal/purple.png" title="A Purple Girl Redraw" date="January 13, 2021" desc="This was a redraw of one of my old artworks back in 2020 where I didn't even give the girl a face yet."></gallery-preview>
-                    <gallery-preview src="./images/personal/2.png" title="Seeing Red and Yellow" date="August 19, 2021" desc="An attempt at a new original character while experimenting a different coloring style."></gallery-preview>
+                    <gallery-preview src="./images/personal/purple.png" title="A Purple Girl Redraw" software="Clip Studio Paint" desc="This was a redraw of one of my old artworks back in 2020 where I didn't even give the girl a face yet."></gallery-preview>
+                    <gallery-preview src="./images/personal/2.png" title="Seeing Red and Yellow" software="Clip Studio Paint" desc="An attempt at a new original character while experimenting a different coloring style."></gallery-preview>
                     
                     <!-- 2020 -->
                 
                     <!-- 2019 -->
-                    <gallery-preview src="./images/personal/2019-1.jpg" title="Something in the Street" date="2019" desc="I had an idea of drawing something crashing by the street I usually pass on the way to school."></gallery-preview>
-                    <gallery-preview src="./images/personal/2019-2.jpg" title="nadiaxel 30k | Draw This In Your Style" date="2019" desc="My draw this in your style entry for instagram user nadiaxel's contest."></gallery-preview>
+                    <gallery-preview src="./images/personal/2019-1.jpg" title="Something in the Street" software="unipin (0.5)" desc="I had an idea of drawing something crashing by the street I usually pass on the way to school."></gallery-preview>
+                    <gallery-preview src="./images/personal/2019-2.jpg" title="nadiaxel 30k | Draw This In Your Style" software="Clip Studio Paint" desc="My draw this in your style entry for instagram user nadiaxel's contest."></gallery-preview>
                 
                 </div>
 
@@ -501,12 +103,12 @@
                         I like to make cute chibi fanart and have also opened commissions for them since they're also something fun to make. I also like to make stickers and hope to be able to sell them someday in booths.
                     </div>
 
-                    <gallery-preview src="./images/personal/chibiYoru.jpeg" title="i'll handle this." date="August 12, 2024" desc="I decided to also make chibi fanart of Yoru from Valorant as per a request on Reddit."></gallery-preview>
-                    <gallery-preview src="./images/personal/chibiAstarion.jpeg" title="all you had to do was fall for it." date="July 29, 2024" desc="Wanted to make fanart of Astarion from Baldur's Gate 3 since he's been my target love interest."></gallery-preview>
-                    <gallery-preview src="./images/personal/chibiNanobomb.jpeg" title="doing some tinkering!" date="July 7, 2024" desc="My chibi version fanart of Killjoy and Raze from Valorant."></gallery-preview>
-                    <gallery-preview src="./images/personal/chibiArni.png" title="arnichii | commission" date="April 21, 2024" desc="A chibi commission for Twitter/X user arnichii."></gallery-preview>
-                    <gallery-preview src="./images/personal/genshin1.png" title="Derpy Valorant Stickers" date="June 6, 2023" desc="I wanted to make cute derpy stickers of a few of my favorite Valorant characters."></gallery-preview>
-                    <gallery-preview src="./images/personal/valo1.png" title="Derpy Genshin Impact Stickers" date="May 21, 2023" desc="I wanted to make cute derpy stickers of a few of my favorite Genshin Impact characters."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiYoru.jpeg" title="i'll handle this." software="Procreate" desc="I decided to also make chibi fanart of Yoru from Valorant as per a request on Reddit."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiAstarion.jpeg" title="all you had to do was fall for it." software="Procreate" desc="Wanted to make fanart of Astarion from Baldur's Gate 3 since he's been my target love interest."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiNanobomb.jpeg" title="doing some tinkering!" software="Procreate" desc="My chibi version fanart of Killjoy and Raze from Valorant."></gallery-preview>
+                    <gallery-preview src="./images/personal/chibiArni.png" title="arnichii | commission" software="Procreate" desc="A chibi commission for Twitter/X user arnichii."></gallery-preview>
+                    <gallery-preview src="./images/personal/genshin1.png" title="Derpy Valorant Stickers" software="Procreate" desc="I wanted to make cute derpy stickers of a few of my favorite Valorant characters."></gallery-preview>
+                    <gallery-preview src="./images/personal/valo1.png" title="Derpy Genshin Impact Stickers" software="Procreate" desc="I wanted to make cute derpy stickers of a few of my favorite Genshin Impact characters."></gallery-preview>
 
                 </div>
 
@@ -526,11 +128,11 @@
 
                     <!-- END OF HEADER-->
 
-                    <gallery-preview src="./images/hestia/IG_Sep25.png" title="Happy World Pharmacists' Day (2023)" date="September 25, 2023" desc="A promotional pubmat for World Pharmacists' Day."></gallery-preview>
-                    <gallery-preview src="./images/hestia/ig-sep9.png" title="A healthy body means a healthy path to success!" date="September 9, 2023" desc="A special message from Hestia Prime for its audience to maintain a healthy body."></gallery-preview>
-                    <gallery-preview src="./images/hestia/biogesic.png" title="Relief through Biogesic!" date="August 31, 2023" desc="A promotional pubmat for Paracetamol Biogesic which can be found in Hestia Prime stores."></gallery-preview>
-                    <gallery-preview src="./images/hestia/FB_NationalHeroesDay.png" title="National Heroes Day (2023)" date="August 27, 2023" desc="A special pubmat from Hestia dedicated to the heroes of the nation - especially the pharmacists."></gallery-preview>
-                    <gallery-preview src="./images/hestia/FB_CTUJobFair.png" title="CTU Job Fair Promotion" date="August 17, 2023" desc="A promotional pubmat for Hestia Prime's appearance at the CTU Job Fair."></gallery-preview>
+                    <gallery-preview src="./images/hestia/IG_Sep25.png" title="Happy World Pharmacists' Day (2023)" software="Adobe Photoshop" desc="A promotional pubmat for World Pharmacists' Day."></gallery-preview>
+                    <gallery-preview src="./images/hestia/ig-sep9.png" title="A healthy body means a healthy path to success!" software="Adobe Photoshop" desc="A special message from Hestia Prime for its audience to maintain a healthy body."></gallery-preview>
+                    <gallery-preview src="./images/hestia/biogesic.png" title="Relief through Biogesic!" software="Adobe Photoshop" desc="A promotional pubmat for Paracetamol Biogesic which can be found in Hestia Prime stores."></gallery-preview>
+                    <gallery-preview src="./images/hestia/FB_NationalHeroesDay.png" title="National Heroes Day (2023)" software="Adobe Photoshop" desc="A special pubmat from Hestia dedicated to the heroes of the nation - especially the pharmacists."></gallery-preview>
+                    <gallery-preview src="./images/hestia/FB_CTUJobFair.png" title="CTU Job Fair Promotion" software="Adobe Photoshop" desc="A promotional pubmat for Hestia Prime's appearance at the CTU Job Fair."></gallery-preview>
                     
                 </div>
 
@@ -541,76 +143,86 @@
                     <div>
                         <!--Title-->
                         <div class="categoryHeader" style="color:#094e0c">
-                            Bilibenta
+                            Bilibenta (2023)
                         </div>
                         <!-- Description -->
                         <div class="categoryDesc">
-                            This is the project that was assigned to me and my fellow interns when we were going through our On-the-Job Training or Internship at SABR Solutions Incc back in August-November 2023. For this project, I was mainly assigned to do UI/UX designs using Figma which I then helped our lead programmer implement using Vue. I and my other UI/UX designer team member also conducted a lot of research based on what the app's target audience may want the most. We created plans as well as methodically designed the app based on that research which was also done in collaboration with the initial research team.
+                            This is the project that was assigned to me and my fellow interns when we were going through our <b>On-the-Job Training</b> or <b>Internship</b> at <i>SABR Solutions Inc.</i> back in August - November 2023. For this project, I was mainly assigned to do UI/UX designs using <b>Figma</b> which I then helped our lead programmer implement using <i>Vue</i>. I and my other UI/UX designer team member also conducted a lot of research based on what the app's target audience may want the most. We created plans as well as methodically designed the app based on that research which was also done in collaboration with the initial research team.
                         </div>
                     </div>
 
                     <!-- END OF HEADER-->
                     
-                    <gallery-preview src="./images/bilibenta/0.png" title="Log In Page" date="November 2023"></gallery-preview>
-                    <gallery-preview src="./images/bilibenta/1.png" title="Sign Up as Seller Page" date="November 2023""></gallery-preview>
-                    <gallery-preview src="./images/bilibenta/1.2.png" title="Sign Up Page (1)" date="November 2023""></gallery-preview>
-                    <gallery-preview src="./images/bilibenta/2.png" title="Sign Up Page (2)" date="November 2023""></gallery-preview>
-                    <gallery-preview src="./images/bilibenta/3.png" title="Chat Page" date="November 2023""></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/0.png" title="Log In Page" software="Figma"></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/1.png" title="Sign Up as Seller Page" software="Figma"></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/1.2.png" title="Sign Up Page (1)" software="Figma"></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/2.png" title="Sign Up Page (2)" software="Figma"></gallery-preview>
+                    <gallery-preview src="./images/bilibenta/3.png" title="Chat Page" software="Figma"></gallery-preview>
                     
                 </div>
 
                  <!-- Paraluman Skin -->
                  <div id="5" class="galleryDirectoryContent">
                     <div class="categoryHeader" style="color:rgb(211, 124, 138)">
-                        Paraluman Skin
+                        Paraluman Skin (2023)
                     </div>
                     <div class="categoryDesc">
                         Paraluman Skin is another company under Hestia Prime Pharmaceuticals. During our On-the-Job Training or Internship with them, I was also given the chance to help them in their promotional materials which included stickers and promotional videos. After the internship period, they also requested that we help them created 3D models as well as designs for their upcoming makeup line.
                     </div>
                     
-                    <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" date="December 19, 2023" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" date="December 19, 2023" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" date="December 14, 2023" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" software="Blender" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/Final-M&V_Paraluman.mp4" title="Mission and Vision | A Motion Design Video" software="Adobe After Effects" desc="The mission and vision video I made for the company."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" software="Procreate" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" software="Blender" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/2.png" title="Sticker Sheet (Part 1)" software="Clip Studio Paint" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
+                    <gallery-preview src="./images/paraluman/1.png" title="Sticker Sheet (Part 1)" software="Clip Studio Paint" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview>
                 </div>
 
                 <!-- MedRx -->
                 <div id="6" class="galleryDirectoryContent">
-                    <div class="categoryHeader" style="color:rgb(10, 147, 92)">
-                        MedRx
-                    </div>
+                    <div class="categoryHeader" style="color:rgb(10, 147, 92)">MedRx (2021)</div>
                     <div class="categoryDesc">MedRx was one of the first projects by Cleio Multimedia Productions that was unfortunately discontinued. For this project, I created the logo and other illustrations for the project using <b>Adobe Illustrator</b> and created pubmats as well as the branding boards on <b>Adobe Photoshop.</b></div>
 
                     <!-- BRANDING -->
-                    <gallery-preview src="./images/medrx/theBoard.png" title="MedRx Branding Board" date="July 21, 2021" desc="The final branding board or mockup design with the MedRx logo."></gallery-preview>
-                    <gallery-preview src="./images/medrx/medrx logo variation 1.png" title="MedRx | Logo Variation 1" date="July 20, 2021" desc="The first variation I made of the logo which mostly just has different colors."></gallery-preview>
-                    <gallery-preview src="./images/medrx/medrx logo variation 2.png" title="MedRx | Logo Variation 2" date="July 20, 2021" desc="The second variation I made of the logo which got approved to be the final."></gallery-preview>
+                    <gallery-preview src="./images/medrx/theBoard.png" title="MedRx Branding Board" software="Adobe Photoshop" desc="The final branding board or mockup design with the MedRx logo."></gallery-preview>
+                    <gallery-preview src="./images/medrx/medrx logo variation 1.png" title="MedRx | Logo Variation 1" software="Adobe Photoshop, Adobe Illustrator" desc="The first variation I made of the logo which mostly just has different colors."></gallery-preview>
+                    <gallery-preview src="./images/medrx/medrx logo variation 2.png" title="MedRx | Logo Variation 2" software="Adobe Photoshop, Adobe Illustrator" desc="The second variation I made of the logo which got approved to be the final."></gallery-preview>
 
                     <!-- PUBMATS -->
-                    <gallery-preview src="./images/medrx/takeabreak.png" title="It's okay to take a break." date="September 22, 2021" desc="A special illustrated pubmat I created with MedRx's mascot telling the audience that it's okay to take a break."></gallery-preview>
-                    <gallery-preview src="./images/medrx/delata.png" title="Avoid delata variants!" date="August 25, 2021" desc="A special illustrated pubmat I created with MedRx's mascot warning the audience to avoid delata variants during COVID."></gallery-preview>
+                    <gallery-preview src="./images/medrx/takeabreak.png" title="It's okay to take a break." software="Adobe Photoshop, Adobe Illustrator" desc="A special illustrated pubmat I created with MedRx's mascot telling the audience that it's okay to take a break."></gallery-preview>
+                    <gallery-preview src="./images/medrx/delata.png" title="Avoid delata variants!" software="Adobe Photoshop, Adobe Illustrator, Clip Studio Paint" desc="A special illustrated pubmat I created with MedRx's mascot warning the audience to avoid delata variants during COVID."></gallery-preview>
 
                     <!-- USER INTERFACE-->
-                    <gallery-preview src="./images/medrx/signup1.jpg" title="Sign Up Page (1 of 3)" date="August 30, 2021" desc="Page 1 of the user interface and design for MedRx's Sign Up."></gallery-preview>
-                    <gallery-preview src="./images/medrx/signup2.jpg" title="Sign Up Page (2 of 3)" date="August 30, 2021" desc="Page 2 of the user interface and design for MedRx's Sign Up."></gallery-preview>
-                    <gallery-preview src="./images/medrx/signup3.jpg" title="Sign Up Page (3 of 3)" date="August 30, 2021" desc="Page 3 of the user interface and design for MedRx's Sign Up."></gallery-preview>
-                    <gallery-preview src="./images/medrx/search.png" title="Search Page" date="August 30, 2021" desc="The page where users would be able to search different medicines and the like in the app."></gallery-preview>
-                    <gallery-preview src="./images/medrx/myorders.png" title="My Orders Page" date="August 30, 2021" desc="The order page of the user when they haven't made any orders yet."></gallery-preview>
-                    <gallery-preview src="./images/medrx/mycart1.png" title="My Cart Page" date="August 30, 2021" desc="This is the My Cart page where the users would be able to see the products they've added to their cart."></gallery-preview>
-                    <gallery-preview src="./images/medrx/changePass.png" title="Password Change Page" date="August 30, 2021" desc="This is the page that will show up when a user wants to change their password."></gallery-preview>
+                    <gallery-preview src="./images/medrx/signup1.jpg" title="Sign Up Page (1 of 3)" software="Adobe Photoshop" desc="Page 1 of the user interface and design for MedRx's Sign Up."></gallery-preview>
+                    <gallery-preview src="./images/medrx/signup2.jpg" title="Sign Up Page (2 of 3)" software="Adobe Photoshop" desc="Page 2 of the user interface and design for MedRx's Sign Up."></gallery-preview>
+                    <gallery-preview src="./images/medrx/signup3.jpg" title="Sign Up Page (3 of 3)" software="Adobe Photoshop" desc="Page 3 of the user interface and design for MedRx's Sign Up."></gallery-preview>
+                    <gallery-preview src="./images/medrx/search.png" title="Search Page" software="Adobe Photoshop" desc="The page where users would be able to search different medicines and the like in the app."></gallery-preview>
+                    <gallery-preview src="./images/medrx/myorders.png" title="My Orders Page" software="Adobe Photoshop" desc="The order page of the user when they haven't made any orders yet."></gallery-preview>
+                    <gallery-preview src="./images/medrx/mycart1.png" title="My Cart Page" software="Adobe Photoshop" desc="This is the My Cart page where the users would be able to see the products they've added to their cart."></gallery-preview>
+                    <gallery-preview src="./images/medrx/changePass.png" title="Password Change Page" software="Adobe Photoshop" desc="This is the page that will show up when a user wants to change their password."></gallery-preview>
                 </div>
 
 
                 <!-- Cleio Multimedia Productions -->
                 <div id="7" class="galleryDirectoryContent">
-                    <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" date="December 19, 2023" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" date="December 19, 2023" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" date="December 14, 2023" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/2.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/1.png" title="Paraluman Skin Stickers (Part 1)" date="August 25, 2023" desc="Part two of the stickers I personally crafted for Paraluman Skin."></gallery-preview> 
+                    <div class="categoryHeader">Cleio Multimedia Productions</div>
+                    <div class="categoryDesc">Cleio Multimedia Productions was the foundation of SABR Solutions Inc. though it was a company more based on making multimedia outputs, including branding — <i>Hestia Prime Pharmaceuticals</i> was our first client. I was personally tasked with a lot of multimedia tasks which included <b>illustration</b>, <b>photo editing</b>, <b>video editing</b>, <b>videography</b>, and <b>graphic design</b>.</div>
                 </div>
 
+                <!-- Dysglopia -->
+                <div id="10" class="galleryDirectoryContent">
+                    <div class="categoryHeader" style="color:#0e540b">Dysglopia</div>
+                    <div class="categoryDesc">Dysglopia was one of SABR Solution Inc.'s biggest projects. It was meant to be a turn-based PVP game that revolved around a post-apocalyptic world that had now been populated with "Gloops". I was the team leader for the creatives of this project and my responsibilities included <b>graphic design</b>, <b>concept art</b>, <b>2D illustration</b>, <b>2d animation</b>, <b>character design</b>, and the <b>dissemination of tasks</b>. </div>
+
+                    <gallery-preview src="./images/dysglopia/Absorb.gif" title="Absorb | Normal Skill" software="Clip Studio Paint" desc="Animation of the Absorb skill. Its ability is to steal health power of up to 20% of the enemy gloop with the highest remaining HP."></gallery-preview>
+                    <gallery-preview src="./images/dysglopia/absorbHeal.gif" title="Absorb - Heal | Normal Skill" software="Clip Studio Paint" desc="This is the animation that is triggered to appear above the gloop who just used this skill to receive the health taken from the enemy gloop."></gallery-preview>
+                    <gallery-preview src="./images/dysglopia/earthStrikeVFX.gif" title="Earth Strike | Normal Skill" software="Clip Studio Paint" desc="Animation of the Earth Strike skill. It summons a large, sharp rock from the earth to strike the enemy gloop."></gallery-preview>
+                    <gallery-preview src="./images/dysglopia/Eco Bullets.gif" title="Eco Bullets | Normal Skill" software="Clip Studio Paint" desc="Animation of the Eco Bullets Skill. It sprays a hail of grass-infused bullets at the enemy."></gallery-preview>
+                    <gallery-preview src="./images/dysglopia/initial toxinGloopprint.gif" title="Toxin Gloopprint | Special Skill" software="Clip Studio Paint" desc="Animation of the Toxin Gloopprint Skill. It lets the user gloop imprint a marking on an enemy gloop which slowly poisons the enemy, lasting around 7 seconds."></gallery-preview>
+                    <gallery-preview src="./images/dysglopia/Rebound_V1-2.gif" title="Rebound | Special Skill" software="Clip Studio Paint" desc="Animation of the Rebound Skill. This skill allows the user to summon a gloopy alloy shield around itself to rebound any incoming attacks for 3 seconds."></gallery-preview>
+                    <gallery-preview src="./images/dysglopia/Normal Attack_1.gif" title="Normal Attack" software="Clip Studio Paint" desc="Animation of the normal attack that a gloop shoots at the enemy when they're not using their skill."></gallery-preview>
+                    
+                </div>
                 </div>
                 </div>
                 </div>
@@ -630,18 +242,18 @@
                     <div>here's my resume!</div>
                 </b>
                 <div class="download-btn">
-                    <a href="RaineAcharon_Resume.pdf">
-                        <img src="pdfButton.png" alt="RaineAcharon_Resume.pdf">
+                    <a href="./assets/RaineAcharon_Resume.pdf">
+                        <img src="./assets/pdfButton.png" alt="RaineAcharon_Resume.pdf">
                     </a>
                 </div>
             </div>
             <div>
-                <img src="horizontalLine.png">
+                <img src="./assets/horizontalLine.png">
             </div>
             <div style="margin-left: 70px;">
                 <div style="font-size:20px; letter-spacing:2px; color:#2B3E70"><b>contact me!</b></div>
                 <hr width=100% style="border-radius: 40px; border-width: 1px; border-color:#2B3E70">
-                <div><img src="contactDetails.png"></div>
+                <div><img src="./assets/contactDetails.png"></div>
             </div>
         </div>
     </div>
@@ -650,12 +262,18 @@
 
      <!--The Modal-->
      <div id="myModal" class="modal" onclick="this.style.display='none'">
+        <div class="modalContainer">
         <span class="close">&times;</span>
 
         <div class="modal-content">
-            <img id="myImg">
-
+            <div class="flexContainer">
+                <img id="myImg"/>
+                <div id="prevDesc"></div>
+                
+            </div>
+            
         </div>
+    </div>
     </div>
     <!-- End of the Modal -->
 
@@ -668,9 +286,9 @@
         <div class="gallery-preview">
           <img class="preview-image" onclick="onClick(this)"/>
           <div style="padding:20px">
-            <h1 class="preview-date" style="font-size:small; font-weight: 400; font-style: italic"></h1>
+            <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
             <h3 class="preview-title" style="font-size:medium"></h3>
-            <p class="preview-description" style="color:#616161; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:small;"></p>
+            <p class="preview-description" onclick="onClick(this)" style="color:#616161; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:small;"></p>
           </div>
         </div>
     </template>
@@ -705,6 +323,7 @@
         function onClick(element)
         {
             document.getElementById("myImg").src = element.src;
+
             document.getElementById("myModal").style.display = "block";
         }
 
