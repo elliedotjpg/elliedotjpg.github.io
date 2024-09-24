@@ -1,0 +1,402 @@
+body {background-image: url('BG.svg');}
+
+    #myImg{
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    #prevDesc{
+        color:black;
+    }
+
+    .modalContainer{
+        background-color: #fff;
+        border-radius:30px;
+        padding:30px;
+        margin:80px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 20px; /* Location of the box */
+        padding-bottom:20px;
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        justify-content: center; /* Horizontally centers the modal */
+        align-items: center; /* Vertically centers the modal */
+    }
+
+    /* Modal Content (Image) */
+    .modal-content img {
+        margin:0 auto;
+        display: block;
+        max-width:50vw;
+        height:50vh;
+        width:auto;
+        height:auto;
+        object-fit: contain;
+        object-position:center;
+    }
+
+    /* Caption of Modal Image (Image Text) - Same Width as the Image */
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+
+    /* Add Animation - Zoom in the Modal */
+    .modal-content, #caption {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+        from {transform:scale(0)}
+        to {transform:scale(1)}
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 700px){
+        .modal-content {
+            width: 100%;
+}
+    }
+
+    .responsive{
+        width: 100%;
+        height: auto;
+        z-index: 1;
+    }
+
+    .aboutme{
+        width: 100%;
+        height: auto;
+        z-index: 2;
+    }
+
+    .download-btn{
+        margin:20px 30px 20px 0px;
+        transition:margin 0.2s ease-in-out;
+    }
+
+    .knowMore{
+        margin:0px 60px 60px 60px;
+        float:right;
+        padding:40px;
+        border:1px solid #ccc;
+        border-radius:30px;
+        width:45%;
+        height:130px;
+        background-color:#fff;
+    }
+
+    .flexContainer{
+        display:flex;
+    }
+
+    .hLine{
+        border:2px #ccc;
+        height:100px;
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 600px) {
+
+        .portfolioTitle{
+            font-size:30px;
+            letter-spacing: 2px;
+            margin:15px;
+            color:#2B3E70
+        }
+
+        .galleryContainer{
+            margin:60px;
+            width:device-width;
+            height:1100px;
+            padding:40px;
+            background-color: #fff;
+            border:1px solid #ccc;
+            border-radius:30px;
+        }
+
+        div.galleryDirectory{
+            width:30%;
+            height:auto;
+            padding:20px 20px 0px 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius:20px;
+        }
+
+        .galleryDirectory button{
+            border-radius: 30px;
+            font-family: Montserrat;
+            font-weight: 600;
+            display:block;
+            background-color: inherit;
+            color:black;
+            margin:10px 10px 10px 0px;
+            padding:20px;
+            width:100%;
+            border:none;
+            text-align:left;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .galleryDirectory button:hover{
+            background-color:#ddd;
+            margin:10px 10px 10px 0px;
+            padding:20px;
+            color:#2B3E70;
+        }
+
+        .galleryDirectory button.active{
+            transition:0.3s;
+            background-color:#2B3E70;
+            padding:20px;
+            font-weight:bold;
+            color:#fff;
+        }
+
+        .galleryDirectoryContent{
+            overflow-x: auto;
+            float:left;
+            padding:15px;
+            margin:20px;
+            border: 1px solid #ccc;
+            border-radius:30px;
+            width:100%;
+            border:none;
+            height:800px;
+        }
+
+        div.gallery-preview{
+            font-size: 25.5vw;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            float: left;
+            width: 250px;
+            height:475px;
+            background-color: #fff;
+            -ms-text-size-adjust: auto;
+        }
+
+        div.gallery-preview img {
+            border-radius: 25px 25px 0px 0px;
+            margin: 0px 0px 20px 0px;
+            object-fit:cover;
+            width: 250px;
+            height: 250px;
+            float:left;
+        }
+
+        div.gallery-preview:hover{
+            border: 1px solid #ccc;
+            cursor:pointer;
+            transform: translateY(-10px); /* Moves the image up without affecting the layout */
+            opacity:60%;
+            transition:0.3s ease;
+        }
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .portfolioTitle{
+            font-size:10px;
+        }
+
+        .galleryContainer{
+            width:device-width;
+            height:1100px;
+            padding:20px;
+            background-color: #fff;
+            border:1px solid #ccc;
+    } 
+        div.galleryDirectory{
+            width:20%;
+            height:auto;
+            padding:2px 20px 0px 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius:20px;
+        }
+
+        .galleryDirectory button{
+            border-radius: 5px;
+            font-family: Montserrat;
+            font-size:8px;
+            font-weight: 600;
+            display:block;
+            background-color: inherit;
+            color:black;
+            margin:10px 10px 10px 0px;
+            padding:5px;
+            width:100%;
+            border:none;
+            text-align:left;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .galleryDirectory button:hover{
+            background-color:#ddd;
+            margin:10px 10px 10px 0px;
+            width:100%;
+            padding:15px;
+            color:#2B3E70;
+        }
+
+        .galleryDirectory button.active{
+            border-radius: 5px;
+            transition:0.3s;
+            background-color:#2B3E70;
+            padding:15px;
+            width:100%;
+            font-weight:bold;
+            color:#fff;
+        }
+
+        .galleryDirectoryContent{
+            overflow-x: auto;
+            float:left;
+            padding:5px;
+            margin:5px;
+            border: 1px solid #ccc;
+            border-radius:15px;
+            width:100%;
+            border:none;
+            height:900px;
+        }
+
+        div.gallery-preview{
+            font-size: 25.5vw;
+            margin: 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            float: left;
+            width: 100px;
+            height:100px;
+            background-color: #fff;
+        }
+        div.gallery-preview img {
+            border-radius: 25px 25px 0px 0px;
+            margin: 0px 0px 20px 0px;
+            object-fit:cover;
+            width: 100px;
+            height: 90px;
+            float:left;
+            text-wrap:nowrap;
+        }
+
+        div.gallery-preview:hover{
+            border: 1px solid #ccc;
+            cursor:pointer;
+            margin-top:20px;
+            transition:0.3s;
+    }
+}
+    div.desc {
+        padding: 15px 15px 35px 15px;
+        text-align: center;
+    } 
+
+    .categoryDesc
+    {
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: #5f5f5f;
+        font-weight:400;
+        font-size:medium;
+        margin:20px;
+        padding:0px 80px 0px 0px;
+    }
+
+    .categoryHeader
+    {
+        font-weight:600;
+        font-size:x-large;
+        margin-left:20px
+    }
+
+    .navbar{
+        display: flex;
+        text-align: left;
+        position: fixed;
+        overflow: hidden;
+        padding-right: 50px;
+        padding-left: 50px;
+        margin: auto 30px;
+        background-color: white;
+        border-radius: 0px 40px 40px 0px;
+        width: 800px;
+        max-width: 80%;
+        margin: 30px;
+        margin-left: 0px;
+        box-sizing: border-box;
+        height: auto;
+        box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a{
+        position: relative;
+        float: center;
+        color: #2B3E70;
+        text-align: center;
+        padding: 20px;
+        margin: 10px;
+        font-family: 'Montserrat';
+        font-weight: bold;
+        font-size: 17px;
+        letter-spacing: 2px;
+        font-variant: small-caps;
+        height: 10px;
+        width: 800px;
+        background-color: white;
+        text-decoration: none;
+    }
+
+    .navbar nav{
+        width: 80%;
+        position: relative;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .line{
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 4px;
+    }
