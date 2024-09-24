@@ -6,7 +6,7 @@ class GalleryPreview extends HTMLElement {
       // Populate content with attributes from the HTML
       templateContent.querySelector('.preview-image').src = this.getAttribute('src');
       templateContent.querySelector('.preview-image').alt = this.getAttribute('title');
-      templateContent.querySelector('.preview-date').textContent = this.getAttribute('date');
+      templateContent.querySelector('.preview-software').textContent = this.getAttribute('software');
       templateContent.querySelector('.preview-title').textContent = this.getAttribute('title');
       templateContent.querySelector('.preview-description').textContent = this.getAttribute('desc');
   
