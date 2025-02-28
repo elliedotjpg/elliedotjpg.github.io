@@ -21,7 +21,53 @@
     </div>
 
     <main style="font-family:Montserrat">
-        <img src="./assets/homeContent.png" class="responsive" id="home">
+        <div class="blob-one"></div>
+        <center>
+        <div class="gridContent" style="place-items:center; margin:5vh">
+            <div class="introContainer">
+                    <div class="gridContent" style="align-items:center;">
+                        <img class="introPhoto" src="./assets/me.jpg"/>
+                        <div style="margin:3vh; place-items:center">
+                            <div style="color:#fff; font-size:4.0vh; letter-spacing:0.5vh;">hello!</div>
+                            <div class="gridContent" style="font-size:4.0vh">
+                                <div style="color:#fff">call</div>
+                                <div style="color:#FFf; margin-left:1vh">me</div>
+                                <div style="color:#FFB703; margin-left:1vh">ellie</div>
+                                <div style="color:#fff; margin-left:1vh">.</div>
+                            </div>             
+                            <div style="color:#2B3E70; background-color:#FFB703; font-size:1.3vh; border-radius: 8rem 8rem; padding:16px; text-align:center; margin-top:20px">freelance multimedia designer</div>
+                        </div>
+                    </div>
+                </div>
+            <div style="color:#FFB703; font-weight:700; font-size:1.2vh; margin:1.5vh">
+                <div style="margin-bottom:2vh">
+                <div>YOU CAN FIND</div>
+                <div>ME HERE TOO!</div>
+            </div>
+                <!-- LINKEDIN BUTTON -->
+                <div>
+                <a href="https://www.linkedin.com/in/raine-nemanuelle-acharon-7246642b3/">
+                    <img src="./assets/LinkedIn.png" alt="My LinkedIn Profile">
+                </a>
+            </div>
+
+            <!-- ONLINEJOBS BUTTON-->
+            <div style="margin-top:1vh">
+                <a href="https://www.onlinejobs.ph/jobseekers/info/3194146">
+                    <img src="./assets/OnlineJobs.png" alt="My OnlineJobs.ph Profile">
+                </a>
+            </div>
+
+            <!-- UPWORK BUTTON-->
+            <div style="margin-top:1vh">
+                <a href="https://www.upwork.com/freelancers/rainenemanuellea?mp_source=share">
+                    <img src="./assets/Upwork Button.png" alt="My Upwork Profile">
+                </a>
+            </div>
+                
+            </div>
+        </div>
+    </center>
 
         <!-- ABOUT ME Container -->
         <div class="aboutContainer" id="aboutme">
@@ -171,7 +217,7 @@
                     </div>
                     
                     <gallery-preview src="./images/paraluman/eyeshadowPalette4.png" title="Eyeshadow Palette Design + 3D Model" software="Blender" desc="A 3D model and design of an eyeshadow palette for Paraluman Skin."></gallery-preview>
-                    <gallery-preview src="./images/paraluman/Final-M&V_Paraluman.mp4" title="Mission and Vision | A Motion Design Video" software="Adobe After Effects" desc="The mission and vision video I made for the company."></gallery-preview>
+                    <video-gallery-preview video-src=".images/paraluman/Final-MV-Paraluman.mp4" video-title="Mission and Vision | A Motion Design Video" video-software="Adobe After Effects" video-desc="The mission and vision video I made for the company."></video-gallery-preview>
                     <gallery-preview src="./images/paraluman/lipstickDesigns.png" title="Lipstick Design Sketches" software="Procreate" desc="Sketches for a Lipstick design for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/concealer2.png" title="Concealer Design + 3D Model" software="Blender" desc="A 3D model and design of a concealer for Paraluman Skin."></gallery-preview>
                     <gallery-preview src="./images/paraluman/2.png" title="Sticker Sheet (Part 1)" software="Clip Studio Paint" desc="A sheet of stickers I made for Paraluman Skin from scratch in Clip Studio Paint."></gallery-preview>
@@ -268,8 +314,8 @@
         <div class="modal-content">
             <div class="flexContainer">
                 <img id="myImg"/>
-                <div id="prevDesc"></div>
-                
+                <video id="myVideo"/>
+                <div id="prevDesc"></div>          
             </div>
             
         </div>
@@ -289,6 +335,18 @@
             <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
             <h3 class="preview-title" style="font-size:medium"></h3>
             <p class="preview-description" onclick="onClick(this)" style="color:#616161; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:small;"></p>
+          </div>
+        </div>
+    </template>
+
+    <!-- Gallery Preview with Video Template -->
+    <template id="video-preview-template">
+        <div class="video-gallery-preview">
+          <video class="preview-video" onclick="onClick(this)"/>
+          <div style="padding:20px">
+            <h1 class="vid-prev-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
+            <h3 class="vid-prev-title" style="font-size:medium"></h3>
+            <p class="vid-prev-description" onclick="onClick(this)" style="color:#616161; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:small;"></p>
           </div>
         </div>
     </template>
@@ -324,6 +382,8 @@
         {
             document.getElementById("myImg").src = element.src;
 
+            document.getElementById("myVideo").src = element.src;
+            
             document.getElementById("myModal").style.display = "block";
         }
 
