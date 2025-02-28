@@ -9,7 +9,49 @@ body {background-image: url('BG.svg');}
         color:black;
     }
 
+    .introPhoto{
+        border-radius:100%;
+        border-style:solid;
+        border-width:5px;
+        border-color:#fff;
+        height:400px;
+        width: 400px;
+        margin:30px;
+    }
+
+    .gridContent{
+        display:grid;
+        grid-template-columns: auto auto auto auto;
+    }
+
+    .introContainer{
+        z-index: 1;
+        border-radius: 51% 49% 69% 31% / 65% 50% 50% 35%;
+        background-color: #2B3E70;
+        width:fit-content;
+        padding:10vh;
+        margin:10vh;
+        font-weight:800;
+    }
+
+    .blob-one{
+        background-color:#2B3E70;
+        position: relative;
+        border-radius: 62% 38% 59% 41% / 78% 69% 31% 22%;
+        isolation:isolate;
+        z-index: -1;
+        background-image:linear-gradient(-45deg,#3023AE 0%, #f09 100%);)
+        
+    }
+
     .modalContainer{
+        background-color: #fff;
+        border-radius:30px;
+        padding:30px;
+        margin:80px;
+    }
+
+    .VideeoModalContainer{
         background-color: #fff;
         border-radius:30px;
         padding:30px;
@@ -18,6 +60,23 @@ body {background-image: url('BG.svg');}
 
     /* The Modal (background) */
     .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 20px; /* Location of the box */
+        padding-bottom:20px;
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        justify-content: center; /* Horizontally centers the modal */
+        align-items: center; /* Vertically centers the modal */
+    }
+
+    .VideoModal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -46,6 +105,18 @@ body {background-image: url('BG.svg');}
         object-position:center;
     }
 
+    /* Modal Content (Video) */
+    .video-modal-content video {
+        margin:0 auto;
+        display: block;
+        max-width:50vw;
+        height:50vh;
+        width:auto;
+        height:auto;
+        object-fit: contain;
+        object-position:center;
+    }
+
     /* Caption of Modal Image (Image Text) - Same Width as the Image */
     #caption {
         margin: auto;
@@ -63,6 +134,13 @@ body {background-image: url('BG.svg');}
         animation-name: zoom;
         animation-duration: 0.6s;
     }
+
+    /* Add Animation - Zoom in the Modal */
+    .video-modal-content, #caption {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
 
     @keyframes zoom {
         from {transform:scale(0)}
@@ -88,6 +166,10 @@ body {background-image: url('BG.svg');}
 
     @media only screen and (max-width: 700px){
         .modal-content {
+            width: 100%;
+}
+
+        .video-modal-content {
             width: 100%;
 }
     }
@@ -213,6 +295,18 @@ body {background-image: url('BG.svg');}
             -ms-text-size-adjust: auto;
         }
 
+        div.video-gallery-preview{
+            font-size: 25.5vw;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            float: left;
+            width: 250px;
+            height:475px;
+            background-color: #fff;
+            -ms-text-size-adjust: auto;
+        }
+
         div.gallery-preview img {
             border-radius: 25px 25px 0px 0px;
             margin: 0px 0px 20px 0px;
@@ -222,7 +316,24 @@ body {background-image: url('BG.svg');}
             float:left;
         }
 
+        div.video-gallery-preview video {
+            border-radius: 25px 25px 0px 0px;
+            margin: 0px 0px 20px 0px;
+            object-fit:cover;
+            width: 250px;
+            height: 250px;
+            float:left;
+        }
+
         div.gallery-preview:hover{
+            border: 1px solid #ccc;
+            cursor:pointer;
+            transform: translateY(-10px); /* Moves the image up without affecting the layout */
+            opacity:60%;
+            transition:0.3s ease;
+        }
+
+        div.video-gallery-preview:hover{
             border: 1px solid #ccc;
             cursor:pointer;
             transform: translateY(-10px); /* Moves the image up without affecting the layout */
@@ -310,6 +421,18 @@ body {background-image: url('BG.svg');}
             height:100px;
             background-color: #fff;
         }
+
+        div.video-gallery-preview{
+            font-size: 25.5vw;
+            margin: 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            float: left;
+            width: 100px;
+            height:100px;
+            background-color: #fff;
+        }
+
         div.gallery-preview img {
             border-radius: 25px 25px 0px 0px;
             margin: 0px 0px 20px 0px;
@@ -320,7 +443,24 @@ body {background-image: url('BG.svg');}
             text-wrap:nowrap;
         }
 
+        div.video-gallery-preview video {
+            border-radius: 25px 25px 0px 0px;
+            margin: 0px 0px 20px 0px;
+            object-fit:cover;
+            width: 100px;
+            height: 90px;
+            float:left;
+            text-wrap:nowrap;
+        }
+
         div.gallery-preview:hover{
+            border: 1px solid #ccc;
+            cursor:pointer;
+            margin-top:20px;
+            transition:0.3s;
+    }
+
+        div.video-gallery-preview:hover{
             border: 1px solid #ccc;
             cursor:pointer;
             margin-top:20px;
