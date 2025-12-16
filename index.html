@@ -353,12 +353,20 @@
 
                 <!-- ANIMATION -->
                 <div id="6" class="galleryDirectoryContent">
-                    <div class="categoryHeader" style="color:rgb(10, 147, 92);">Animation</div>
-                    <div class="categoryDesc">MedRx was one of the first projects by Cleio Multimedia Productions that
+                    <div class="categoryHeader" style="color:rgb(10, 147, 92);">Animation & Motion Design</div>
+                    <!-- <div class="categoryDesc">MedRx was one of the first projects by Cleio Multimedia Productions that
                         was unfortunately discontinued. For this project, I created the logo and other illustrations for
                         the project using <b>Adobe Illustrator</b> and created pubmats as well as the branding boards on
                         <b>Adobe Photoshop.</b>
-                    </div>
+                    </div> -->
+
+                    <video-gallery-preview video-src="./images/other-videos/THEO.mp4"
+                        video-title="Theology in 1-Minute" video-software="Adobe Premiere Pro, Clip Studio Paint"
+                        video-desc="A short animatic my sister made for our Theology subject."></video-gallery-preview>
+                    
+                        <video-gallery-preview video-src="./images/paraluman/Final-MV-Paraluman.mp4"
+                        video-title="Paraluman Mission & Vision Video" video-software="Adobe Premiere Pro"
+                        video-desc="A complete music video project I edited and produced for Paraluman Skin."></video-gallery-preview>
 
                     <gallery-preview src="./images/dysglopia/Absorb.gif" title="Absorb | Normal Skill"
                         software="Clip Studio Paint"
@@ -381,9 +389,7 @@
                     <gallery-preview src="./images/dysglopia/Normal Attack_1.gif" title="Normal Attack"
                         software="Clip Studio Paint"
                         desc="Animation of the normal attack that a gloop shoots at the enemy when they're not using their skill."></gallery-preview>
-                    <video-gallery-preview src="./images/paraluman/Final-MV-Paraluman.mp4"
-                        title="Paraluman Music Video" software="Adobe Premiere Pro"
-                        desc="A complete music video project I edited and produced for Paraluman Skin."></video-gallery-preview>
+                    
 
                         <!-- USER INTERFACE-->
                         <gallery-preview src="./images/medrx/signup1.jpg" title="Sign Up Page (1 of 3)"
@@ -560,7 +566,7 @@
     <!-- Video Gallery Preview Template -->
     <template id="video-preview-template" style="font-family:Montserrat">
         <div class="video-gallery-preview">
-            <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay />
+            <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay></video>
             <div style="padding:20px">
                 <h1 class="vid-prev-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
                 <h3 class="vid-prev-title" style="font-size:medium"></h3>
