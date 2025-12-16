@@ -557,8 +557,6 @@
             <div style="padding:20px">
                 <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
                 <h3 class="preview-title" style="font-size:medium"></h3>
-                <p class="preview-description" onclick="onClick(this)" style="color:#616161; font-size:small;">
-                </p>
             </div>
         </div>
     </template>
@@ -570,8 +568,6 @@
             <div style="padding:20px">
                 <h1 class="vid-prev-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
                 <h3 class="vid-prev-title" style="font-size:medium"></h3>
-                <p class="vid-prev-description" style="color:#616161; font-size:small;">
-                </p>
             </div>
         </div>
     </template>
@@ -642,17 +638,15 @@
             modalVideo.style.display = "none";
             modalImg.src = element.src;
             
-            // Get the parent gallery preview element to extract description
+            // Get the parent gallery preview element to extract title and software
             const galleryPreview = element.closest('.gallery-preview');
             if (galleryPreview) {
                 const title = galleryPreview.querySelector('.preview-title').textContent;
                 const software = galleryPreview.querySelector('.preview-software').textContent;
-                const description = galleryPreview.querySelector('.preview-description').textContent;
                 
                 modalDesc.innerHTML = `
                     <h2>${title}</h2>
                     <p><em>Software: ${software}</em></p>
-                    <p>${description}</p>
                 `;
             }
             

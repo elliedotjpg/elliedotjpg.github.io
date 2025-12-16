@@ -7,7 +7,6 @@ class GalleryPreview extends HTMLElement {
       templateContent.querySelector('.preview-image').alt = this.getAttribute('title');
       templateContent.querySelector('.preview-software').textContent = this.getAttribute('software');
       templateContent.querySelector('.preview-title').textContent = this.getAttribute('title');
-      templateContent.querySelector('.preview-description').textContent = this.getAttribute('desc');
   
       this.appendChild(templateContent);
     }
@@ -25,7 +24,6 @@ class GalleryPreview extends HTMLElement {
       
       videoTemplateContent.querySelector('.vid-prev-software').textContent = this.getAttribute('software') || this.getAttribute('video-software');
       videoTemplateContent.querySelector('.vid-prev-title').textContent = this.getAttribute('title') || this.getAttribute('video-title');
-      videoTemplateContent.querySelector('.vid-prev-description').textContent = this.getAttribute('desc') || this.getAttribute('video-desc');
   
       this.appendChild(videoTemplateContent);
       
@@ -86,17 +84,15 @@ class GalleryPreview extends HTMLElement {
     modalVideo.muted = false;
     modalVideo.playsinline = false;
     
-    // Get the parent gallery preview element to extract description
+    // Get the parent gallery preview element to extract title and software
     const galleryPreview = element.closest('.video-gallery-preview');
     if (galleryPreview) {
       const title = galleryPreview.querySelector('.vid-prev-title').textContent;
       const software = galleryPreview.querySelector('.vid-prev-software').textContent;
-      const description = galleryPreview.querySelector('.vid-prev-description').textContent;
       
       modalDesc.innerHTML = `
         <h2>${title}</h2>
         <p><em>Software: ${software}</em></p>
-        <p>${description}</p>
       `;
     }
     
