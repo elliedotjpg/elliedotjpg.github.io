@@ -939,6 +939,79 @@ div.proficiencyCard {
         float: left;
     }
 
+    /* Video preview hover effects */
+    div.video-gallery-preview video:hover {
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Modal video styles */
+    .modal-content video {
+        margin: 0 auto;
+        display: block;
+        max-width: 80vw;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 10px;
+    }
+
+    /* Video preview container styles */
+    .preview-video {
+        cursor: pointer;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        position: relative;
+    }
+
+    .preview-video:hover {
+        transform: scale(1.02);
+        opacity: 0.9;
+    }
+
+    /* Add a subtle play indicator overlay */
+    .video-gallery-preview {
+        position: relative;
+    }
+
+    .video-gallery-preview::after {
+        content: '▶';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 24px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .video-gallery-preview:hover::after {
+        opacity: 1;
+    }
+
+    /* Hide play indicator when video is playing */
+    .video-gallery-preview video:not(:paused) ~ div::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 8px;
+        height: 8px;
+        background-color: #ff4444;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+
     div.gallery-preview:hover {
         border: 1px solid #ccc;
         cursor: pointer;

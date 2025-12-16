@@ -381,9 +381,9 @@
                     <gallery-preview src="./images/dysglopia/Normal Attack_1.gif" title="Normal Attack"
                         software="Clip Studio Paint"
                         desc="Animation of the normal attack that a gloop shoots at the enemy when they're not using their skill."></gallery-preview>
-                    <gallery-preview src=".images/paralumanmandv.gif"
-                        video-title="Mission and Vision | A Motion Design Video" video-software="Adobe After Effects"
-                        video-desc="The mission and vision video I made for the company."></video-gallery-preview>
+                    <video-gallery-preview src="./images/paraluman/Final-MV-Paraluman.mp4"
+                        title="Paraluman Music Video" software="Adobe Premiere Pro"
+                        desc="A complete music video project I edited and produced for Paraluman Skin."></video-gallery-preview>
 
                         <!-- USER INTERFACE-->
                         <gallery-preview src="./images/medrx/signup1.jpg" title="Sign Up Page (1 of 3)"
@@ -513,9 +513,9 @@
         <!-- [End of] Want to know more?-->
 
         <!--The Modal-->
-        <div id="myModal" class="modal" onclick="this.style.display='none'">
+        <div id="myModal" class="modal" onclick="closeModal(this)">
             <div class="modalContainer">
-                <span class="close">&times;</span>
+                <span class="close" onclick="closeModal(document.getElementById('myModal'))">&times;</span>
 
                 <div class="modal-content">
                     <div class="flexContainer">
@@ -552,6 +552,19 @@
                 <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
                 <h3 class="preview-title" style="font-size:medium"></h3>
                 <p class="preview-description" onclick="onClick(this)" style="color:#616161; font-size:small;">
+                </p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Video Gallery Preview Template -->
+    <template id="video-preview-template" style="font-family:Montserrat">
+        <div class="video-gallery-preview">
+            <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay />
+            <div style="padding:20px">
+                <h1 class="vid-prev-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
+                <h3 class="vid-prev-title" style="font-size:medium"></h3>
+                <p class="vid-prev-description" style="color:#616161; font-size:small;">
                 </p>
             </div>
         </div>
@@ -596,13 +609,48 @@
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
 
-        // OnClick function
+        // Modal close function
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            
+            // Resume preview videos when modal is closed
+            const previewVideos = document.querySelectorAll('.preview-video');
+            previewVideos.forEach(video => {
+                video.play().catch(e => console.log('Resume play failed:', e));
+            });
+            
+            // Pause modal video
+            const modalVideo = document.getElementById("myVideo");
+            modalVideo.pause();
+        }
+
+        // OnClick function for images
         function onClick(element) {
-            document.getElementById("myImg").src = element.src;
-
-            document.getElementById("myVideo").src = element.src;
-
-            document.getElementById("myModal").style.display = "block";
+            const modal = document.getElementById("myModal");
+            const modalVideo = document.getElementById("myVideo");
+            const modalImg = document.getElementById("myImg");
+            const modalDesc = document.getElementById("prevDesc");
+            
+            // Show image, hide video
+            modalImg.style.display = "block";
+            modalVideo.style.display = "none";
+            modalImg.src = element.src;
+            
+            // Get the parent gallery preview element to extract description
+            const galleryPreview = element.closest('.gallery-preview');
+            if (galleryPreview) {
+                const title = galleryPreview.querySelector('.preview-title').textContent;
+                const software = galleryPreview.querySelector('.preview-software').textContent;
+                const description = galleryPreview.querySelector('.preview-description').textContent;
+                
+                modalDesc.innerHTML = `
+                    <h2>${title}</h2>
+                    <p><em>Software: ${software}</em></p>
+                    <p>${description}</p>
+                `;
+            }
+            
+            modal.style.display = "flex";
         }
 
     </script>
