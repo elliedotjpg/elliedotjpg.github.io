@@ -426,114 +426,70 @@ div.proficiencyCard {
     cursor: pointer;
 }
 
-/* Medium devices (tablets, 600px to 768px) */
-@media only screen and (min-width: 601px) and (max-width: 768px) {
-
-    /* Make intro line horizontal on mobile */
-    .introLine {
-        width: 80% !important;
-        height: 2px !important;
-        border: none !important;
-        background-color: #fff !important;
-        margin: 30px auto 20px auto !important;
-        display: block !important;
-    }
+@media only screen and (min-width: 601px) and (max-width: 955px) {
 
     .navbar {
-        width: 85%;
+        width: 95%;
+        padding: 10px 5px;
+        margin: 2vh auto;
     }
 
     .navbar a {
-        font-size: 15px;
-        padding: 12px 8px;
+        font-size: 14px;
+        padding: 10px 5px;
+        margin: 2px;
+        letter-spacing: 1px;
+    }
+
+    .line {
+        width: 2px;
+        margin: 5px 2px;
     }
 
     .introPhoto {
-        height: 250px;
-        width: 250px;
-        border-width: 6px;
+        height: 200px;
+        width: 200px;
         border-radius: 100%;
+        border-width: 5px;
     }
 
     .introContainer {
-        padding: 4vh;
-        margin: 2.5vw;
+        padding: 3vh;
+        margin: 2vw;
     }
 
     .gridContent {
-        grid-template-columns: auto auto;
-    }
-
-    .knowMore {
-        padding: 30px;
-        width: 85%;
-    }
-
-    .flexContainer {
-        justify-content: space-around;
-        flex-direction: column;
+        grid-template-columns: auto;
+        text-align: center;
+        justify-content: center;
         align-items: center;
     }
 
-    .categoryDesc {
-        font-size: small;
-        padding: 0px 15px 0px 0px;
-        line-height: 1.4;
+    .knowMore {
+        padding: 20px;
+        width: 90%;
+        height: auto;
     }
 
-    .categoryHeader {
-        font-family:Montserrat;
-        font-weight:bold;
-        font-size: large;
+    .flexContainer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    div.gallery-preview {
-        font-family:'Montserrat';
-        width: calc(25% - 20px);
-        margin: 8px;
-        height: 180px;
+    .portfolioTitle {
+        font-size: 16px;
+        text-align: left;
     }
 
-    div.video-gallery-preview {
-        width: calc(25% - 20px);
-        margin: 8px;
-        height: 180px;
+    .hoverButton {
+        width: 25vh;
+        font-size: 14px;
+        padding: 0.4vh 1.5vh;
+        margin-bottom: 1vh;
     }
 
-    div.gallery-preview img {
-        height: 120px;
-    }
-
-    div.video-gallery-preview video {
-        height: 120px;
-    }
-
-    /* Make gallery preview text smaller on tablets */
-    div.gallery-preview .preview-title {
-        font-size: small !important;
-    }
-
-    div.gallery-preview .preview-software {
-        font-size: x-small !important;
-    }
-
-    div.gallery-preview .preview-description {
-        font-size: x-small !important;
-    }
-
-    div.video-gallery-preview .vid-prev-title {
-        font-size: small !important;
-    }
-
-    div.video-gallery-preview .vid-prev-software {
-        font-size: x-small !important;
-    }
-
-    div.video-gallery-preview .vid-prev-description {
-        font-size: x-small !important;
-    }
-
-    /* Fix for the "You can find me here too" section on tablets */
+    /* Fix for the "You can find me here too" section */
     .introContainer div[style*="color:#FFB703"] {
         display: flex;
         flex-direction: column;
@@ -541,114 +497,20 @@ div.proficiencyCard {
         gap: 1vh;
     }
 
-    .hoverButton {
-        margin-bottom: 1vh;
-    }
-}
-
-/* Medium-large devices (601px to 1040px) */
-@media only screen and (min-width: 601px) and (max-width: 1040px) {
-
-    /* Make intro line horizontal on mobile */
-    .introLine {
-        width: 80% !important;
-        height: 2px !important;
-        border: none !important;
-        background-color: #fff !important;
-        margin: 30px auto 20px auto !important;
-        display: block !important;
-    }
-
-
-    .navbar {
-        width: 90%;
-    }
-
-    .navbar a {
-        font-size: 16px;
-        padding: 12px 8px;
-    }
-
-    .introPhoto {
-        height: 280px;
-        width: 280px;
-        border-width: 7px;
-        border-radius: 100%;
-    }
-
-    .introContainer {
-        padding: 4vh;
-        margin: 2.5vw;
-    }
-
-    .gridContent {
-        grid-template-columns: auto auto;
-    }
-
-    .knowMore {
-        padding: 25px;
-        width: 90%;
-    }
-
-    .flexContainer {
-        justify-content: space-around;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .portfolioTitle {
-        font-size: 24px;
-        text-align: left;
-    }
-
-    .galleryContainer {
-        margin: 5vw;
-        padding: 30px;
-    }
-
-    div.galleryDirectory {
-        width: 35%;
-        padding: 15px;
-    }
-
-    .galleryDirectory button {
-        font-size: 14px;
-        padding: 15px;
-        margin: 5px 0;
-    }
-
-    div.gallery-preview {
-        width: calc(33.33% - 15px);
-        margin: 8px;
-        height: 200px;
-    }
-
-    div.video-gallery-preview {
-        width: calc(33.33% - 15px);
-        margin: 8px;
-        height: 200px;
-    }
-
-    div.gallery-preview img {
-        height: 140px;
-    }
-
-    div.video-gallery-preview video {
-        height: 140px;
-    }
-
     .categoryDesc {
-        font-size: small;
-        padding: 0px 15px 0px 0px;
-        line-height: 1.4;
+        font-size: xx-small;
+        padding: 0px 10px 0px 0px;
+        line-height: 1.3;
         text-align: center;
+        font-family: 'Montserrat';
     }
 
     .categoryHeader {
-        font-family:Montserrat;
-        font-weight:bold;
-        font-size: medium;
+        font-family: Montserrat;
+        font-weight: bold;
+        font-size: small;
         text-align: center;
+        margin-bottom: 12px;
     }
 
     /* Center gallery container content */
@@ -660,32 +522,173 @@ div.proficiencyCard {
         text-align: center;
     }
 
-    /* Make gallery preview text smaller */
-    div.gallery-preview .preview-title {
-        font-size: small !important;
+    .galleryContainer {
+        width: device-width;
+        height: 1100px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
     }
 
-    div.gallery-preview .preview-software {
-        font-size: x-small !important;
+    div.galleryDirectory {
+        width: calc(100% - 40px);
+        height: auto;
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 0 20px 20px 20px;
     }
 
-    div.gallery-preview .preview-description {
-        font-size: x-small !important;
+    .galleryDirectory button {
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-size: 11px;
+        font-weight: 600;
+        display: block;
+        background-color: inherit;
+        color: black;
+        margin: 0;
+        padding: 10px 6px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    div.video-gallery-preview .vid-prev-title {
-        font-size: small !important;
+    .galleryDirectory button:hover {
+        background-color: #ddd;
+        color: #2B3E70;
     }
 
-    div.video-gallery-preview .vid-prev-software {
-        font-size: x-small !important;
+    .galleryDirectory button.active {
+        border-radius: 8px;
+        transition: 0.3s;
+        background-color: #2B3E70;
+        font-weight: bold;
+        color: #fff;
     }
 
+    .galleryDirectoryContent {
+        overflow-x: auto;
+        float: left;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        width: 100%;
+        border: none;
+        height: 900px;
+    }
+
+    .galleryItems {
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        place-content: center;
+        place-items: center;
+        text-align: center;
+        align-self: center;
+    }
+
+    div.gallery-preview {
+        font-size: 25.5vw;
+        margin: 5px 3px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        float: left;
+        width: calc(20% - 6px);
+        height: 130px;
+        background-color: #fff;
+        overflow: hidden;
+    }
+
+    div.video-gallery-preview {
+        font-size: 25.5vw;
+        margin: 5px 3px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        float: left;
+        width: calc(33.33% - 6px);
+        height: 130px;
+        background-color: #fff;
+        overflow: hidden;
+    }
+
+    div.gallery-preview img {
+        border-radius: 10px 10px 0px 0px;
+        margin-bottom: 4px;
+        object-fit: cover;
+        width: 100%;
+        height: 100px;
+        float: left;
+    }
+
+    div.video-gallery-preview video {
+        border-radius: 10px 10px 0px 0px;
+
+        margin-bottom: 4px;
+        object-fit: cover;
+        width: 100%;
+        height: 100px;
+        float: left;
+    }
+
+    /* Keep only preview-titles visible on mobile, hide other text */
+    div.gallery-preview .preview-software,
+    div.gallery-preview .preview-description,
+    div.video-gallery-preview .vid-prev-software,
     div.video-gallery-preview .vid-prev-description {
-        font-size: x-small !important;
+        display: none !important;
     }
 
-    /* Make intro line horizontal on medium-large devices */
+    /* Show preview titles with smaller size */
+    div.gallery-preview .preview-title,
+    div.video-gallery-preview .vid-prev-title {
+        font-size: xx-small !important;
+        display: block !important;
+        text-align: center;
+        margin: 2px 0;
+        line-height: 1.2;
+    }
+
+    /* Adjust padding div to only show title */
+    div.gallery-preview div[style*="padding:20px"],
+    div.video-gallery-preview div[style*="padding:20px"] {
+        padding: 5px !important;
+        text-align: center;
+    }
+
+    /* Hide software and description elements within padding */
+    div.gallery-preview div[style*="padding:20px"] .preview-software,
+    div.gallery-preview div[style*="padding:20px"] .preview-description,
+    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-software,
+    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-description {
+        display: none !important;
+    }
+
+    div.gallery-preview:hover {
+        border: 1px solid #ccc;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
+    }
+
+    div.video-gallery-preview:hover {
+        border: 1px solid #ccc;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
+    }
+
+    /* Make intro line horizontal on mobile */
     .introLine {
         width: 80% !important;
         height: 2px !important;
@@ -885,6 +888,11 @@ div.proficiencyCard {
         color: #fff;
     }
 
+    .galleryItems {
+        justify-content: center;
+        align-items: center;
+    }
+
     .galleryDirectoryContent {
         overflow-x: auto;
         float: left;
@@ -904,7 +912,7 @@ div.proficiencyCard {
         border-radius: 25px;
         float: left;
         width: 250px;
-        height: 475px;
+        height: fit-content;
         background-color: #fff;
         -ms-text-size-adjust: auto;
     }
@@ -916,7 +924,7 @@ div.proficiencyCard {
         border-radius: 25px;
         float: left;
         width: 250px;
-        height: 475px;
+        height: fit-content;
         background-color: #fff;
         -ms-text-size-adjust: auto;
     }
@@ -937,79 +945,6 @@ div.proficiencyCard {
         width: 250px;
         height: 250px;
         float: left;
-    }
-
-    /* Video preview hover effects */
-    div.video-gallery-preview video:hover {
-        opacity: 0.8;
-        transition: opacity 0.3s ease;
-    }
-
-    /* Modal video styles */
-    .modal-content video {
-        margin: 0 auto;
-        display: block;
-        max-width: 80vw;
-        max-height: 70vh;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        object-position: center;
-        border-radius: 10px;
-    }
-
-    /* Video preview container styles */
-    .preview-video {
-        cursor: pointer;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        position: relative;
-    }
-
-    .preview-video:hover {
-        transform: scale(1.02);
-        opacity: 0.9;
-    }
-
-    /* Add a subtle play indicator overlay */
-    .video-gallery-preview {
-        position: relative;
-    }
-
-    .video-gallery-preview::after {
-        content: '▶';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 24px;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-    }
-
-    .video-gallery-preview:hover::after {
-        opacity: 1;
-    }
-
-    /* Hide play indicator when video is playing */
-    .video-gallery-preview video:not(:paused) ~ div::before {
-        content: '';
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 8px;
-        height: 8px;
-        background-color: #ff4444;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.5; }
-        100% { opacity: 1; }
     }
 
     div.gallery-preview:hover {
@@ -1108,13 +1043,15 @@ div.proficiencyCard {
         padding: 0px 10px 0px 0px;
         line-height: 1.3;
         text-align: center;
+        font-family: 'Montserrat';
     }
 
     .categoryHeader {
-        font-family:Montserrat;
-        font-weight:bold;
+        font-family: Montserrat;
+        font-weight: bold;
         font-size: small;
         text-align: center;
+        margin-bottom: 12px;
     }
 
     /* Center gallery container content */
@@ -1192,6 +1129,16 @@ div.proficiencyCard {
         height: 900px;
     }
 
+    .galleryItems {
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        place-content: center;
+        place-items: center;
+        text-align: center;
+        align-self: center;
+    }
+
     div.gallery-preview {
         font-size: 25.5vw;
         margin: 5px 3px;
@@ -1218,7 +1165,7 @@ div.proficiencyCard {
 
     div.gallery-preview img {
         border-radius: 10px 10px 0px 0px;
-        margin: 0;
+        margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
         height: 100px;
@@ -1227,7 +1174,8 @@ div.proficiencyCard {
 
     div.video-gallery-preview video {
         border-radius: 10px 10px 0px 0px;
-        margin: 0;
+
+        margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
         height: 100px;
@@ -1298,7 +1246,7 @@ div.desc {
 }
 
 .categoryDesc {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Montserrat';
     color: #5f5f5f;
     font-weight: 400;
     font-size: medium;
@@ -1307,10 +1255,11 @@ div.desc {
 }
 
 .categoryHeader {
-    font-family:Montserrat;
-    font-weight:bold;
+    font-family: Montserrat;
+    font-weight: bold;
     font-size: x-large;
-    margin-left: 20px
+    margin-left: 20px;
+    margin-bottom: 12px;
 }
 
 .navbar {
