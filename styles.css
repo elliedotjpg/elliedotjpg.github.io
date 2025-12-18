@@ -1327,7 +1327,7 @@ div.desc {
 .flippable-card-container {
     perspective: 1000px;
     width: 200px;
-    height: 250px;
+    height: 200px;
     margin: 0 auto;
 }
 
@@ -1340,7 +1340,8 @@ div.desc {
     cursor: pointer;
 }
 
-.flippable-card.flipped {
+.flippable-card.flipped,
+.flippable-card-container:hover .flippable-card {
     transform: rotateY(180deg);
 }
 
@@ -1354,7 +1355,7 @@ div.desc {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 0px 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
 }
@@ -1376,9 +1377,9 @@ div.desc {
 }
 
 .card-icon {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1412,9 +1413,12 @@ div.desc {
 .card-software-name {
     font-family: Montserrat;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.1;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 90%;
 }
 
 .card-years {
@@ -1458,11 +1462,145 @@ div.desc {
     font-weight: 600;
 }
 
+/* Base styles for cards container */
+.cards-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Responsive design for flippable cards */
 @media only screen and (max-width: 600px) {
     .flippable-card-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .card-icon {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 8px;
+    }
+    
+    .card-software-name {
+        font-size: 10px;
+        line-height: 1.0;
+    }
+    
+    .card-years {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+    
+    .proficiency-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .proficiency-dots {
+        gap: 4px;
+        margin-top: 5px;
+    }
+    
+    .proficiency-label {
+        font-size: 9px;
+        margin-bottom: 3px;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 24px !important;
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 955px) {
+    .flippable-card-container {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .card-icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 10px;
+    }
+    
+    .card-software-name {
+        font-size: 11px;
+        line-height: 1.0;
+    }
+    
+    .card-years {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .proficiency-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .proficiency-dots {
+        gap: 5px;
+        margin-top: 6px;
+    }
+    
+    .proficiency-label {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 16px !important;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 15px;
+    }
+}
+
+@media only screen and (min-width: 956px) and (max-width: 1200px) {
+    .flippable-card-container {
         width: 160px;
-        height: 200px;
+        height: 160px;
+    }
+    
+    .card-icon {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 12px;
+    }
+    
+    .card-software-name {
+        font-size: 12px;
+    }
+    
+    .card-years {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .proficiency-dot {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 15px !important;
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    .flippable-card-container {
+        width: 180px;
+        height: 180px;
     }
     
     .card-icon {
@@ -1472,11 +1610,12 @@ div.desc {
     }
     
     .card-software-name {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .card-years {
         font-size: 16px;
+        margin-bottom: 18px;
     }
     
     .proficiency-dot {
@@ -1485,19 +1624,10 @@ div.desc {
     }
     
     .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+        grid-template-columns: repeat(6, 1fr) !important;
         gap: 20px !important;
-    }
-}
-
-@media only screen and (min-width: 601px) and (max-width: 955px) {
-    .flippable-card-container {
-        width: 180px;
-        height: 220px;
-    }
-    
-    .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
-        gap: 25px !important;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 25px;
     }
 }
