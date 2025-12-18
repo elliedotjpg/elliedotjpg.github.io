@@ -1387,10 +1387,26 @@ div.desc {
 .software-icon {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
-    background-color: white;
+    fill:#fff;
     padding: 10px;
+    box-sizing: border-box;
+}
+
+.software-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.software-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
 }
 
 .card-software-name {

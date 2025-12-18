@@ -115,8 +115,26 @@ class GalleryPreview extends HTMLElement {
       const proficiency = parseInt(this.getAttribute('proficiency')) || 0;
       
       // Populate front of card
-      templateContent.querySelector('.software-icon').src = softwareIcon;
-      templateContent.querySelector('.software-icon').alt = softwareName;
+      const iconContainer = templateContent.querySelector('.software-icon');
+      
+      // Check if software-icon contains SVG code or is a URL/path
+      if (softwareIcon.trim().startsWith('<svg')) {
+        // It's SVG code, insert it directly
+        iconContainer.innerHTML = softwareIcon;
+      } else if (softwareIcon.trim().startsWith('http') || softwareIcon.includes('/')) {
+        // It's a URL or path, create an img element
+        const img = document.createElement('img');
+        img.src = softwareIcon;
+        img.alt = softwareName;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'contain';
+        iconContainer.appendChild(img);
+      } else {
+        // Fallback: create a text placeholder
+        iconContainer.innerHTML = `<div style="font-size: 12px; text-align: center; color: white;">${softwareName.substring(0, 3).toUpperCase()}</div>`;
+      }
+      
       templateContent.querySelector('.card-software-name').textContent = softwareName;
       
       // Populate back of card

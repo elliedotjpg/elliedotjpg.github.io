@@ -144,51 +144,47 @@
 
         <!-- Software Proficiency Cards Section -->
         <div class="software-proficiency-section" style="padding: 40px 20px; max-width: 100%; border-radius: 30px;">
-            <h2 style="text-align: center; color: #2B3E70; margin-bottom: 40px; font-family: Montserrat; font-weight: bold;">Software Proficiency</h2>
-            
-            <div class="cards-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3vw; justify-content: center; padding: 20px;">
-                
+
+            <div class="cards-container"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3vw; justify-content: center; padding: 20px;">
+
                 <!-- Example Flippable Cards -->
                 <flippable-card
-                    software-name="Adobe Photoshop"
-                    software-icon="./assets/medrx/finalLogo.png"
+                software-name="Adobe Photoshop"
+                software-icon="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'>
+                    <path d='M7.5 16V12.3333M7.5 12.3333V8.8C7.5 8.35817 7.85817 8 8.3 8H9.33333C10.53 8 11.5 8.97005 11.5 10.1667C11.5 11.3633 10.53 12.3333 9.33333 12.3333H7.5Z' stroke='#0C0D0E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                    <rect x='4' y='4' width='16' height='16' rx='2' stroke='black' stroke-width='2'/>
+                    <path d='M17 11H15.5H15.125C14.5037 11 14 11.5596 14 12.25C14 12.9404 14.5037 13.5 15.125 13.5H15.875C16.4963 13.5 17 14.0596 17 14.75C17 15.4404 16.4963 16 15.875 16H15.5H14'
+                    stroke='black' stroke-width='2' stroke-linecap='round'>
+                </svg>"
+                    
                     years="5 years"
-                    proficiency="5">
-                </flippable-card>
-
-                <flippable-card
-                    software-name="Adobe Illustrator"
-                    software-icon="./assets/medrx/finalLogo.png"
-                    years="4 years"
                     proficiency="4">
                 </flippable-card>
 
-                <flippable-card
-                    software-name="Figma"
-                    software-icon="./assets/medrx/finalLogo.png"
-                    years="3 years"
-                    proficiency="4">
+                <flippable-card software-name="Adobe Illustrator"
+                    software-icon="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#FF9A00'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/></svg>"
+                    years="4 years" proficiency="4">
                 </flippable-card>
 
-                <flippable-card
-                    software-name="Blender"
-                    software-icon="./assets/medrx/finalLogo.png"
-                    years="2 years"
-                    proficiency="3">
+                <flippable-card software-name="Figma"
+                    software-icon="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#F24E1E'><circle cx='7.5' cy='7.5' r='4.5'/><circle cx='16.5' cy='7.5' r='4.5'/><circle cx='7.5' cy='16.5' r='4.5'/><circle cx='16.5' cy='16.5' r='4.5'/></svg>"
+                    years="3 years" proficiency="4">
                 </flippable-card>
 
-                <flippable-card
-                    software-name="Procreate"
-                    software-icon="./assets/medrx/finalLogo.png"
-                    years="4 years"
-                    proficiency="5">
+                <flippable-card software-name="Blender"
+                    software-icon="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#F5792A'><path d='M14.83 4.83L12 2l-2.83 2.83L6.34 4.34 4.34 6.34 5.83 7.83 3 10.66V14l2.83 2.83L4.34 18.34l2 2 2.83-2.49L12 20.66l2.83-2.83 2.83 2.49 2-2-1.49-1.51L21 14v-3.34l-2.83-2.83 1.49-1.49-2-2-2.83 1.49z'/></svg>"
+                    years="2 years" proficiency="3">
                 </flippable-card>
 
-                <flippable-card
-                    software-name="Adobe Premiere Pro"
-                    software-icon="./assets/medrx/finalLogo.png"
-                    years="3 years"
-                    proficiency="3">
+                <flippable-card software-name="Procreate"
+                    software-icon="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#FF6B35'><path d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/></svg>"
+                    years="4 years" proficiency="5">
+                </flippable-card>
+
+                <flippable-card software-name="Adobe Premiere Pro"
+                    software-icon="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#9999FF'><path d='M2 4v16h20V4H2zm8 13H5V7h5v10zm2 0V7l7 4-7 4z'/></svg>"
+                    years="3 years" proficiency="3">
                 </flippable-card>
 
             </div>
@@ -629,7 +625,7 @@
                 <!-- Front of card -->
                 <div class="card-front">
                     <div class="card-icon">
-                        <img class="software-icon" />
+                        <div class="software-icon"></div>
                     </div>
                     <div class="card-software-name"></div>
                 </div>
