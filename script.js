@@ -101,3 +101,65 @@ class GalleryPreview extends HTMLElement {
     // Store reference to preview video to resume it later
     modal.dataset.previewVideo = element.src;
   }
+
+  // Flippable Card Custom Element
+  class FlippableCard extends HTMLElement {
+    connectedCallback() {
+      const template = document.querySelector('#flippable-card-template');
+      const templateContent = template.content.cloneNode(true);
+      
+      // Get attributes
+      const softwareName = this.getAttribute('software-name') || 'Software Name';
+      const softwareIcon = this.getAttribute('software-icon') || '';
+      const years = this.getAttribute('years') || '0 years';
+      const proficiency = parseInt(this.getAttribute('proficiency')) || 0;
+      
+      // Populate front of card
+      templateContent.querySelector('.software-icon').src = softwareIcon;
+      templateContent.querySelector('.software-icon').alt = softwareName;
+      templateContent.querySelector('.card-software-name').textContent = softwareName;
+      
+      // Populate back of card
+      templateContent.querySelector('.card-years').textContent = years;
+      
+      // Create proficiency dots
+      const dotsContainer = templateContent.querySelector('.proficiency-dots');
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'proficiency-dot';
+        if (i <= proficiency) {
+          dot.classList.add('filled');
+        }
+        dotsContainer.appendChild(dot);
+      }
+      
+      // Add proficiency label
+      const proficiencyLabel = document.createElement('div');
+      proficiencyLabel.className = 'proficiency-label';
+      proficiencyLabel.textContent = 'Proficiency Level';
+      templateContent.querySelector('.card-proficiency').insertBefore(proficiencyLabel, dotsContainer);
+      
+      this.appendChild(templateContent);
+      
+      // Add click event for flipping
+      const card = this.querySelector('.flippable-card');
+      this.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+      
+      // Add keyboard support
+      this.setAttribute('tabindex', '0');
+      this.setAttribute('role', 'button');
+      this.setAttribute('aria-label', `Flippable card for ${softwareName}. Click to flip and see proficiency details.`);
+      
+      this.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.classList.toggle('flipped');
+        }
+      });
+    }
+  }
+  
+  // Register the flippable card custom element
+  customElements.define('flippable-card', FlippableCard);

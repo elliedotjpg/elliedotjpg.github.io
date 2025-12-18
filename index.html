@@ -142,6 +142,58 @@
             </div>
         </center>
 
+        <!-- Software Proficiency Cards Section -->
+        <div class="software-proficiency-section" style="padding: 40px 20px; max-width: 100%; border-radius: 30px;">
+            <h2 style="text-align: center; color: #2B3E70; margin-bottom: 40px; font-family: Montserrat; font-weight: bold;">Software Proficiency</h2>
+            
+            <div class="cards-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3vw; justify-content: center; padding: 20px;">
+                
+                <!-- Example Flippable Cards -->
+                <flippable-card
+                    software-name="Adobe Photoshop"
+                    software-icon="./assets/medrx/finalLogo.png"
+                    years="5 years"
+                    proficiency="5">
+                </flippable-card>
+
+                <flippable-card
+                    software-name="Adobe Illustrator"
+                    software-icon="./assets/medrx/finalLogo.png"
+                    years="4 years"
+                    proficiency="4">
+                </flippable-card>
+
+                <flippable-card
+                    software-name="Figma"
+                    software-icon="./assets/medrx/finalLogo.png"
+                    years="3 years"
+                    proficiency="4">
+                </flippable-card>
+
+                <flippable-card
+                    software-name="Blender"
+                    software-icon="./assets/medrx/finalLogo.png"
+                    years="2 years"
+                    proficiency="3">
+                </flippable-card>
+
+                <flippable-card
+                    software-name="Procreate"
+                    software-icon="./assets/medrx/finalLogo.png"
+                    years="4 years"
+                    proficiency="5">
+                </flippable-card>
+
+                <flippable-card
+                    software-name="Adobe Premiere Pro"
+                    software-icon="./assets/medrx/finalLogo.png"
+                    years="3 years"
+                    proficiency="3">
+                </flippable-card>
+
+            </div>
+        </div>
+
         <!-- PORTFOLIO Container -->
         <div class="galleryContainer" id="portfolio" style="padding:55px 40px 60px 40px">
 
@@ -566,6 +618,28 @@
                 <p class="preview-description" onclick="onClick(this)"
                     style="color:#616161; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:small;">
                 </p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Flippable Card Template -->
+    <template id="flippable-card-template">
+        <div class="flippable-card-container">
+            <div class="flippable-card">
+                <!-- Front of card -->
+                <div class="card-front">
+                    <div class="card-icon">
+                        <img class="software-icon" />
+                    </div>
+                    <div class="card-software-name"></div>
+                </div>
+                <!-- Back of card -->
+                <div class="card-back">
+                    <div class="card-years"></div>
+                    <div class="card-proficiency">
+                        <div class="proficiency-dots"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </template>
