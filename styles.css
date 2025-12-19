@@ -426,6 +426,41 @@ div.proficiencyCard {
     cursor: pointer;
 }
 
+@media only screen and (min-width: 400px){
+    .flippable-card-container {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .card-software-name {
+        font-size: 13px;
+    }
+    
+    .card-years {
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+    
+    .proficiency-dot {
+        width: 16px;
+        height: 16px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 20px !important;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 25px;
+    }
+
+}
 @media only screen and (min-width: 601px) and (max-width: 955px) {
 
     .navbar {
@@ -1470,7 +1505,53 @@ div.desc {
 }
 
 /* Responsive design for flippable cards */
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 300px) and (max-width: 510px) {
+    .flippable-card-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .card-icon {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 8px;
+    }
+    
+    .card-software-name {
+        font-size: 10px;
+        line-height: 1.0;
+    }
+    
+    .card-years {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+    
+    .proficiency-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .proficiency-dots {
+        gap: 4px;
+        margin-top: 5px;
+    }
+    
+    .proficiency-label {
+        font-size: 9px;
+        margin-bottom: 3px;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 24px !important;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 511px) and (max-width: 600px) {
     .flippable-card-container {
         width: 100px;
         height: 100px;
