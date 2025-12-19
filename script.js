@@ -161,8 +161,16 @@ class GalleryPreview extends HTMLElement {
       
       // Add click event for flipping
       const card = this.querySelector('.flippable-card');
-      this.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+      this.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Force immediate flip with consistent behavior
+        if (card.classList.contains('flipped')) {
+          card.classList.remove('flipped');
+        } else {
+          card.classList.add('flipped');
+        }
       });
       
       // Add keyboard support
@@ -173,7 +181,14 @@ class GalleryPreview extends HTMLElement {
       this.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          card.classList.toggle('flipped');
+          e.stopPropagation();
+          
+          // Force immediate flip with consistent behavior
+          if (card.classList.contains('flipped')) {
+            card.classList.remove('flipped');
+          } else {
+            card.classList.add('flipped');
+          }
         }
       });
     }

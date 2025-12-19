@@ -15,7 +15,7 @@
 
 <!-- BODY -->
 
-<body style="font-family:Montserrat">
+<body style="font-family:Montserrat; background-color:#191a24;">
     <div class="navbar">
         <nav>
             <a class="active textHover" href="#home">home</a>
@@ -293,7 +293,11 @@
         </div>
 
 
-            <div class="gridContent" style="place-items:center; font-family:Montserrat; font-weight:800">
+            <div class="gridContent" style="place-items:center; grid-template-columns: auto auto auto; font-family:Montserrat; font-weight:800">
+
+                <div>
+                    
+                </div>
                 <div>
                     <div style="color:#fff">
                         about me.
@@ -320,12 +324,18 @@
         </center>
 
         <!-- PORTFOLIO Container -->
-        <div class="galleryContainer" id="portfolio" style="padding:55px 40px 60px 40px">
+        <div class="galleryContainer" id="portfolio">
 
-            <div class="portfolioTitle">
-                <b>my portfolio.</b>
-                <hr width=100%
-                    style="margin:30px 30px 30px 0px; border-radius: 100px; border-width: 2px; border-color:#2B3E70">
+            <div class="portfolioTitle" style="color:#fff; margin:3vh 0vh 5vh 0vh;">
+                <div>
+                    <b>my</b>
+                </div>
+                <div>
+                    <b>portfolio.</b>
+                </div>
+                
+                <!-- <hr width=100%
+                    style="margin:30px 30px 30px 0px; border-radius: 100px; border-width: 2px; border-color:#fff"> -->
             </div>
 
             <div class="flexContainer">
@@ -734,18 +744,6 @@
         </div>
     </template>
 
-    <template id="proficiency-template">
-        <div class="proficiencyCard">
-            <img class="prof-icon" onclick="onClick(this)" />
-            <div style="padding:20px">
-                <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic"></h1>
-                <h3 class="preview-title" style="font-size:medium"></h3>
-                <p class="preview-description" onclick="onClick(this)"
-                    style="color:#616161; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:small;">
-                </p>
-            </div>
-        </div>
-    </template>
 
     <!-- Flippable Card Template -->
     <template id="flippable-card-template">

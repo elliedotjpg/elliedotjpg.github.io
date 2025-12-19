@@ -1,5 +1,11 @@
 body {
     background-image: url('BG.svg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 @keyframes move {
@@ -9,18 +15,67 @@ body {
 
 }
 
-
-body {
-    background-size: cover;
-    background: #191a24;
-}
-
 div.proficiencyCard {
     background-color: #fff;
     border-radius: 3vw;
     width: calc(25% - 20px);
     margin: 8px;
     height: 180px;
+}
+
+.matteGlass {
+    /* 1. Semi-transparent background (RGBA is key for transparency) */
+    background: rgba(255, 221, 221, 0.13);
+
+    /* 2. The frosted blur effect on the background behind the element */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* For Safari support */
+
+    /* 3. Optional: Add depth and definition */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 221, 221, 0.123);
+    /* Subtle light border */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* Subtle shadow for "float" */
+    
+    /* Fallback for browsers that don't support backdrop-filter */
+    background-color: rgba(25, 33, 36, 0.8);
+}
+
+/* Enhanced glassmorphism for better visibility */
+.enhanced-glass {
+    background: rgba(255, 221, 221, 0.13);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 221, 221, 0.11);
+    box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 221, 221, 0.116);
+    border-radius: 20px;
+    position: relative;
+    
+    /* Fallback */
+    background-color: rgba(25, 33, 36, 0.308);
+}
+
+/* Add subtle glow effect */
+.enhanced-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    pointer-events: none;
+    z-index: -1;
 }
 
 .h1 {
@@ -426,27 +481,27 @@ div.proficiencyCard {
     cursor: pointer;
 }
 
-@media only screen and (min-width: 400px){
+@media only screen and (min-width: 400px) {
     .flippable-card-container {
         width: 150px;
         height: 150px;
     }
-    
+
     .card-icon {
         width: 60px;
         height: 60px;
         margin-bottom: 15px;
     }
-    
+
     .card-software-name {
         font-size: 13px;
     }
-    
+
     .card-years {
         font-size: 16px;
         margin-bottom: 18px;
     }
-    
+
     .proficiency-dot {
         width: 16px;
         height: 16px;
@@ -461,6 +516,7 @@ div.proficiencyCard {
     }
 
 }
+
 @media only screen and (min-width: 601px) and (max-width: 955px) {
 
     .navbar {
@@ -637,7 +693,7 @@ div.proficiencyCard {
         font-size: 25.5vw;
         margin: 5px 3px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 2vw;
         float: left;
         width: calc(20% - 6px);
         height: 130px;
@@ -649,7 +705,7 @@ div.proficiencyCard {
         font-size: 25.5vw;
         margin: 5px 3px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 8px;
         float: left;
         width: calc(33.33% - 6px);
         height: 130px;
@@ -658,7 +714,7 @@ div.proficiencyCard {
     }
 
     div.gallery-preview img {
-        border-radius: 10px 10px 0px 0px;
+        border-radius: 8px 8px 0px 0px;
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
@@ -667,7 +723,7 @@ div.proficiencyCard {
     }
 
     div.video-gallery-preview video {
-        border-radius: 10px 10px 0px 0px;
+        border-radius: 8px 8px 0px 0px;
 
         margin-bottom: 4px;
         object-fit: cover;
@@ -875,12 +931,44 @@ div.proficiencyCard {
 
     .galleryContainer {
         margin: 2vw;
-        width: device-width;
-        height: 1100px;
+        width: auto;
+        height: auto;
+        min-height: 1100px;
         padding: 40px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 30px;
+        border-radius: 20px;
+        position: relative;
+        z-index: 1;
+
+        /* Enhanced glassmorphism effect */
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.37),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        
+        /* Fallback for older browsers */
+        background-color: rgba(25, 33, 36, 0.7);
+    }
+    
+    /* Add subtle glow effect to gallery container */
+    .galleryContainer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        pointer-events: none;
+        z-index: -1;
     }
 
     div.galleryDirectory {
@@ -888,7 +976,7 @@ div.proficiencyCard {
         height: auto;
         padding: 20px 20px 0px 20px;
         background-color: #fff;
-        border: 1px solid #ccc;
+        /* border: 1px solid #ccc; */
         border-radius: 20px;
     }
 
@@ -944,7 +1032,7 @@ div.proficiencyCard {
         font-size: 25.5vw;
         margin: 10px;
         border: 1px solid #ccc;
-        border-radius: 25px;
+        border-radius: 18px;
         float: left;
         width: 250px;
         height: fit-content;
@@ -956,7 +1044,7 @@ div.proficiencyCard {
         font-size: 25.5vw;
         margin: 10px;
         border: 1px solid #ccc;
-        border-radius: 25px;
+        border-radius: 18px;
         float: left;
         width: 250px;
         height: fit-content;
@@ -965,7 +1053,7 @@ div.proficiencyCard {
     }
 
     div.gallery-preview img {
-        border-radius: 25px 25px 0px 0px;
+        border-radius: 18px 18px 0px 0px;
         margin: 0px 0px 20px 0px;
         object-fit: cover;
         width: 250px;
@@ -974,7 +1062,7 @@ div.proficiencyCard {
     }
 
     div.video-gallery-preview video {
-        border-radius: 25px 25px 0px 0px;
+        border-radius: 18px 18px 0px 0px;
         margin: 0px 0px 20px 0px;
         object-fit: cover;
         width: 250px;
@@ -1099,11 +1187,44 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: device-width;
-        height: 1100px;
+        width: auto;
+        height: auto;
+        min-height: 1100px;
         padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
+        border-radius: 20px;
+        position: relative;
+        z-index: 1;
+
+        /* Glassmorphism effect for mobile */
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px) saturate(150%);
+        -webkit-backdrop-filter: blur(15px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow:
+            0 4px 20px 0 rgba(31, 38, 135, 0.3),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+        
+        /* Fallback for older browsers */
+        background-color: rgba(25, 33, 36, 0.75);
+    }
+    
+    /* Add subtle glow effect to gallery container on mobile */
+    .galleryContainer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.04) 50%,
+            rgba(255, 255, 255, 0.01) 100%
+        );
+        pointer-events: none;
+        z-index: -1;
     }
 
     div.galleryDirectory {
@@ -1178,7 +1299,7 @@ div.proficiencyCard {
         font-size: 25.5vw;
         margin: 5px 3px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 8px;
         float: left;
         width: calc(33.33% - 6px);
         height: 130px;
@@ -1190,7 +1311,7 @@ div.proficiencyCard {
         font-size: 25.5vw;
         margin: 5px 3px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 8px;
         float: left;
         width: calc(33.33% - 6px);
         height: 130px;
@@ -1199,7 +1320,7 @@ div.proficiencyCard {
     }
 
     div.gallery-preview img {
-        border-radius: 10px 10px 0px 0px;
+        border-radius: 8px 8px 0px 0px;
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
@@ -1208,7 +1329,7 @@ div.proficiencyCard {
     }
 
     div.video-gallery-preview video {
-        border-radius: 10px 10px 0px 0px;
+        border-radius: 8px 8px 0px 0px;
 
         margin-bottom: 4px;
         object-fit: cover;
@@ -1371,16 +1492,16 @@ div.desc {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: transform 0.3s ease;
     cursor: pointer;
 }
 
-.flippable-card.flipped,
-.flippable-card-container:hover .flippable-card {
+.flippable-card.flipped {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -1427,7 +1548,7 @@ div.desc {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    fill:#fff;
+    fill: #fff;
     padding: 10px;
     box-sizing: border-box;
 }
@@ -1510,38 +1631,38 @@ div.desc {
         width: 100px;
         height: 100px;
     }
-    
+
     .card-icon {
         width: 35px;
         height: 35px;
         margin-bottom: 8px;
     }
-    
+
     .card-software-name {
         font-size: 10px;
         line-height: 1.0;
     }
-    
+
     .card-years {
         font-size: 11px;
         margin-bottom: 10px;
     }
-    
+
     .proficiency-dot {
         width: 10px;
         height: 10px;
     }
-    
+
     .proficiency-dots {
         gap: 4px;
         margin-top: 5px;
     }
-    
+
     .proficiency-label {
         font-size: 9px;
         margin-bottom: 3px;
     }
-    
+
     .cards-container {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 24px !important;
@@ -1556,38 +1677,38 @@ div.desc {
         width: 100px;
         height: 100px;
     }
-    
+
     .card-icon {
         width: 35px;
         height: 35px;
         margin-bottom: 8px;
     }
-    
+
     .card-software-name {
         font-size: 10px;
         line-height: 1.0;
     }
-    
+
     .card-years {
         font-size: 11px;
         margin-bottom: 10px;
     }
-    
+
     .proficiency-dot {
         width: 10px;
         height: 10px;
     }
-    
+
     .proficiency-dots {
         gap: 4px;
         margin-top: 5px;
     }
-    
+
     .proficiency-label {
         font-size: 9px;
         margin-bottom: 3px;
     }
-    
+
     .cards-container {
         grid-template-columns: repeat(4, 1fr) !important;
         gap: 24px !important;
@@ -1602,38 +1723,42 @@ div.desc {
         width: 130px;
         height: 130px;
     }
-    
+
     .card-icon {
         width: 45px;
         height: 45px;
         margin-bottom: 10px;
     }
-    
+
     .card-software-name {
         font-size: 11px;
         line-height: 1.0;
+        max-width: 16ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
-    
+
     .card-years {
         font-size: 12px;
         margin-bottom: 12px;
     }
-    
+
     .proficiency-dot {
         width: 12px;
         height: 12px;
     }
-    
+
     .proficiency-dots {
         gap: 5px;
         margin-top: 6px;
     }
-    
+
     .proficiency-label {
         font-size: 10px;
         margin-bottom: 4px;
     }
-    
+
     .cards-container {
         grid-template-columns: repeat(4, 1fr) !important;
         gap: 16px !important;
@@ -1648,27 +1773,27 @@ div.desc {
         width: 160px;
         height: 160px;
     }
-    
+
     .card-icon {
         width: 55px;
         height: 55px;
         margin-bottom: 12px;
     }
-    
+
     .card-software-name {
         font-size: 12px;
     }
-    
+
     .card-years {
         font-size: 14px;
         margin-bottom: 15px;
     }
-    
+
     .proficiency-dot {
         width: 14px;
         height: 14px;
     }
-    
+
     .cards-container {
         grid-template-columns: repeat(5, 1fr) !important;
         gap: 15px !important;
@@ -1683,27 +1808,27 @@ div.desc {
         width: 180px;
         height: 180px;
     }
-    
+
     .card-icon {
         width: 60px;
         height: 60px;
         margin-bottom: 15px;
     }
-    
+
     .card-software-name {
         font-size: 13px;
     }
-    
+
     .card-years {
         font-size: 16px;
         margin-bottom: 18px;
     }
-    
+
     .proficiency-dot {
         width: 16px;
         height: 16px;
     }
-    
+
     .cards-container {
         grid-template-columns: repeat(6, 1fr) !important;
         gap: 20px !important;
