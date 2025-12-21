@@ -2,13 +2,50 @@ class GalleryPreview extends HTMLElement {
     connectedCallback() {
       const template = document.querySelector('#preview-template');
       const templateContent = template.content.cloneNode(true);
-      // Populate content with attributes from the HTML
-      templateContent.querySelector('.preview-image').src = this.getAttribute('src');
+      // Populate content with attributes from HTML
+      const imgSrc = this.getAttribute('src');
+      templateContent.querySelector('.preview-image').src = imgSrc;
       templateContent.querySelector('.preview-image').alt = this.getAttribute('title');
       templateContent.querySelector('.preview-software').textContent = this.getAttribute('software');
       templateContent.querySelector('.preview-title').textContent = this.getAttribute('title');
   
       this.appendChild(templateContent);
+      
+      // Apply dynamic sizing to all gallery previews
+      this.applyDynamicSizing(imgSrc);
+    }
+    
+    applyDynamicSizing(imgSrc) {
+      const img = new Image();
+      img.onload = () => {
+        const aspectRatio = img.width / img.height;
+        const galleryElement = this.querySelector('.gallery-preview') || this;
+        
+        // Add dynamic sizing class
+        galleryElement.classList.add('dynamic-sizing');
+        
+        // Store aspect ratio as a custom property for CSS
+        galleryElement.style.setProperty('--aspect-ratio', aspectRatio);
+        
+        // Apply aspect ratio based classes
+        if (aspectRatio > 1.5) {
+          // Wide landscape
+          galleryElement.classList.add('wide-landscape');
+        } else if (aspectRatio > 1.2) {
+          // Regular landscape
+          galleryElement.classList.add('landscape');
+        } else if (aspectRatio < 0.67) {
+          // Tall portrait
+          galleryElement.classList.add('tall-portrait');
+        } else if (aspectRatio < 0.8) {
+          // Regular portrait
+          galleryElement.classList.add('portrait');
+        } else {
+          // Square-ish
+          galleryElement.classList.add('square');
+        }
+      };
+      img.src = imgSrc;
     }
   }
 
@@ -16,7 +53,7 @@ class GalleryPreview extends HTMLElement {
     connectedCallback() {
       const videoTemplate = document.querySelector('#video-preview-template');
       const videoTemplateContent = videoTemplate.content.cloneNode(true);
-      // Populate content with attributes from the HTML
+      // Populate content with attributes from HTML
 
       const video = videoTemplateContent.querySelector('.preview-video');
       video.src = this.getAttribute('src') || this.getAttribute('video-src');
@@ -27,8 +64,43 @@ class GalleryPreview extends HTMLElement {
   
       this.appendChild(videoTemplateContent);
       
-      // Attempt to autoplay the video preview
+      // Apply dynamic sizing to video previews
+      this.applyVideoDynamicSizing(video);
+      
+      // Attempt to autoplay video preview
       this.setupVideoAutoplay(video);
+    }
+    
+    applyVideoDynamicSizing(video) {
+      // Set up event listener to get video dimensions
+      video.addEventListener('loadedmetadata', () => {
+        const aspectRatio = video.videoWidth / video.videoHeight;
+        const galleryElement = this.querySelector('.video-gallery-preview') || this;
+        
+        // Add dynamic sizing class
+        galleryElement.classList.add('dynamic-sizing');
+        
+        // Store aspect ratio as a custom property for CSS
+        galleryElement.style.setProperty('--aspect-ratio', aspectRatio);
+        
+        // Apply aspect ratio based classes
+        if (aspectRatio > 1.5) {
+          // Wide landscape
+          galleryElement.classList.add('wide-landscape');
+        } else if (aspectRatio > 1.2) {
+          // Regular landscape
+          galleryElement.classList.add('landscape');
+        } else if (aspectRatio < 0.67) {
+          // Tall portrait
+          galleryElement.classList.add('tall-portrait');
+        } else if (aspectRatio < 0.8) {
+          // Regular portrait
+          galleryElement.classList.add('portrait');
+        } else {
+          // Square-ish
+          galleryElement.classList.add('square');
+        }
+      });
     }
     
     setupVideoAutoplay(video) {
@@ -62,7 +134,7 @@ class GalleryPreview extends HTMLElement {
     }
   }
 
-  // Register the custom element
+  // Register custom element
   customElements.define('gallery-preview', GalleryPreview);
   customElements.define('video-gallery-preview', VideoGalleryPreview);
 
@@ -196,3 +268,160 @@ class GalleryPreview extends HTMLElement {
   
   // Register the flippable card custom element
   customElements.define('flippable-card', FlippableCard);
+  
+  // Initialize dynamic layout calculation
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize gallery layout after DOM is loaded
+    setTimeout(() => {
+      initializeGalleryLayout();
+      
+      // Recalculate layout on window resize
+      window.addEventListener('resize', debounce(initializeGalleryLayout, 300));
+    }, 500);
+  });
+  
+  // Debounce function to prevent excessive calculations during resize
+  function debounce(func, wait) {
+    let timeout;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+  }
+  
+  // Initialize dynamic sizing for all gallery sections
+  function initializeGalleryLayout() {
+    // Get all gallery sections
+    const allSections = document.querySelectorAll('.galleryDirectoryContent');
+    
+    allSections.forEach(section => {
+      // Collect all previews and their aspect ratios
+      const previewData = [];
+      
+      // Handle image gallery previews
+      const galleryPreviews = section.querySelectorAll('gallery-preview');
+      galleryPreviews.forEach((preview) => {
+        const imgSrc = preview.getAttribute('src');
+        if (imgSrc) {
+          const img = new Image();
+          img.onload = () => {
+            const aspectRatio = img.width / img.height;
+            const galleryElement = preview.querySelector('.gallery-preview') || preview;
+            
+            // Store preview data
+            previewData.push({
+              element: galleryElement,
+              aspectRatio: aspectRatio,
+              type: 'image'
+            });
+            
+            // If this is the last image, calculate layout
+            if (previewData.length === galleryPreviews.length + section.querySelectorAll('video-gallery-preview').length) {
+              calculateOptimalLayout(section, previewData);
+            }
+          };
+          img.src = imgSrc;
+        }
+      });
+      
+      // Handle video gallery previews
+      const videoGalleryPreviews = section.querySelectorAll('video-gallery-preview');
+      videoGalleryPreviews.forEach((preview) => {
+        const videoSrc = preview.getAttribute('src') || preview.getAttribute('video-src');
+        if (videoSrc) {
+          const video = preview.querySelector('.preview-video');
+          if (video) {
+            // Set up event listener to get video dimensions
+            video.addEventListener('loadedmetadata', () => {
+              const aspectRatio = video.videoWidth / video.videoHeight;
+              const galleryElement = preview.querySelector('.video-gallery-preview') || preview;
+              
+              // Store preview data
+              previewData.push({
+                element: galleryElement,
+                aspectRatio: aspectRatio,
+                type: 'video'
+              });
+              
+              // If this is the last video, calculate layout
+              if (previewData.length === galleryPreviews.length + videoGalleryPreviews.length) {
+                calculateOptimalLayout(section, previewData);
+              }
+            });
+          }
+        }
+      });
+    });
+  }
+  
+  // Calculate optimal layout for gallery items
+  function calculateOptimalLayout(section, previewData) {
+    const container = section.querySelector('.galleryItems');
+    if (!container) return;
+    
+    // Get container width
+    const containerWidth = container.clientWidth;
+    const gap = 10; // Gap between items
+    
+    // Calculate optimal row height
+    const rowHeight = calculateOptimalRowHeight(containerWidth, previewData, gap);
+    
+    // Apply calculated sizes
+    previewData.forEach(preview => {
+      const width = Math.round(preview.aspectRatio * rowHeight);
+      preview.element.style.width = width + 'px';
+      preview.element.style.height = rowHeight + 'px';
+      
+      // Update image/video dimensions
+      const mediaElement = preview.element.querySelector('.preview-image, .preview-video');
+      if (mediaElement) {
+        mediaElement.style.width = '100%';
+        mediaElement.style.height = '100%';
+        mediaElement.style.objectFit = 'cover';
+      }
+    });
+  }
+  
+  // Calculate optimal row height to fill container width
+  function calculateOptimalRowHeight(containerWidth, previewData, gap) {
+    // Sort previews by aspect ratio for better packing
+    const sortedPreviews = [...previewData].sort((a, b) => b.aspectRatio - a.aspectRatio);
+    
+    // Try different row heights to find the best fit
+    const minRowHeight = 150;
+    const maxRowHeight = 300;
+    let bestRowHeight = 200;
+    let bestWastedSpace = Infinity;
+    
+    for (let rowHeight = minRowHeight; rowHeight <= maxRowHeight; rowHeight += 10) {
+      let currentWidth = 0;
+      let itemsInRow = 0;
+      
+      // Calculate how many items fit in a row with this height
+      for (const preview of sortedPreviews) {
+        const itemWidth = preview.aspectRatio * rowHeight;
+        
+        if (currentWidth + itemWidth + (itemsInRow * gap) <= containerWidth) {
+          currentWidth += itemWidth;
+          itemsInRow++;
+        } else {
+          break;
+        }
+      }
+      
+      // Calculate wasted space
+      const totalItemWidth = currentWidth;
+      const totalGapWidth = (itemsInRow - 1) * gap;
+      const usedWidth = totalItemWidth + totalGapWidth;
+      const wastedSpace = containerWidth - usedWidth;
+      
+      if (wastedSpace >= 0 && wastedSpace < bestWastedSpace) {
+        bestWastedSpace = wastedSpace;
+        bestRowHeight = rowHeight;
+      }
+    }
+    
+    return bestRowHeight;
+  }
