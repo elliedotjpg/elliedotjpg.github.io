@@ -100,6 +100,16 @@ class GalleryPreview extends HTMLElement {
           // Square-ish
           galleryElement.classList.add('square');
         }
+        
+        // Set actual dimensions based on video resolution while maintaining flex position
+        // Calculate appropriate width based on aspect ratio and fixed height
+        const baseHeight = 200; // Base height for calculations
+        const calculatedWidth = aspectRatio * baseHeight;
+        
+        // Apply calculated dimensions with constraints
+        galleryElement.style.setProperty('--aspect-ratio', aspectRatio);
+        galleryElement.style.width = Math.min(Math.max(calculatedWidth, 150), 400) + 'px';
+        galleryElement.style.height = baseHeight + 'px';
       });
     }
     

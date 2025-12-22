@@ -840,18 +840,7 @@ div.proficiencyCard {
         align-self: center;
     }
 
-    div.gallery-preview {
-        font-size: 25.5vw;
-        margin: 5px 3px;
-        border: 1px solid #ccc;
-        border-radius: 1vw;
-        float: left;
-        width: fit-content;
-        height: fit-content;
-        background-color: #fff;
-        overflow: hidden;
-    }
-
+    div.gallery-preview,
     div.video-gallery-preview {
         font-size: 25.5vw;
         margin: 5px 3px;
@@ -864,18 +853,9 @@ div.proficiencyCard {
         overflow: hidden;
     }
 
-    div.gallery-preview img {
-        border-radius: 1vw 1vw 0vw 0vw;
-        margin-bottom: 4px;
-        object-fit: cover;
-        width: 100%;
-        height: 100px;
-        float: left;
-    }
-
+    div.gallery-preview img,
     div.video-gallery-preview video {
         border-radius: 1vw 1vw 0vw 0vw;
-
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
@@ -916,13 +896,7 @@ div.proficiencyCard {
         display: none !important;
     }
 
-    div.gallery-preview:hover {
-        border: 1px solid #ccc;
-        cursor: pointer;
-        margin-top: 20px;
-        transition: 0.3s;
-    }
-
+    div.gallery-preview:hover,
     div.video-gallery-preview:hover {
         border: 1px solid #ccc;
         cursor: pointer;
@@ -1290,7 +1264,8 @@ div.proficiencyCard {
         height: 800px;
     }
 
-    div.gallery-preview {
+    div.gallery-preview,
+    div.video-gallery-preview {
         font-size: 25.5vw;
         margin: 10px;
         border: 1px solid #ccc;
@@ -1331,39 +1306,19 @@ div.proficiencyCard {
         object-fit: cover;
     }
 
+    div.gallery-preview.dynamic-sizing video,
     div.video-gallery-preview.dynamic-sizing video {
         width: 100%;
         height: auto;
         object-fit: cover;
     }
 
-    div.video-gallery-preview {
-        font-size: 25.5vw;
-        margin: 0;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        -ms-text-size-adjust: auto;
-        flex-shrink: 0;
-        break-inside: avoid;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
     /* Dynamic sizing for video gallery previews */
     div.video-gallery-preview.dynamic-sizing {
         margin-bottom: 0;
         align-self: flex-start;
-    }
-
-    /* Base styles for dynamic video gallery items */
-    div.video-gallery-preview.dynamic-sizing {
-        width: 250px;
+        /* Allow sizing based on aspect ratio while maintaining flex position */
+        width: calc(var(--aspect-ratio, 1) * 200px);
         height: 200px;
         margin: 10px;
         flex-shrink: 0;
@@ -1401,15 +1356,7 @@ div.proficiencyCard {
         grid-row: span 1;
     }
 
-    div.gallery-preview img {
-        border-radius: 8px 8px 0 0;
-        margin: 0;
-        object-fit: cover;
-        width: 100%;
-        height: calc(100% - 60px);
-        float: none;
-    }
-
+    div.gallery-preview img,
     div.video-gallery-preview video {
         border-radius: 8px 8px 0 0;
         margin: 0;
@@ -1759,7 +1706,8 @@ div.proficiencyCard {
         gap: 1vw;
     }
 
-    div.gallery-preview {
+    div.gallery-preview,
+    div.video-gallery-preview {
         font-size: 25.5vw;
         margin: 0;
         border: 1px solid #ccc;
@@ -1803,55 +1751,11 @@ div.proficiencyCard {
         object-fit: cover;
     }
 
-    div.video-gallery-preview {
-        font-size: 25.5vw;
-        margin: 0;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        float: none;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
 
-    div.video-gallery-preview.dynamic-sizing {
-        width: 100%;
-        height: 100%;
-        grid-row: span 1;
-        grid-column: span 1;
-    }
 
-    div.video-gallery-preview.dynamic-sizing.portrait {
-        grid-row: span 2;
-    }
-
-    div.video-gallery-preview.dynamic-sizing.tall-portrait {
-        grid-row: span 3;
-    }
-
-    div.video-gallery-preview.dynamic-sizing.landscape {
-        grid-column: span 2;
-    }
-
-    div.video-gallery-preview.dynamic-sizing.wide-landscape {
-        grid-column: span 2;
-    }
-
-    div.gallery-preview img {
-        border-radius: 1vw 1vw 0vw 0vw;
-        margin-bottom: 4px;
-        object-fit: cover;
-        width: 100%;
-        height: 120px;
-        float: left;
-    }
-
+    div.gallery-preview img,
     div.video-gallery-preview video {
         border-radius: 1vw 1vw 0vw 0vw;
-
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
@@ -1892,13 +1796,7 @@ div.proficiencyCard {
         display: none !important;
     }
 
-    div.gallery-preview:hover {
-        border: 1px solid #ccc;
-        cursor: pointer;
-        margin-top: 20px;
-        transition: 0.3s;
-    }
-
+    div.gallery-preview:hover,
     div.video-gallery-preview:hover {
         border: 1px solid #ccc;
         cursor: pointer;
@@ -2181,7 +2079,7 @@ div.desc {
 }
 
 /* Responsive design for flippable cards */
-@media only screen and (min-width: 300px) and (max-width: 510px) {
+@media only screen and (min-width: 300px) and (max-width: 740px) {
     .flippable-card-container {
         width: 100px;
         height: 100px;
@@ -2339,24 +2237,6 @@ div.desc {
             width: calc(45% - 6px);
         }
 
-        .video-gallery-preview.dynamic-sizing {
-            width: calc(33.33% - 6px);
-            margin: 3px;
-        }
-
-        .video-gallery-preview.dynamic-sizing.portrait,
-        .video-gallery-preview.dynamic-sizing.tall-portrait {
-            width: calc(40% - 6px);
-        }
-
-        .video-gallery-preview.dynamic-sizing.landscape,
-        .video-gallery-preview.dynamic-sizing.wide-landscape {
-            width: calc(50% - 6px);
-        }
-
-        .video-gallery-preview.dynamic-sizing.square {
-            width: calc(45% - 6px);
-        }
     }
 
     @media only screen and (min-width: 601px) and (max-width: 955px) {
@@ -2383,24 +2263,6 @@ div.desc {
             width: 200px;
         }
 
-        .video-gallery-preview.dynamic-sizing {
-            width: 180px;
-            margin: 8px;
-        }
-
-        .video-gallery-preview.dynamic-sizing.portrait,
-        .video-gallery-preview.dynamic-sizing.tall-portrait {
-            width: 150px;
-        }
-
-        .video-gallery-preview.dynamic-sizing.landscape,
-        .video-gallery-preview.dynamic-sizing.wide-landscape {
-            width: 220px;
-        }
-
-        .video-gallery-preview.dynamic-sizing.square {
-            width: 200px;
-        }
     }
 
     @media only screen and (min-width: 956px) {
@@ -2408,43 +2270,31 @@ div.desc {
             gap: 12px;
         }
 
-        .gallery-preview.dynamic-sizing {
-            width: 220px;
-            margin: 10px;
-        }
-
-        .gallery-preview.dynamic-sizing.portrait,
-        .gallery-preview.dynamic-sizing.tall-portrait {
-            width: 180px;
-        }
-
-        .gallery-preview.dynamic-sizing.landscape,
-        .gallery-preview.dynamic-sizing.wide-landscape {
-            width: 280px;
-        }
-
-        .gallery-preview.dynamic-sizing.square {
-            width: 250px;
-        }
-
+        .gallery-preview.dynamic-sizing,
         .video-gallery-preview.dynamic-sizing {
             width: 220px;
             margin: 10px;
         }
 
+        .gallery-preview.dynamic-sizing.portrait,
+        .gallery-preview.dynamic-sizing.tall-portrait,
         .video-gallery-preview.dynamic-sizing.portrait,
         .video-gallery-preview.dynamic-sizing.tall-portrait {
             width: 180px;
         }
 
+        .gallery-preview.dynamic-sizing.landscape,
+        .gallery-preview.dynamic-sizing.wide-landscape,
         .video-gallery-preview.dynamic-sizing.landscape,
         .video-gallery-preview.dynamic-sizing.wide-landscape {
             width: 280px;
         }
 
+        .gallery-preview.dynamic-sizing.square,
         .video-gallery-preview.dynamic-sizing.square {
             width: 250px;
         }
+
     }
 
     .cards-container {
