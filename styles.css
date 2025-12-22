@@ -1081,8 +1081,7 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        margin: 2vw;
-        width: auto;
+        width: 100%;
         height: auto;
         min-height: 1100px;
         padding: 40px;
@@ -1558,7 +1557,7 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: auto;
+        width: 100%;
         height: auto;
         min-height: 1100px;
         padding: 20px;
