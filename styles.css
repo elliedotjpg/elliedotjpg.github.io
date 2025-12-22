@@ -6,6 +6,21 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+main {
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Fix for center element to prevent horizontal overflow */
+center {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 @keyframes move {
@@ -244,6 +259,9 @@ div.proficiencyCard {
     grid-template-columns: auto auto auto auto;
     gap: 20px;
     justify-items: center;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .introLine {
@@ -258,16 +276,16 @@ div.proficiencyCard {
 .flexColumns {
     display: flex;
     flex-direction: column;
-    align-items: left;
-    width: fit-content;
+    width: max-content;
+    height:max-content;
 }
 
 .flexRow {
     display: flex;
     flex-direction: row;
-    align-items: left;
-    width: fit-content;
-
+    align-content:center;
+    width: max-content;
+    height:max-content;
 }
 
 
@@ -379,18 +397,24 @@ div.proficiencyCard {
     place-items: center;
     justify-content: center;
     grid-template-columns: auto auto auto;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .aboutmeContainer .span-two-columns {
-  grid-column: span 2;
+    grid-column: span 2;
 }
 
 .introContainer {
     z-index: 1;
     width: fit-content;
+    max-width: 100%;
     padding: 2vh;
     margin: 2vw;
     font-weight: 800;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .blob-one {
@@ -591,6 +615,12 @@ div.proficiencyCard {
 
 @media only screen and (min-width: 601px) and (max-width: 955px) {
 
+    .flexContainer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
     .navbar {
         width: 95%;
         padding: 10px 5px;
@@ -637,18 +667,18 @@ div.proficiencyCard {
         max-width: none;
     }
 
-    .knowMore hr{
+    .knowMore hr {
         margin-left: auto;
         margin-right: auto;
     }
 
     .knowMore .flexContainer {
-        width:100%;
+        width: 100%;
         flex-direction: column;
         gap: 10px;
     }
 
-    .knowMore .flexContainer > div {
+    .knowMore .flexContainer>div {
         flex: none;
         width: 100%;
         padding: 0 !important;
@@ -724,7 +754,7 @@ div.proficiencyCard {
         font-weight: bold;
         font-size: large;
         text-align: center;
-        margin-bottom: 12px;
+        margin-bottom: 2vh;
     }
 
     /* Center gallery container content */
@@ -737,22 +767,21 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: device-width;
+        width: max-content;
         height: 1100px;
         padding: 20px;
         background-color: #fff;
+        box-sizing: border-box;
     }
 
     div.galleryDirectory {
         width: calc(100% - 40px);
         height: auto;
         padding: 15px;
-        /* background-color: #fff; */
-        border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 20px;
         display: grid;
-        /* grid-template-columns: repeat(3, 1fr); */
-        /* gap: 8px; */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
         margin: 0 20px 20px 20px;
     }
 
@@ -762,8 +791,8 @@ div.proficiencyCard {
         font-size: 11px;
         font-weight: 600;
         display: block;
-        background-color: inherit;
-        color: black;
+        background-color:#FFB703;
+        color: white;
         margin: 0;
         padding: 10px 6px;
         width: 100%;
@@ -774,10 +803,11 @@ div.proficiencyCard {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        border-color:white;
     }
 
     .galleryDirectory button:hover {
-        background-color: #ddd;
+        background-color: #FFB703;
         color: #2B3E70;
     }
 
@@ -794,7 +824,6 @@ div.proficiencyCard {
         float: left;
         padding: 5px;
         margin: 5px;
-        border: 1px solid #ccc;
         border-radius: 15px;
         width: 100%;
         border: none;
@@ -961,10 +990,12 @@ div.proficiencyCard {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 0px;
-    width: 100vw;
+    width: 100%;
     height: auto;
     background-color: #fff;
     max-width: none;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .flexContainer {
@@ -976,26 +1007,26 @@ div.proficiencyCard {
 
 /* Default horizontal layout for larger screens (min-width: 956px) */
 @media only screen and (min-width: 956px) {
-    .knowMore .flexContainer > div {
+    .knowMore .flexContainer>div {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    .knowMore .flexContainer > div:first-child {
+    .knowMore .flexContainer>div:first-child {
         align-items: flex-start;
         padding-right: 20px;
     }
 
-    .knowMore .flexContainer > div:last-child {
+    .knowMore .flexContainer>div:last-child {
         align-items: flex-start;
         padding-left: 20px;
     }
 
-    .knowMore hr{
-        margin-left:0;
-        margin-right:auto;
+    .knowMore hr {
+        margin-left: 0;
+        margin-right: auto;
     }
 }
 
@@ -1081,13 +1112,15 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: 100%;
+        width: calc(100% - 80px);
         height: auto;
         min-height: 1100px;
         padding: 40px;
         border-radius: 10px;
         position: relative;
         z-index: 1;
+        margin: 0 auto;
+        box-sizing: border-box;
 
         /* Enhanced glassmorphism effect */
         background: rgba(255, 255, 255, 0.12);
@@ -1120,9 +1153,10 @@ div.proficiencyCard {
     }
 
     div.galleryDirectory {
-        width: 30%;
+        width: fit-content;
         height: auto;
-        padding: 20px 20px 0px 20px;
+        padding: 0px 0px 0px 10px;
+        text-align:center;
         /* background-color: #fff; */
         /* border: 1px solid #ccc; */
         border-radius: 10px;
@@ -1135,9 +1169,10 @@ div.proficiencyCard {
         display: block;
         background-color: inherit;
         color: white;
-        margin: 10px 10px 10px 0px;
+        margin: 0px 0px 0px 0px;
         padding: 20px;
-        width: 100%;
+        width: max-content;
+        margin-right:2vw;
         border: none;
         text-align: left;
         cursor: pointer;
@@ -1166,6 +1201,9 @@ div.proficiencyCard {
         gap: 12px;
         justify-content: center;
         align-items: start;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     /* Masonry-style layout for dynamic gallery items */
@@ -1206,7 +1244,7 @@ div.proficiencyCard {
     }
 
     /* Portrait orientation */
-    
+
     /* Portrait orientation - span more rows */
     .gallery-preview.dynamic-sizing.portrait {
         grid-column: span 1;
@@ -1217,7 +1255,7 @@ div.proficiencyCard {
         grid-column: span 1;
         grid-row: span 3;
     }
-    
+
     /* Landscape orientation - span more columns */
 
     /* Landscape orientation */
@@ -1319,7 +1357,7 @@ div.proficiencyCard {
         margin-bottom: 0;
         align-self: flex-start;
     }
-    
+
     /* Base styles for dynamic video gallery items */
     div.video-gallery-preview.dynamic-sizing {
         width: 250px;
@@ -1331,7 +1369,7 @@ div.proficiencyCard {
         flex-direction: column;
         overflow: hidden;
     }
-    
+
     /* Portrait orientation - span more rows */
     div.video-gallery-preview.dynamic-sizing.portrait {
         grid-column: span 1;
@@ -1342,7 +1380,7 @@ div.proficiencyCard {
         grid-column: span 1;
         grid-row: span 3;
     }
-    
+
     /* Landscape orientation */
     div.video-gallery-preview.dynamic-sizing.landscape {
         grid-column: span 2;
@@ -1456,7 +1494,7 @@ div.proficiencyCard {
         gap: 20px;
     }
 
-    .knowMore .flexContainer > div {
+    .knowMore .flexContainer>div {
         flex: none;
         width: 100%;
         padding: 0 !important;
@@ -1547,6 +1585,47 @@ div.proficiencyCard {
         margin-bottom: 12px;
     }
 
+    .galleryContainer {
+        width: calc(100% - 80px);
+        height: auto;
+        min-height: 1100px;
+        padding: 40px;
+        border-radius: 10px;
+        position: relative;
+        z-index: 1;
+        margin: 0 auto;
+        box-sizing: border-box;
+
+        /* Enhanced glassmorphism effect */
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        /* border: 1px solid rgba(255, 255, 255, 0.25); */
+        box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.37),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+
+        /* Fallback for older browsers */
+        background-color: rgba(25, 33, 36, 0.7);
+    }
+
+    /* Add subtle glow effect to gallery container */
+    .galleryContainer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(255, 255, 255, 0.02) 100%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
     /* Center gallery container content */
     .galleryContainer {
         text-align: center;
@@ -1557,13 +1636,15 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: 100%;
+        width: calc(100% - 40px);
         height: auto;
         min-height: 1100px;
         padding: 20px;
         border-radius: 10px;
         position: relative;
         z-index: 1;
+        margin: 0 auto;
+        box-sizing: border-box;
 
         /* Glassmorphism effect for mobile */
         background: rgba(255, 255, 255, 0.1);
@@ -1599,8 +1680,6 @@ div.proficiencyCard {
         width: calc(100% - 40px);
         height: auto;
         padding: 15px;
-        /* background-color: #fff; */
-        border: 1px solid #ccc;
         border-radius: 20px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1646,7 +1725,6 @@ div.proficiencyCard {
         float: left;
         padding: 5px;
         margin: 5px;
-        border: 1px solid #ccc;
         border-radius: 15px;
         width: 100%;
         border: none;
@@ -1669,7 +1747,7 @@ div.proficiencyCard {
         grid-auto-rows: 150px;
         gap: 8px;
     }
-    
+
     div.gallery-preview {
         font-size: 25.5vw;
         margin: 0;
@@ -1691,19 +1769,19 @@ div.proficiencyCard {
         grid-row: span 1;
         grid-column: span 1;
     }
-    
+
     div.gallery-preview.dynamic-sizing.portrait {
         grid-row: span 2;
     }
-    
+
     div.gallery-preview.dynamic-sizing.tall-portrait {
         grid-row: span 3;
     }
-    
+
     div.gallery-preview.dynamic-sizing.landscape {
         grid-column: span 2;
     }
-    
+
     div.gallery-preview.dynamic-sizing.wide-landscape {
         grid-column: span 2;
     }
@@ -1727,26 +1805,26 @@ div.proficiencyCard {
         display: flex;
         flex-direction: column;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing {
         width: 100%;
         height: 100%;
         grid-row: span 1;
         grid-column: span 1;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing.portrait {
         grid-row: span 2;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing.tall-portrait {
         grid-row: span 3;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing.landscape {
         grid-column: span 2;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing.wide-landscape {
         grid-column: span 2;
     }
@@ -1838,8 +1916,7 @@ div.desc {
     color: #ffffffa9;
     font-weight: 400;
     font-size: medium;
-    margin: 20px;
-    padding: 0px 80px 0px 0px;
+    margin: 2vh;
 }
 
 .categoryHeader {
@@ -1847,8 +1924,8 @@ div.desc {
     font-family: Montserrat;
     font-weight: bold;
     font-size: xx-large;
-    margin-left: 20px;
-    margin-bottom: 12px;
+    margin-left: 2vh;
+    margin-bottom: 2vh;
 }
 
 .navbar {
@@ -2463,7 +2540,7 @@ div.desc {
         place-items: center;
         justify-content: center;
         grid-template-columns: auto auto;
-        grid-column: span 2;  
+        grid-column: span 2;
     }
 
 }
