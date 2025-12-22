@@ -277,15 +277,15 @@ div.proficiencyCard {
     display: flex;
     flex-direction: column;
     width: max-content;
-    height:max-content;
+    height: max-content;
 }
 
 .flexRow {
     display: flex;
     flex-direction: row;
-    align-content:center;
+    align-content: center;
     width: max-content;
-    height:max-content;
+    height: max-content;
 }
 
 
@@ -791,7 +791,7 @@ div.proficiencyCard {
         font-size: 11px;
         font-weight: 600;
         display: block;
-        background-color:#FFB703;
+        background-color: #FFB703;
         color: white;
         margin: 0;
         padding: 10px 6px;
@@ -803,7 +803,7 @@ div.proficiencyCard {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        border-color:white;
+        border-color: white;
     }
 
     .galleryDirectory button:hover {
@@ -1001,12 +1001,11 @@ div.proficiencyCard {
 .flexContainer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
 }
 
 /* Default horizontal layout for larger screens (min-width: 956px) */
-@media only screen and (min-width: 956px) {
+@media only screen and (min-width: 955px) {
     .knowMore .flexContainer>div {
         flex: 1;
         display: flex;
@@ -1027,6 +1026,10 @@ div.proficiencyCard {
     .knowMore hr {
         margin-left: 0;
         margin-right: auto;
+    }
+    
+    .galleryDirectory button {
+        border: 1px solid white;
     }
 }
 
@@ -1156,7 +1159,7 @@ div.proficiencyCard {
         width: fit-content;
         height: auto;
         padding: 0px 0px 0px 10px;
-        text-align:center;
+        text-align: center;
         /* background-color: #fff; */
         /* border: 1px solid #ccc; */
         border-radius: 10px;
@@ -1168,21 +1171,20 @@ div.proficiencyCard {
         font-weight: 600;
         display: block;
         background-color: inherit;
-        color: white;
-        margin: 0px 0px 0px 0px;
         padding: 20px;
         width: max-content;
-        margin-right:2vw;
-        border: none;
+        margin: 1vh;
+        margin-right: 2vw;
+        border-width: 1px;
         text-align: left;
         cursor: pointer;
         transition: 0.3s;
+        color:white;
+        border: none;
     }
 
     .galleryDirectory button:hover {
         background-color: #FFB703;
-        margin: 10px 10px 10px 0px;
-        padding: 20px;
         color: #2B3E70;
     }
 
@@ -1192,6 +1194,7 @@ div.proficiencyCard {
         padding: 20px;
         font-weight: bold;
         color: #fff;
+        border-color:none;
     }
 
     .galleryItems {
@@ -1745,7 +1748,15 @@ div.proficiencyCard {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 150px;
-        gap: 8px;
+        gap: 1vw;
+    }
+    
+    .galleryContainer {
+        padding: 10px;
+    }
+    
+    .galleryDirectory {
+        gap: 1vw;
     }
 
     div.gallery-preview {
@@ -1834,7 +1845,7 @@ div.proficiencyCard {
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
-        height: 100px;
+        height: 120px;
         float: left;
     }
 
@@ -1844,7 +1855,7 @@ div.proficiencyCard {
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
-        height: 100px;
+        height: 120px;
         float: left;
     }
 
