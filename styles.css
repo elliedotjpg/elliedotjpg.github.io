@@ -747,9 +747,9 @@ div.proficiencyCard {
         width: calc(100% - 40px);
         height: auto;
         padding: 15px;
-        background-color: #fff;
+        /* background-color: #fff; */
         border: 1px solid #ccc;
-        border-radius: 20px;
+        border-radius: 10px;
         display: grid;
         /* grid-template-columns: repeat(3, 1fr); */
         /* gap: 8px; */
@@ -1119,9 +1119,9 @@ div.proficiencyCard {
         width: 30%;
         height: auto;
         padding: 20px 20px 0px 20px;
-        background-color: #fff;
+        /* background-color: #fff; */
         /* border: 1px solid #ccc; */
-        border-radius: 20px;
+        border-radius: 10px;
     }
 
     .galleryDirectory button {
@@ -1130,7 +1130,7 @@ div.proficiencyCard {
         font-weight: 600;
         display: block;
         background-color: inherit;
-        color: black;
+        color: white;
         margin: 10px 10px 10px 0px;
         padding: 20px;
         width: 100%;
@@ -1141,7 +1141,7 @@ div.proficiencyCard {
     }
 
     .galleryDirectory button:hover {
-        background-color: #ddd;
+        background-color: #FFB703;
         margin: 10px 10px 10px 0px;
         padding: 20px;
         color: #2B3E70;
@@ -1156,35 +1156,40 @@ div.proficiencyCard {
     }
 
     .galleryItems {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 200px;
+        gap: 12px;
+        justify-content: center;
+        align-items: start;
     }
 
     /* Masonry-style layout for dynamic gallery items */
     .galleryItems .gallery-preview.dynamic-sizing {
         margin-bottom: 0;
-        align-self: flex-start;
+        align-self: start;
     }
 
     /* Base styles for dynamic gallery items */
     .gallery-preview.dynamic-sizing {
-        width: 250px;
-        height: 200px;
-        margin: 10px;
+        width: 100%;
+        height: 100%;
+        grid-row: span 1;
         flex-shrink: 0;
         break-inside: avoid;
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .gallery-preview.dynamic-sizing .preview-image {
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
+        transition: transform 0.3s ease;
     }
 
     .gallery-preview.dynamic-sizing div[style*="padding:20px"] {
@@ -1193,29 +1198,39 @@ div.proficiencyCard {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
     }
 
     /* Portrait orientation */
+    
+    /* Portrait orientation - span more rows */
     .gallery-preview.dynamic-sizing.portrait {
-        width: 200px;
+        grid-column: span 1;
+        grid-row: span 2;
     }
 
     .gallery-preview.dynamic-sizing.tall-portrait {
-        width: 180px;
+        grid-column: span 1;
+        grid-row: span 3;
     }
+    
+    /* Landscape orientation - span more columns */
 
     /* Landscape orientation */
     .gallery-preview.dynamic-sizing.landscape {
-        width: 280px;
+        grid-column: span 2;
+        grid-row: span 1;
     }
 
     .gallery-preview.dynamic-sizing.wide-landscape {
-        width: 320px;
+        grid-column: span 3;
+        grid-row: span 1;
     }
 
     /* Square orientation */
     .gallery-preview.dynamic-sizing.square {
-        width: 250px;
+        grid-column: span 1;
+        grid-row: span 1;
     }
 
     .galleryDirectoryContent {
@@ -1279,15 +1294,20 @@ div.proficiencyCard {
 
     div.video-gallery-preview {
         font-size: 25.5vw;
-        margin: 10px;
+        margin: 0;
         border: 1px solid #ccc;
-        border-radius: 1vw;
-        width: 250px;
-        height: fit-content;
+        border-radius: 8px;
+        width: 100%;
+        height: 100%;
         background-color: #fff;
         -ms-text-size-adjust: auto;
         flex-shrink: 0;
         break-inside: avoid;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     /* Dynamic sizing for video gallery previews */
@@ -1295,7 +1315,7 @@ div.proficiencyCard {
         margin-bottom: 0;
         align-self: flex-start;
     }
-
+    
     /* Base styles for dynamic video gallery items */
     div.video-gallery-preview.dynamic-sizing {
         width: 250px;
@@ -1307,46 +1327,51 @@ div.proficiencyCard {
         flex-direction: column;
         overflow: hidden;
     }
-
-    /* Portrait orientation */
+    
+    /* Portrait orientation - span more rows */
     div.video-gallery-preview.dynamic-sizing.portrait {
-        width: 200px;
+        grid-column: span 1;
+        grid-row: span 2;
     }
 
     div.video-gallery-preview.dynamic-sizing.tall-portrait {
-        width: 180px;
+        grid-column: span 1;
+        grid-row: span 3;
     }
-
+    
     /* Landscape orientation */
     div.video-gallery-preview.dynamic-sizing.landscape {
-        width: 280px;
+        grid-column: span 2;
+        grid-row: span 1;
     }
 
     div.video-gallery-preview.dynamic-sizing.wide-landscape {
-        width: 320px;
+        grid-column: span 3;
+        grid-row: span 1;
     }
 
     /* Square orientation */
     div.video-gallery-preview.dynamic-sizing.square {
-        width: 250px;
+        grid-column: span 1;
+        grid-row: span 1;
     }
 
     div.gallery-preview img {
-        border-radius: 1vw 1vw 0vw 0vw;
-        margin: 0px 0px 20px 0px;
+        border-radius: 8px 8px 0 0;
+        margin: 0;
         object-fit: cover;
-        width: 250px;
-        height: 250px;
-        float: left;
+        width: 100%;
+        height: calc(100% - 60px);
+        float: none;
     }
 
     div.video-gallery-preview video {
-        border-radius: 1vw 1vw 0vw 0vw;
-        margin: 0px 0px 20px 0px;
+        border-radius: 8px 8px 0 0;
+        margin: 0;
         object-fit: cover;
-        width: 250px;
-        height: 250px;
-        float: left;
+        width: 100%;
+        height: calc(100% - 60px);
+        float: none;
     }
 
     div.gallery-preview:hover {
@@ -1570,7 +1595,7 @@ div.proficiencyCard {
         width: calc(100% - 40px);
         height: auto;
         padding: 15px;
-        background-color: #fff;
+        /* background-color: #fff; */
         border: 1px solid #ccc;
         border-radius: 20px;
         display: grid;
@@ -1586,7 +1611,7 @@ div.proficiencyCard {
         font-weight: 600;
         display: block;
         background-color: inherit;
-        color: black;
+        color: white;
         margin: 0;
         padding: 10px 6px;
         width: 100%;
@@ -1600,7 +1625,7 @@ div.proficiencyCard {
     }
 
     .galleryDirectory button:hover {
-        background-color: #ddd;
+        background-color: #FFB703;
         color: #2B3E70;
     }
 
@@ -1634,42 +1659,92 @@ div.proficiencyCard {
         align-self: center;
     }
 
+    .galleryItems {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+        gap: 8px;
+    }
+    
     div.gallery-preview {
         font-size: 25.5vw;
-        margin: 5px 3px;
+        margin: 0;
         border: 1px solid #ccc;
-        border-radius: 1vw;
-        float: left;
-        width: calc(33.33% - 6px);
-        height: 130px;
+        border-radius: 6px;
+        float: none;
+        width: 100%;
+        height: 100%;
         background-color: #fff;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
     /* Dynamic sizing for mobile photography gallery */
     div.gallery-preview.dynamic-sizing {
-        width: calc(33.33% - 6px);
-        height: auto;
-        min-height: 120px;
-        max-height: 200px;
+        width: 100%;
+        height: 100%;
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+    
+    div.gallery-preview.dynamic-sizing.portrait {
+        grid-row: span 2;
+    }
+    
+    div.gallery-preview.dynamic-sizing.tall-portrait {
+        grid-row: span 3;
+    }
+    
+    div.gallery-preview.dynamic-sizing.landscape {
+        grid-column: span 2;
+    }
+    
+    div.gallery-preview.dynamic-sizing.wide-landscape {
+        grid-column: span 2;
     }
 
     div.gallery-preview.dynamic-sizing img {
         width: 100%;
-        height: 100%;
+        height: calc(100% - 40px);
         object-fit: cover;
     }
 
     div.video-gallery-preview {
         font-size: 25.5vw;
-        margin: 5px 3px;
+        margin: 0;
         border: 1px solid #ccc;
-        border-radius: 1vw;
-        float: left;
-        width: calc(33.33% - 6px);
-        height: 130px;
+        border-radius: 6px;
+        float: none;
+        width: 100%;
+        height: 100%;
         background-color: #fff;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    div.video-gallery-preview.dynamic-sizing {
+        width: 100%;
+        height: 100%;
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+    
+    div.video-gallery-preview.dynamic-sizing.portrait {
+        grid-row: span 2;
+    }
+    
+    div.video-gallery-preview.dynamic-sizing.tall-portrait {
+        grid-row: span 3;
+    }
+    
+    div.video-gallery-preview.dynamic-sizing.landscape {
+        grid-column: span 2;
+    }
+    
+    div.video-gallery-preview.dynamic-sizing.wide-landscape {
+        grid-column: span 2;
     }
 
     div.gallery-preview img {
