@@ -15,6 +15,18 @@ body {
 
 }
 
+.about {
+    font-size: medium;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    grid-auto-rows: 12.5rem;
+    grid-auto-flow: dense;
+    gap: 0.75rem;
+}
+
 div.proficiencyCard {
     background-color: #fff;
     border-radius: 3vw;
@@ -38,7 +50,7 @@ div.proficiencyCard {
     /* Subtle light border */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     /* Subtle shadow for "float" */
-    
+
     /* Fallback for browsers that don't support backdrop-filter */
     background-color: rgba(25, 33, 36, 0.8);
 }
@@ -54,7 +66,7 @@ div.proficiencyCard {
         inset 0 1px 0 0 rgba(255, 221, 221, 0.116);
     border-radius: 20px;
     position: relative;
-    
+
     /* Fallback */
     background-color: rgba(25, 33, 36, 0.308);
 }
@@ -68,12 +80,10 @@ div.proficiencyCard {
     right: 0;
     bottom: 0;
     border-radius: inherit;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.02) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0.02) 100%);
     pointer-events: none;
     z-index: -1;
 }
@@ -85,28 +95,33 @@ div.proficiencyCard {
 
 .floating-image {
     /* Ensure the element can be relatively positioned for transform to work correctly in some contexts */
-    position: relative; 
+    position: relative;
     /* Apply the animation */
-    animation: float 3s ease-in-out infinite; 
+    animation: float 3s ease-in-out infinite;
 }
 
 /* Define the keyframes for the floating animation */
 @keyframes float {
     0% {
-        transform: translateY(0px); /* Start at the original vertical position */
+        transform: translateY(0px);
+        /* Start at the original vertical position */
     }
+
     50% {
-        transform: translateY(-10px); /* Move up by 10 pixels at the midpoint */
+        transform: translateY(-10px);
+        /* Move up by 10 pixels at the midpoint */
     }
+
     100% {
-        transform: translateY(0px); /* Return to the original position */
+        transform: translateY(0px);
+        /* Return to the original position */
     }
 }
 
-.lips{
+.lips {
     width: 300px;
     height: 400px;
-    object-fit:cover;
+    object-fit: cover;
 }
 
 .ball {
@@ -240,6 +255,22 @@ div.proficiencyCard {
 
 }
 
+.flexColumns {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: fit-content;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    width: fit-content;
+
+}
+
+
 .IDO {
     color: #FFB703;
 }
@@ -338,6 +369,20 @@ div.proficiencyCard {
     background-color: #FFB703;
     /* Blue background on hover */
     color: #2B3E70;
+}
+
+.aboutmeContainer {
+    margin: 1vw;
+    margin-top: 1vh;
+    display: grid;
+    gap: 20px;
+    place-items: center;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
+}
+
+.aboutmeContainer .span-two-columns {
+  grid-column: span 2;
 }
 
 .introContainer {
@@ -541,6 +586,7 @@ div.proficiencyCard {
         padding: 25px;
     }
 
+
 }
 
 @media only screen and (min-width: 601px) and (max-width: 955px) {
@@ -583,15 +629,66 @@ div.proficiencyCard {
     }
 
     .knowMore {
-        padding: 10px;
-        width: 90%;
+        padding: 15px;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border-radius: 0px;
+        max-width: none;
+    }
+
+    .knowMore hr{
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .knowMore .flexContainer {
+        width:100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .knowMore .flexContainer > div {
+        flex: none;
+        width: 100%;
+        padding: 0 !important;
+        align-items: center;
+        text-align: center;
+    }
+
+    .knowMore .download-btn {
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .knowMore .download-btn img {
+        max-width: fit-content;
         height: auto;
     }
 
-    .flexContainer {
-        flex-direction: column;
-        align-items: center;
+    .knowMore div[style*="letter-spacing: 2px"] {
         text-align: center;
+        margin: 0 0 15px 0;
+    }
+
+    .knowMore div[style*="font-size:20px"] {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .knowMore div[style*="display:flex"] {
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+
+    .knowMore div[style*="display:flex"] img {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+
+    .knowMore div[style*="color:#2B3E70"] {
+        font-size: 14px;
     }
 
     .portfolioTitle {
@@ -644,7 +741,6 @@ div.proficiencyCard {
         height: 1100px;
         padding: 20px;
         background-color: #fff;
-        /* border: 1px solid #ccc; */
     }
 
     div.galleryDirectory {
@@ -655,8 +751,8 @@ div.proficiencyCard {
         border: 1px solid #ccc;
         border-radius: 20px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        /* grid-template-columns: repeat(3, 1fr); */
+        /* gap: 8px; */
         margin: 0 20px 20px 20px;
     }
 
@@ -721,8 +817,8 @@ div.proficiencyCard {
         border: 1px solid #ccc;
         border-radius: 1vw;
         float: left;
-        width: calc(20% - 6px);
-        height: 130px;
+        width: fit-content;
+        height: fit-content;
         background-color: #fff;
         overflow: hidden;
     }
@@ -733,8 +829,8 @@ div.proficiencyCard {
         border: 1px solid #ccc;
         border-radius: 1vw;
         float: left;
-        width: calc(33.33% - 6px);
-        height: 130px;
+        width: fit-content;
+        height: fit-content;
         background-color: #fff;
         overflow: hidden;
     }
@@ -777,17 +873,17 @@ div.proficiencyCard {
     }
 
     /* Adjust padding div to only show title */
-    div.gallery-preview div[style*="padding:20px"],
-    div.video-gallery-preview div[style*="padding:20px"] {
+    div.gallery-preview div[style*="padding:10px"],
+    div.video-gallery-preview div[style*="padding:10px"] {
         padding: 5px !important;
         text-align: center;
     }
 
     /* Hide software and description elements within padding */
-    div.gallery-preview div[style*="padding:20px"] .preview-software,
-    div.gallery-preview div[style*="padding:20px"] .preview-description,
-    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-software,
-    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-description {
+    div.gallery-preview div[style*="padding:10px"] .preview-software,
+    div.gallery-preview div[style*="padding:10px"] .preview-description,
+    div.video-gallery-preview div[style*="padding:10px"] .vid-prev-software,
+    div.video-gallery-preview div[style*="padding:10px"] .vid-prev-description {
         display: none !important;
     }
 
@@ -861,17 +957,41 @@ div.proficiencyCard {
 }
 
 .knowMore {
-    margin: 2vw;
+    margin: 0;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 85%;
+    border-radius: 0px;
+    width: 100vw;
     height: auto;
     background-color: #fff;
+    max-width: none;
 }
 
 .flexContainer {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Default horizontal layout for larger screens (min-width: 956px) */
+@media only screen and (min-width: 956px) {
+    .knowMore .flexContainer > div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .knowMore .flexContainer > div:first-child {
+        align-items: flex-start;
+        padding-right: 20px;
+    }
+
+    .knowMore .flexContainer > div:last-child {
+        align-items: flex-start;
+        padding-left: 20px;
+    }
 }
 
 .hLine {
@@ -973,11 +1093,11 @@ div.proficiencyCard {
         box-shadow:
             0 8px 32px 0 rgba(31, 38, 135, 0.37),
             inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-        
+
         /* Fallback for older browsers */
         background-color: rgba(25, 33, 36, 0.7);
     }
-    
+
     /* Add subtle glow effect to gallery container */
     .galleryContainer::before {
         content: '';
@@ -987,12 +1107,10 @@ div.proficiencyCard {
         right: 0;
         bottom: 0;
         border-radius: 10px;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.05) 50%,
-            rgba(255, 255, 255, 0.02) 100%
-        );
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(255, 255, 255, 0.02) 100%);
         pointer-events: none;
         z-index: -1;
     }
@@ -1044,13 +1162,13 @@ div.proficiencyCard {
         align-items: flex-start;
         gap: 10px;
     }
-    
+
     /* Masonry-style layout for dynamic gallery items */
     .galleryItems .gallery-preview.dynamic-sizing {
         margin-bottom: 0;
         align-self: flex-start;
     }
-    
+
     /* Base styles for dynamic gallery items */
     .gallery-preview.dynamic-sizing {
         width: 250px;
@@ -1062,13 +1180,13 @@ div.proficiencyCard {
         flex-direction: column;
         overflow: hidden;
     }
-    
+
     .gallery-preview.dynamic-sizing .preview-image {
         width: 100%;
         height: auto;
         object-fit: cover;
     }
-    
+
     .gallery-preview.dynamic-sizing div[style*="padding:20px"] {
         padding: 10px;
         text-align: center;
@@ -1076,25 +1194,25 @@ div.proficiencyCard {
         display: flex;
         flex-direction: column;
     }
-    
+
     /* Portrait orientation */
     .gallery-preview.dynamic-sizing.portrait {
         width: 200px;
     }
-    
+
     .gallery-preview.dynamic-sizing.tall-portrait {
         width: 180px;
     }
-    
+
     /* Landscape orientation */
     .gallery-preview.dynamic-sizing.landscape {
         width: 280px;
     }
-    
+
     .gallery-preview.dynamic-sizing.wide-landscape {
         width: 320px;
     }
-    
+
     /* Square orientation */
     .gallery-preview.dynamic-sizing.square {
         width: 250px;
@@ -1118,12 +1236,12 @@ div.proficiencyCard {
         border: 1px solid #ccc;
         border-radius: 1vw;
         float: left;
-        width: 250px;
+        width: fit-content;
         height: fit-content;
         background-color: #fff;
         -ms-text-size-adjust: auto;
     }
-    
+
     /* Dynamic sizing classes for photography gallery */
     div.gallery-preview.dynamic-sizing {
         width: auto;
@@ -1131,28 +1249,28 @@ div.proficiencyCard {
         min-width: 200px;
         max-width: 300px;
     }
-    
+
     div.gallery-preview.dynamic-sizing.portrait {
         width: 200px;
         height: auto;
     }
-    
+
     div.gallery-preview.dynamic-sizing.landscape {
         width: 280px;
         height: auto;
     }
-    
+
     div.gallery-preview.dynamic-sizing.square {
         width: 250px;
         height: auto;
     }
-    
+
     div.gallery-preview.dynamic-sizing img {
         width: 100%;
         height: auto;
         object-fit: cover;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing video {
         width: 100%;
         height: auto;
@@ -1171,13 +1289,13 @@ div.proficiencyCard {
         flex-shrink: 0;
         break-inside: avoid;
     }
-    
+
     /* Dynamic sizing for video gallery previews */
     div.video-gallery-preview.dynamic-sizing {
         margin-bottom: 0;
         align-self: flex-start;
     }
-    
+
     /* Base styles for dynamic video gallery items */
     div.video-gallery-preview.dynamic-sizing {
         width: 250px;
@@ -1189,25 +1307,25 @@ div.proficiencyCard {
         flex-direction: column;
         overflow: hidden;
     }
-    
+
     /* Portrait orientation */
     div.video-gallery-preview.dynamic-sizing.portrait {
         width: 200px;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing.tall-portrait {
         width: 180px;
     }
-    
+
     /* Landscape orientation */
     div.video-gallery-preview.dynamic-sizing.landscape {
         width: 280px;
     }
-    
+
     div.video-gallery-preview.dynamic-sizing.wide-landscape {
         width: 320px;
     }
-    
+
     /* Square orientation */
     div.video-gallery-preview.dynamic-sizing.square {
         width: 250px;
@@ -1253,6 +1371,11 @@ div.proficiencyCard {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
+    .about {
+        font-size: small;
+    }
+
+
     .navbar {
         width: 95%;
         padding: 10px 5px;
@@ -1291,9 +1414,67 @@ div.proficiencyCard {
     }
 
     .knowMore {
-        padding: 10px;
-        width: 90%;
+        padding: 15px;
+        width: 100%;
         height: auto;
+        max-width: none;
+        margin: 0;
+        border-radius: 0px;
+    }
+
+    .knowMore .flexContainer {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .knowMore .flexContainer > div {
+        flex: none;
+        width: 100%;
+        padding: 0 !important;
+        align-items: center;
+        text-align: center;
+    }
+
+    .knowMore .download-btn {
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .knowMore .download-btn img {
+        max-width: 120px;
+        height: auto;
+    }
+
+    .knowMore div[style*="letter-spacing: 2px"] {
+        text-align: center;
+        margin: 0 0 15px 0;
+        font-size: 14px;
+    }
+
+    .knowMore div[style*="font-size:20px"] {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .knowMore hr {
+        margin: 0 auto;
+        width: 40% !important;
+    }
+
+    .knowMore div[style*="display:flex"] {
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+
+    .knowMore div[style*="display:flex"] img {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+    }
+
+    .knowMore div[style*="color:#2B3E70"] {
+        font-size: 12px;
     }
 
     .flexContainer {
@@ -1324,10 +1505,9 @@ div.proficiencyCard {
 
     .categoryDesc {
         font-size: xx-small;
-        padding: 0px 10px 0px 0px;
         line-height: 1.3;
         text-align: center;
-        font-family: 'Montserrat';
+        justify-content: center;
     }
 
     .categoryHeader {
@@ -1364,11 +1544,11 @@ div.proficiencyCard {
         box-shadow:
             0 4px 20px 0 rgba(31, 38, 135, 0.3),
             inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-        
+
         /* Fallback for older browsers */
         background-color: rgba(25, 33, 36, 0.75);
     }
-    
+
     /* Add subtle glow effect to gallery container on mobile */
     .galleryContainer::before {
         content: '';
@@ -1378,12 +1558,10 @@ div.proficiencyCard {
         right: 0;
         bottom: 0;
         border-radius: inherit;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.08) 0%,
-            rgba(255, 255, 255, 0.04) 50%,
-            rgba(255, 255, 255, 0.01) 100%
-        );
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(255, 255, 255, 0.04) 50%,
+                rgba(255, 255, 255, 0.01) 100%);
         pointer-events: none;
         z-index: -1;
     }
@@ -1467,7 +1645,7 @@ div.proficiencyCard {
         background-color: #fff;
         overflow: hidden;
     }
-    
+
     /* Dynamic sizing for mobile photography gallery */
     div.gallery-preview.dynamic-sizing {
         width: calc(33.33% - 6px);
@@ -1475,7 +1653,7 @@ div.proficiencyCard {
         min-height: 120px;
         max-height: 200px;
     }
-    
+
     div.gallery-preview.dynamic-sizing img {
         width: 100%;
         height: 100%;
@@ -1586,10 +1764,10 @@ div.desc {
 }
 
 .categoryHeader {
-    color:white;
+    color: white;
     font-family: Montserrat;
     font-weight: bold;
-    font-size:xx-large;
+    font-size: xx-large;
     margin-left: 20px;
     margin-bottom: 12px;
 }
@@ -1801,6 +1979,40 @@ div.desc {
     align-items: center;
 }
 
+/* Additional responsive styles for knowMore section on very small devices */
+@media only screen and (max-width: 400px) {
+    .knowMore {
+        padding: 10px;
+        width: 100%;
+        border-radius: 0px;
+        max-width: none;
+    }
+
+    .knowMore .download-btn img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .knowMore div[style*="letter-spacing: 2px"] {
+        font-size: 12px;
+        letter-spacing: 1px !important;
+    }
+
+    .knowMore div[style*="font-size:20px"] {
+        font-size: 14px;
+    }
+
+    .knowMore div[style*="display:flex"] img {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+    }
+
+    .knowMore div[style*="color:#2B3E70"] {
+        font-size: 11px;
+    }
+}
+
 /* Responsive design for flippable cards */
 @media only screen and (min-width: 300px) and (max-width: 510px) {
     .flippable-card-container {
@@ -1934,135 +2146,135 @@ div.desc {
         font-size: 10px;
         margin-bottom: 4px;
     }
-    
+
     /* Responsive styles for dynamic gallery items */
     @media only screen and (max-width: 600px) {
         .galleryItems {
             gap: 5px;
         }
-        
+
         .gallery-preview.dynamic-sizing {
             width: calc(33.33% - 6px);
             margin: 3px;
         }
-        
+
         .gallery-preview.dynamic-sizing.portrait,
         .gallery-preview.dynamic-sizing.tall-portrait {
             width: calc(40% - 6px);
         }
-        
+
         .gallery-preview.dynamic-sizing.landscape,
         .gallery-preview.dynamic-sizing.wide-landscape {
             width: calc(50% - 6px);
         }
-        
+
         .gallery-preview.dynamic-sizing.square {
             width: calc(45% - 6px);
         }
-        
+
         .video-gallery-preview.dynamic-sizing {
             width: calc(33.33% - 6px);
             margin: 3px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.portrait,
         .video-gallery-preview.dynamic-sizing.tall-portrait {
             width: calc(40% - 6px);
         }
-        
+
         .video-gallery-preview.dynamic-sizing.landscape,
         .video-gallery-preview.dynamic-sizing.wide-landscape {
             width: calc(50% - 6px);
         }
-        
+
         .video-gallery-preview.dynamic-sizing.square {
             width: calc(45% - 6px);
         }
     }
-    
+
     @media only screen and (min-width: 601px) and (max-width: 955px) {
         .galleryItems {
             gap: 8px;
         }
-        
+
         .gallery-preview.dynamic-sizing {
             width: 180px;
             margin: 8px;
         }
-        
+
         .gallery-preview.dynamic-sizing.portrait,
         .gallery-preview.dynamic-sizing.tall-portrait {
             width: 150px;
         }
-        
+
         .gallery-preview.dynamic-sizing.landscape,
         .gallery-preview.dynamic-sizing.wide-landscape {
             width: 220px;
         }
-        
+
         .gallery-preview.dynamic-sizing.square {
             width: 200px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing {
             width: 180px;
             margin: 8px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.portrait,
         .video-gallery-preview.dynamic-sizing.tall-portrait {
             width: 150px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.landscape,
         .video-gallery-preview.dynamic-sizing.wide-landscape {
             width: 220px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.square {
             width: 200px;
         }
     }
-    
+
     @media only screen and (min-width: 956px) {
         .galleryItems {
             gap: 12px;
         }
-        
+
         .gallery-preview.dynamic-sizing {
             width: 220px;
             margin: 10px;
         }
-        
+
         .gallery-preview.dynamic-sizing.portrait,
         .gallery-preview.dynamic-sizing.tall-portrait {
             width: 180px;
         }
-        
+
         .gallery-preview.dynamic-sizing.landscape,
         .gallery-preview.dynamic-sizing.wide-landscape {
             width: 280px;
         }
-        
+
         .gallery-preview.dynamic-sizing.square {
             width: 250px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing {
             width: 220px;
             margin: 10px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.portrait,
         .video-gallery-preview.dynamic-sizing.tall-portrait {
             width: 180px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.landscape,
         .video-gallery-preview.dynamic-sizing.wide-landscape {
             width: 280px;
         }
-        
+
         .video-gallery-preview.dynamic-sizing.square {
             width: 250px;
         }
@@ -2075,7 +2287,7 @@ div.desc {
         margin: 0 auto;
         padding: 15px;
     }
-    
+
     /* Hover effects for gallery previews */
     .gallery-preview:hover,
     .video-gallery-preview:hover {
@@ -2159,4 +2371,20 @@ div.desc {
         margin: 0 auto;
         padding: 25px;
     }
+}
+
+@media only screen and (max-width: 1324px) {
+
+    .aboutmeContainer {
+        text-align: left;
+        margin: 1vw;
+        margin-top: 1vh;
+        display: grid;
+        gap: 10px;
+        place-items: center;
+        justify-content: center;
+        grid-template-columns: auto auto;
+        grid-column: span 2;  
+    }
+
 }
