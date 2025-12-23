@@ -842,7 +842,7 @@ div.proficiencyCard {
 
     div.gallery-preview,
     div.video-gallery-preview {
-        font-size: 25.5vw;
+        font-size: 16px; /* Fixed font size instead of vw to prevent excessive growth */
         margin: 5px 3px;
         border: 1px solid #ccc;
         border-radius: 1vw;
@@ -851,6 +851,8 @@ div.proficiencyCard {
         height: fit-content;
         background-color: #fff;
         overflow: hidden;
+        max-width: calc(50vw - 10px); /* Limit max width on small screens */
+        max-height: 200px; /* Limit max height on small screens */
     }
 
     div.gallery-preview img,
@@ -859,8 +861,11 @@ div.proficiencyCard {
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
-        height: 100px;
+        height: auto; /* Changed to auto to maintain aspect ratio */
+        max-height: 120px; /* Limit max height on small screens */
         float: left;
+        /* Ensure proper aspect ratio maintenance */
+        display: block;
     }
 
     /* Keep only preview-titles visible on mobile, hide other text */
@@ -1266,7 +1271,7 @@ div.proficiencyCard {
 
     div.gallery-preview,
     div.video-gallery-preview {
-        font-size: 25.5vw;
+        font-size: 16px; /* Fixed font size instead of vw to prevent excessive growth */
         margin: 10px;
         border: 1px solid #ccc;
         border-radius: 1vw;
@@ -1275,6 +1280,8 @@ div.proficiencyCard {
         height: fit-content;
         background-color: #fff;
         -ms-text-size-adjust: auto;
+        max-width: calc(50vw - 20px); /* Limit max width on medium screens */
+        max-height: 250px; /* Limit max height on medium screens */
     }
 
     /* Dynamic sizing classes for photography gallery */
@@ -1536,7 +1543,8 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: calc(100% - 80px);
+        /* width: calc(100% - 80px); */
+        width:100%;
         height: auto;
         min-height: 1100px;
         padding: 40px;
@@ -1586,15 +1594,18 @@ div.proficiencyCard {
     }
 
     .galleryContainer {
-        width: calc(100% - 40px);
+        /* width: calc(100% - 40px); */
+        width:100%;
         height: auto;
-        min-height: 1100px;
+        min-height: auto; /* Changed from fixed 1100px to auto for mobile */
         padding: 20px;
         border-radius: 10px;
         position: relative;
         z-index: 1;
         margin: 0 auto;
         box-sizing: border-box;
+        max-width: 100vw; /* Ensure it doesn't exceed viewport width */
+        overflow: hidden; /* Prevent content overflow */
 
         /* Glassmorphism effect for mobile */
         background: rgba(255, 255, 255, 0.1);
@@ -1671,14 +1682,16 @@ div.proficiencyCard {
     }
 
     .galleryDirectoryContent {
-        overflow-x: auto;
+        overflow-x: hidden; /* Changed from auto to hidden to prevent horizontal scroll */
         float: left;
         padding: 5px;
         margin: 5px;
         border-radius: 15px;
         width: 100%;
         border: none;
-        height: 900px;
+        height: auto; /* Changed from fixed 900px to auto */
+        max-height: 80vh; /* Limit height to 80% of viewport on mobile */
+        overflow-y: auto; /* Allow vertical scrolling if needed */
     }
 
     .galleryItems {
@@ -1696,6 +1709,9 @@ div.proficiencyCard {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 150px;
         gap: 1vw;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center; /* Center items in grid */
     }
     
     .galleryContainer {
@@ -1708,7 +1724,7 @@ div.proficiencyCard {
 
     div.gallery-preview,
     div.video-gallery-preview {
-        font-size: 25.5vw;
+        font-size: 14px; /* Smaller fixed font size for mobile */
         margin: 0;
         border: 1px solid #ccc;
         border-radius: 6px;
@@ -1719,6 +1735,10 @@ div.proficiencyCard {
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        max-width: 100%; /* Ensure it doesn't exceed container */
+        max-height: 180px; /* Limit height on mobile */
+        /* Ensure proper aspect ratio handling */
+        position: relative;
     }
 
     /* Dynamic sizing for mobile photography gallery */
@@ -1727,6 +1747,11 @@ div.proficiencyCard {
         height: 100%;
         grid-row: span 1;
         grid-column: span 1;
+        max-width: 100%; /* Ensure it doesn't exceed grid cell */
+        box-sizing: border-box; /* Include padding in width calculation */
+        overflow: hidden; /* Prevent content overflow */
+        /* Ensure proper aspect ratio handling */
+        position: relative;
     }
 
     div.gallery-preview.dynamic-sizing.portrait {
@@ -1747,7 +1772,8 @@ div.proficiencyCard {
 
     div.gallery-preview.dynamic-sizing img {
         width: 100%;
-        height: calc(100% - 40px);
+        height: auto; /* Changed to auto to maintain aspect ratio */
+        max-height: calc(100% - 40px); /* Limit max height */
         object-fit: cover;
     }
 
@@ -1759,8 +1785,11 @@ div.proficiencyCard {
         margin-bottom: 4px;
         object-fit: cover;
         width: 100%;
-        height: 120px;
+        height: auto; /* Changed to auto to maintain aspect ratio */
+        max-height: 150px; /* Limit max height on medium screens */
         float: left;
+        /* Ensure proper aspect ratio maintenance */
+        display: block;
     }
 
     /* Keep only preview-titles visible on mobile, hide other text */

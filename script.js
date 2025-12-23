@@ -44,8 +44,43 @@ class GalleryPreview extends HTMLElement {
           // Square-ish
           galleryElement.classList.add('square');
         }
+        
+        // Apply responsive sizing based on viewport
+        this.applyResponsiveSizing(galleryElement, aspectRatio);
       };
       img.src = imgSrc;
+    }
+    
+    // Apply responsive sizing based on viewport
+    applyResponsiveSizing(element, aspectRatio) {
+      const updateSize = () => {
+        const viewportWidth = window.innerWidth;
+        const isMobile = viewportWidth <= 599;
+        const isTablet = viewportWidth > 599 && viewportWidth <= 955;
+        
+        if (isMobile) {
+          // Mobile sizing
+          const maxHeight = 120;
+          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 2 - 10);
+          element.style.width = width + 'px';
+          element.style.height = maxHeight + 'px';
+        } else if (isTablet) {
+          // Tablet sizing
+          const maxHeight = 180;
+          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 3 - 10);
+          element.style.width = width + 'px';
+          element.style.height = maxHeight + 'px';
+        }
+      };
+      
+      // Apply initial size
+      updateSize();
+      
+      // Update on resize
+      window.addEventListener('resize', () => {
+        clearTimeout(element.resizeTimeout);
+        element.resizeTimeout = setTimeout(updateSize, 100);
+      });
     }
   }
 
@@ -101,15 +136,50 @@ class GalleryPreview extends HTMLElement {
           galleryElement.classList.add('square');
         }
         
-        // Set actual dimensions based on video resolution while maintaining flex position
-        // Calculate appropriate width based on aspect ratio and fixed height
-        const baseHeight = 200; // Base height for calculations
-        const calculatedWidth = aspectRatio * baseHeight;
+        // Apply responsive sizing based on viewport
+        this.applyVideoResponsiveSizing(galleryElement, aspectRatio, video);
+      });
+    }
+    
+    // Apply responsive sizing for videos based on viewport
+    applyVideoResponsiveSizing(element, aspectRatio, video) {
+      const updateSize = () => {
+        const viewportWidth = window.innerWidth;
+        const isMobile = viewportWidth <= 599;
+        const isTablet = viewportWidth > 599 && viewportWidth <= 955;
         
-        // Apply calculated dimensions with constraints
-        galleryElement.style.setProperty('--aspect-ratio', aspectRatio);
-        galleryElement.style.width = Math.min(Math.max(calculatedWidth, 150), 400) + 'px';
-        galleryElement.style.height = baseHeight + 'px';
+        if (isMobile) {
+          // Mobile sizing for videos
+          const maxHeight = 120;
+          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 2 - 10);
+          element.style.width = width + 'px';
+          element.style.height = maxHeight + 'px';
+        } else if (isTablet) {
+          // Tablet sizing for videos
+          const maxHeight = 180;
+          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 3 - 10);
+          element.style.width = width + 'px';
+          element.style.height = maxHeight + 'px';
+        } else {
+          // Desktop sizing for videos
+          const baseHeight = 200;
+          const calculatedWidth = aspectRatio * baseHeight;
+          element.style.width = Math.min(Math.max(calculatedWidth, 150), 400) + 'px';
+          element.style.height = baseHeight + 'px';
+        }
+        
+        // Ensure video element maintains aspect ratio
+        video.style.aspectRatio = aspectRatio;
+        video.style.setProperty('--video-aspect-ratio', aspectRatio);
+      };
+      
+      // Apply initial size
+      updateSize();
+      
+      // Update on resize
+      window.addEventListener('resize', () => {
+        clearTimeout(element.resizeTimeout);
+        element.resizeTimeout = setTimeout(updateSize, 100);
       });
     }
     
@@ -375,21 +445,67 @@ class GalleryPreview extends HTMLElement {
     const containerWidth = container.clientWidth;
     const gap = 10; // Gap between items
     
-    // Calculate optimal row height
-    const rowHeight = calculateOptimalRowHeight(containerWidth, previewData, gap);
+    // Check if we're on a small screen
+    const isSmallScreen = window.innerWidth <= 599;
+    const isMediumScreen = window.innerWidth > 599 && window.innerWidth <= 955;
+    
+    // Calculate optimal row height based on screen size
+    let rowHeight;
+    if (isSmallScreen) {
+      rowHeight = Math.min(150, containerWidth / 2 - gap); // Smaller height for mobile
+    } else if (isMediumScreen) {
+      rowHeight = Math.min(200, containerWidth / 3 - gap); // Medium height for tablets
+    } else {
+      rowHeight = calculateOptimalRowHeight(containerWidth, previewData, gap); // Dynamic for desktop
+    }
     
     // Apply calculated sizes
     previewData.forEach(preview => {
-      const width = Math.round(preview.aspectRatio * rowHeight);
-      preview.element.style.width = width + 'px';
-      preview.element.style.height = rowHeight + 'px';
+      let width, height;
       
-      // Update image/video dimensions
+      if (isSmallScreen) {
+        // For small screens, limit size to prevent overflow
+        // Calculate height based on aspect ratio to maintain proportions
+        const maxHeight = 150; // Max height for mobile
+        height = Math.min(rowHeight, maxHeight);
+        width = Math.min(Math.round(preview.aspectRatio * height), containerWidth / 2 - gap);
+        
+        // Ensure minimum dimensions
+        width = Math.max(width, 80);
+        height = Math.max(height, 80);
+      } else if (isMediumScreen) {
+        // For medium screens
+        const maxHeight = 200; // Max height for tablets
+        height = Math.min(rowHeight, maxHeight);
+        width = Math.min(Math.round(preview.aspectRatio * height), containerWidth / 3 - gap);
+        
+        // Ensure minimum dimensions
+        width = Math.max(width, 100);
+        height = Math.max(height, 100);
+      } else {
+        // For desktop
+        height = rowHeight;
+        width = Math.round(preview.aspectRatio * height);
+      }
+      
+      preview.element.style.width = width + 'px';
+      preview.element.style.height = height + 'px';
+      
+      // Store aspect ratio as CSS custom property for better responsive handling
+      preview.element.style.setProperty('--preview-aspect-ratio', preview.aspectRatio);
+      
+      // Update image/video dimensions with proper aspect ratio handling
       const mediaElement = preview.element.querySelector('.preview-image, .preview-video');
       if (mediaElement) {
         mediaElement.style.width = '100%';
         mediaElement.style.height = '100%';
         mediaElement.style.objectFit = 'cover';
+        mediaElement.style.aspectRatio = preview.aspectRatio;
+        
+        // For videos, ensure proper aspect ratio is maintained
+        if (mediaElement.tagName === 'VIDEO') {
+          mediaElement.style.setProperty('--video-aspect-ratio', preview.aspectRatio);
+        }
       }
     });
   }
