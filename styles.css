@@ -297,11 +297,36 @@ div.proficiencyCard {
 
 }
 
+.gameLink{
+    background-color: white;
+    border-radius: 100px;
+    border: none;
+    color: #2B3E70;
+    /* White text */
+    width: fit-content;
+    padding: .5vh 2.5vh;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 1px 12px;
+    cursor: pointer;
+    /* Changes cursor to a hand icon */
+    /* Add a smooth transition effect */
+    transition-duration: 0.4s;
+}
+
+/* Hover state: styles when the mouse is over the button */
+.gameLink:hover {
+    background-color: #FFB703;
+    /* Blue background on hover */
+    color: #2B3E70;
+}
+
 .flexColumns {
     display: flex;
     flex-direction: column;
     width: max-content;
-    height: max-content;
+    align-items: center;
 }
 
 .flexRow {
@@ -971,22 +996,23 @@ div.proficiencyCard {
         overflow: hidden;
         max-width: calc(50vw - 10px);
         /* Limit max width on small screens */
-        max-height: 250px;
-        /* Increased max height to accommodate content */
+        /* Remove max-height to allow portrait content to display properly */
         display: flex;
         flex-direction: column;
+        /* Ensure proper aspect ratio handling */
+        aspect-ratio: var(--preview-aspect-ratio, auto);
     }
 
     div.gallery-preview img,
     div.video-gallery-preview video {
         border-radius: 1vw 1vw 0vw 0vw;
         margin-bottom: 4px;
-        object-fit: cover;
+        object-fit: contain;
+        /* Changed from cover to contain to prevent clipping/cropping */
         width: 100%;
         height: auto;
         /* Changed to auto to maintain aspect ratio */
-        max-height: 150px;
-        /* Increased max height to show more of the image/video */
+        /* Remove max-height to allow portrait content to display properly */
         float: left;
         /* Ensure proper aspect ratio maintenance */
         display: block;
@@ -1463,10 +1489,11 @@ div.proficiencyCard {
         -ms-text-size-adjust: auto;
         max-width: calc(50vw - 20px);
         /* Limit max width on medium screens */
-        max-height: 300px;
-        /* Increased max height to accommodate content */
+        /* Remove max-height to allow portrait content to display properly */
         display: flex;
         flex-direction: column;
+        /* Ensure proper aspect ratio handling */
+        aspect-ratio: var(--preview-aspect-ratio, auto);
     }
 
     /* Dynamic sizing classes for photography gallery */
@@ -1552,11 +1579,15 @@ div.proficiencyCard {
     div.video-gallery-preview video {
         border-radius: 8px 8px 0 0;
         margin: 0;
-        object-fit: cover;
+        object-fit: contain;
+        /* Changed from cover to contain to prevent clipping/cropping */
         width: 100%;
-        height: calc(100% - 60px);
+        height: auto;
+        /* Changed to auto to maintain aspect ratio */
         float: none;
         flex-shrink: 0;
+        /* Use CSS aspect-ratio property for better aspect ratio handling */
+        aspect-ratio: var(--preview-aspect-ratio, auto);
     }
 
     div.gallery-preview:hover {
@@ -1932,10 +1963,10 @@ div.proficiencyCard {
         flex-direction: column;
         max-width: 100%;
         /* Ensure it doesn't exceed container */
-        max-height: 220px;
-        /* Increased height to accommodate content */
+        /* Remove max-height to allow portrait content to display properly */
         /* Ensure proper aspect ratio handling */
         position: relative;
+        aspect-ratio: var(--preview-aspect-ratio, auto);
     }
 
     /* Dynamic sizing for mobile photography gallery */
@@ -1985,12 +2016,12 @@ div.proficiencyCard {
     div.video-gallery-preview video {
         border-radius: 1vw 1vw 0vw 0vw;
         margin-bottom: 4px;
-        object-fit: cover;
+        object-fit: contain;
+        /* Changed from cover to contain to prevent clipping/cropping */
         width: 100%;
         height: auto;
         /* Changed to auto to maintain aspect ratio */
-        max-height: 160px;
-        /* Increased max height to show more of the image/video */
+        /* Remove max-height to allow portrait content to display properly */
         float: left;
         /* Ensure proper aspect ratio maintenance */
         display: block;

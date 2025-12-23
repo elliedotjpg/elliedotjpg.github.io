@@ -26,6 +26,13 @@ class GalleryPreview extends HTMLElement {
         
         // Store aspect ratio as a custom property for CSS
         galleryElement.style.setProperty('--aspect-ratio', aspectRatio);
+        galleryElement.style.setProperty('--preview-aspect-ratio', aspectRatio);
+        
+        // Apply aspect ratio to the image element itself
+        const imageElement = galleryElement.querySelector('.preview-image');
+        if (imageElement) {
+          imageElement.style.aspectRatio = aspectRatio;
+        }
         
         // Apply aspect ratio based classes
         if (aspectRatio > 1.5) {
@@ -59,17 +66,33 @@ class GalleryPreview extends HTMLElement {
         const isTablet = viewportWidth > 599 && viewportWidth <= 955;
         
         if (isMobile) {
-          // Mobile sizing - increased height to accommodate content
-          const maxHeight = 160;
-          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 2 - 10);
-          element.style.width = width + 'px';
-          element.style.height = maxHeight + 'px';
+          // Mobile sizing - adjust based on aspect ratio to prevent clipping
+          const maxWidth = viewportWidth / 2 - 10;
+          if (aspectRatio < 1) {
+            // Portrait orientation - calculate height based on width to prevent clipping
+            element.style.width = maxWidth + 'px';
+            element.style.height = Math.round(maxWidth / aspectRatio) + 'px';
+          } else {
+            // Landscape or square orientation
+            const maxHeight = 160;
+            const width = Math.min(Math.round(aspectRatio * maxHeight), maxWidth);
+            element.style.width = width + 'px';
+            element.style.height = maxHeight + 'px';
+          }
         } else if (isTablet) {
-          // Tablet sizing - increased height to accommodate content
-          const maxHeight = 220;
-          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 3 - 10);
-          element.style.width = width + 'px';
-          element.style.height = maxHeight + 'px';
+          // Tablet sizing - adjust based on aspect ratio to prevent clipping
+          const maxWidth = viewportWidth / 3 - 10;
+          if (aspectRatio < 1) {
+            // Portrait orientation - calculate height based on width to prevent clipping
+            element.style.width = maxWidth + 'px';
+            element.style.height = Math.round(maxWidth / aspectRatio) + 'px';
+          } else {
+            // Landscape or square orientation
+            const maxHeight = 220;
+            const width = Math.min(Math.round(aspectRatio * maxHeight), maxWidth);
+            element.style.width = width + 'px';
+            element.style.height = maxHeight + 'px';
+          }
         }
       };
       
@@ -117,6 +140,10 @@ class GalleryPreview extends HTMLElement {
         
         // Store aspect ratio as a custom property for CSS
         galleryElement.style.setProperty('--aspect-ratio', aspectRatio);
+        galleryElement.style.setProperty('--preview-aspect-ratio', aspectRatio);
+        
+        // Apply aspect ratio to the video element itself
+        video.style.aspectRatio = aspectRatio;
         
         // Apply aspect ratio based classes
         if (aspectRatio > 1.5) {
@@ -149,23 +176,48 @@ class GalleryPreview extends HTMLElement {
         const isTablet = viewportWidth > 599 && viewportWidth <= 955;
         
         if (isMobile) {
-          // Mobile sizing for videos - increased height to accommodate content
-          const maxHeight = 160;
-          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 2 - 10);
-          element.style.width = width + 'px';
-          element.style.height = maxHeight + 'px';
+          // Mobile sizing for videos - adjust based on aspect ratio to prevent clipping
+          const maxWidth = viewportWidth / 2 - 10;
+          if (aspectRatio < 1) {
+            // Portrait orientation - calculate height based on width to prevent clipping
+            element.style.width = maxWidth + 'px';
+            element.style.height = Math.round(maxWidth / aspectRatio) + 'px';
+          } else {
+            // Landscape or square orientation
+            const maxHeight = 160;
+            const width = Math.min(Math.round(aspectRatio * maxHeight), maxWidth);
+            element.style.width = width + 'px';
+            element.style.height = maxHeight + 'px';
+          }
         } else if (isTablet) {
-          // Tablet sizing for videos - increased height to accommodate content
-          const maxHeight = 220;
-          const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 3 - 10);
-          element.style.width = width + 'px';
-          element.style.height = maxHeight + 'px';
+          // Tablet sizing for videos - adjust based on aspect ratio to prevent clipping
+          const maxWidth = viewportWidth / 3 - 10;
+          if (aspectRatio < 1) {
+            // Portrait orientation - calculate height based on width to prevent clipping
+            element.style.width = maxWidth + 'px';
+            element.style.height = Math.round(maxWidth / aspectRatio) + 'px';
+          } else {
+            // Landscape or square orientation
+            const maxHeight = 220;
+            const width = Math.min(Math.round(aspectRatio * maxHeight), maxWidth);
+            element.style.width = width + 'px';
+            element.style.height = maxHeight + 'px';
+          }
         } else {
-          // Desktop sizing for videos - increased height to accommodate content
-          const baseHeight = 240;
-          const calculatedWidth = aspectRatio * baseHeight;
-          element.style.width = Math.min(Math.max(calculatedWidth, 150), 400) + 'px';
-          element.style.height = baseHeight + 'px';
+          // Desktop sizing for videos - adjust based on aspect ratio to prevent clipping
+          if (aspectRatio < 1) {
+            // Portrait orientation - use width as the limiting factor
+            const baseWidth = 200;
+            const calculatedHeight = baseWidth / aspectRatio;
+            element.style.width = baseWidth + 'px';
+            element.style.height = Math.min(calculatedHeight, 400) + 'px';
+          } else {
+            // Landscape or square orientation
+            const baseHeight = 240;
+            const calculatedWidth = aspectRatio * baseHeight;
+            element.style.width = Math.min(Math.max(calculatedWidth, 150), 400) + 'px';
+            element.style.height = baseHeight + 'px';
+          }
         }
         
         // Ensure video element maintains aspect ratio
@@ -463,28 +515,51 @@ class GalleryPreview extends HTMLElement {
       let width, height;
       
       if (isSmallScreen) {
-        // For small screens, limit size to prevent overflow
-        // Calculate height based on aspect ratio to maintain proportions
-        const maxHeight = 160; // Increased max height for mobile to accommodate content
-        height = Math.min(rowHeight, maxHeight);
-        width = Math.min(Math.round(preview.aspectRatio * height), containerWidth / 2 - gap);
+        // For small screens, adjust based on aspect ratio to prevent clipping
+        const maxWidth = containerWidth / 2 - gap;
+        if (preview.aspectRatio < 1) {
+          // Portrait orientation - calculate height based on width to prevent clipping
+          width = maxWidth;
+          height = Math.round(maxWidth / preview.aspectRatio);
+        } else {
+          // Landscape or square orientation
+          const maxHeight = 160; // Increased max height for mobile to accommodate content
+          height = Math.min(rowHeight, maxHeight);
+          width = Math.min(Math.round(preview.aspectRatio * height), maxWidth);
+        }
         
         // Ensure minimum dimensions
         width = Math.max(width, 80);
         height = Math.max(height, 80);
       } else if (isMediumScreen) {
-        // For medium screens
-        const maxHeight = 220; // Increased max height for tablets to accommodate content
-        height = Math.min(rowHeight, maxHeight);
-        width = Math.min(Math.round(preview.aspectRatio * height), containerWidth / 3 - gap);
+        // For medium screens, adjust based on aspect ratio to prevent clipping
+        const maxWidth = containerWidth / 3 - gap;
+        if (preview.aspectRatio < 1) {
+          // Portrait orientation - calculate height based on width to prevent clipping
+          width = maxWidth;
+          height = Math.round(maxWidth / preview.aspectRatio);
+        } else {
+          // Landscape or square orientation
+          const maxHeight = 220; // Increased max height for tablets to accommodate content
+          height = Math.min(rowHeight, maxHeight);
+          width = Math.min(Math.round(preview.aspectRatio * height), maxWidth);
+        }
         
         // Ensure minimum dimensions
         width = Math.max(width, 100);
         height = Math.max(height, 100);
       } else {
-        // For desktop - increased height to accommodate content
-        height = rowHeight + 40; // Add extra space for content
-        width = Math.round(preview.aspectRatio * height);
+        // For desktop - adjust based on aspect ratio to prevent clipping
+        if (preview.aspectRatio < 1) {
+          // Portrait orientation - use width as the limiting factor
+          const baseWidth = 200;
+          height = Math.round(baseWidth / preview.aspectRatio);
+          width = baseWidth;
+        } else {
+          // Landscape or square orientation - increased height to accommodate content
+          height = rowHeight + 40; // Add extra space for content
+          width = Math.round(preview.aspectRatio * height);
+        }
       }
       
       preview.element.style.width = width + 'px';
@@ -497,8 +572,8 @@ class GalleryPreview extends HTMLElement {
       const mediaElement = preview.element.querySelector('.preview-image, .preview-video');
       if (mediaElement) {
         mediaElement.style.width = '100%';
-        mediaElement.style.height = '100%';
-        mediaElement.style.objectFit = 'cover';
+        mediaElement.style.height = 'auto';
+        mediaElement.style.objectFit = 'contain';
         mediaElement.style.aspectRatio = preview.aspectRatio;
         
         // For videos, ensure proper aspect ratio is maintained
