@@ -2090,6 +2090,11 @@ div.desc {
     transform: rotateY(180deg);
 }
 
+/* Add hover flip functionality */
+.flippable-card-container:hover .flippable-card {
+    transform: rotateY(180deg);
+}
+
 .card-front,
 .card-back {
     width: 100%;

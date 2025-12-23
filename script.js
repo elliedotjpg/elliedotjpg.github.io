@@ -311,36 +311,35 @@ class GalleryPreview extends HTMLElement {
       
       this.appendChild(templateContent);
       
-      // Add click event for flipping
-      const card = this.querySelector('.flippable-card');
-      this.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Force immediate flip with consistent behavior
-        if (card.classList.contains('flipped')) {
-          card.classList.remove('flipped');
-        } else {
-          card.classList.add('flipped');
-        }
-      });
-      
-      // Add keyboard support
+      // Remove click event for flipping since we're using hover
+      // Add keyboard support for accessibility
       this.setAttribute('tabindex', '0');
       this.setAttribute('role', 'button');
-      this.setAttribute('aria-label', `Flippable card for ${softwareName}. Click to flip and see proficiency details.`);
+      this.setAttribute('aria-label', `Flippable card for ${softwareName}. Hover to flip and see proficiency details.`);
       
+      const card = this.querySelector('.flippable-card');
       this.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           e.stopPropagation();
           
-          // Force immediate flip with consistent behavior
+          // Toggle flip on keyboard interaction for accessibility
           if (card.classList.contains('flipped')) {
             card.classList.remove('flipped');
           } else {
             card.classList.add('flipped');
           }
+        }
+      });
+      
+      // Optional: Add touch support for mobile devices
+      this.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        // Toggle flip on touch for mobile devices
+        if (card.classList.contains('flipped')) {
+          card.classList.remove('flipped');
+        } else {
+          card.classList.add('flipped');
         }
       });
     }
