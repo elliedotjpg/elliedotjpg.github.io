@@ -297,19 +297,20 @@ div.proficiencyCard {
 
 }
 
-.gameLink{
+.gameLink {
     background-color: white;
     border-radius: 100px;
     border: none;
     color: #2B3E70;
     /* White text */
     width: fit-content;
-    padding: .5vh 2.5vh;
+    padding: .3vh 2.5vh;
     text-align: center;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 8px;
     margin: 1px 12px;
     cursor: pointer;
+    margin-bottom: 2vh;
     /* Changes cursor to a hand icon */
     /* Add a smooth transition effect */
     transition-duration: 0.4s;
@@ -374,7 +375,7 @@ div.proficiencyCard {
     line-height: 4rem;
     position: relative;
     overflow: hidden;
-    width: min(250px, 90%);
+    width: min(350px, 90%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -399,49 +400,58 @@ div.proficiencyCard {
         top: 0;
     }
 
-    8.33% {
+    7.69% {
         top: -2rem;
     }
 
-    16.66% {
+    15.38% {
         top: -4rem;
     }
 
-    24.99% {
+    23.07% {
         top: -6rem;
     }
 
-    33.33% {
+    30.77% {
         top: -8rem;
     }
 
-    41.66% {
+    38.46% {
         top: -10rem;
     }
 
-    49.99% {
+    48.15% {
         top: -12rem;
     }
 
-    58.33% {
+    53.85% {
         top: -14rem;
     }
 
-    66.66% {
+    61.54% {
         top: -16rem;
     }
 
-    74.99% {
+    69.23% {
         top: -18rem;
     }
 
-    83.33% {
+    76.92% {
         top: -20rem;
     }
 
-    91.66% {
+    84.62% {
         top: -22rem;
     }
+
+    92.31% {
+        top: -24rem;
+    }
+
+    99.99% {
+        top: -26rem;
+    }
+
 }
 
 
@@ -663,48 +673,56 @@ div.proficiencyCard {
             top: 0;
         }
 
-        8.33% {
+        7.69% {
             top: -2rem;
         }
 
-        16.66% {
+        15.38% {
             top: -4rem;
         }
 
-        24.99% {
+        23.07% {
             top: -6rem;
         }
 
-        33.33% {
+        30.77% {
             top: -8rem;
         }
 
-        41.66% {
+        38.46% {
             top: -10rem;
         }
 
-        49.99% {
+        48.15% {
             top: -12rem;
         }
 
-        58.33% {
+        53.85% {
             top: -14rem;
         }
 
-        66.66% {
+        61.54% {
             top: -16rem;
         }
 
-        74.99% {
+        69.23% {
             top: -18rem;
         }
 
-        83.33% {
+        76.92% {
             top: -20rem;
         }
 
-        91.66% {
+        84.62% {
             top: -22rem;
+        }
+
+        92.31% {
+            top: -24rem;
+        }
+
+        99.99% {
+            top: -26rem;
         }
     }
 
@@ -759,8 +777,8 @@ div.proficiencyCard {
         text-align: center;
     }
 
-    .knowMore .flexContainer{
-        flex-direction:row;
+    .knowMore .flexContainer {
+        flex-direction: row;
     }
 
     .navbar {
@@ -1044,7 +1062,7 @@ div.proficiencyCard {
         color: #333;
         font-weight: 600;
     }
-    
+
     /* Show preview software names with appropriate size */
     div.gallery-preview .preview-software,
     div.video-gallery-preview .vid-prev-software {
@@ -1077,7 +1095,7 @@ div.proficiencyCard {
         opacity: 1 !important;
         color: #333 !important;
     }
-    
+
     /* Ensure software elements are visible */
     div.gallery-preview .preview-software,
     div.video-gallery-preview .vid-prev-software {
@@ -1233,7 +1251,7 @@ div.proficiencyCard {
     .roller {
         height: 2.15rem;
         line-height: 2rem;
-        width: min(200px, 90%);
+        width: min(300px, 90%);
     }
 
 
@@ -1247,48 +1265,56 @@ div.proficiencyCard {
             top: 0;
         }
 
-        8.33% {
+        7.69% {
             top: -2rem;
         }
 
-        16.66% {
+        15.38% {
             top: -4rem;
         }
 
-        24.99% {
+        23.07% {
             top: -6rem;
         }
 
-        33.33% {
+        30.77% {
             top: -8rem;
         }
 
-        41.66% {
+        38.46% {
             top: -10rem;
         }
 
-        49.99% {
+        48.15% {
             top: -12rem;
         }
 
-        58.33% {
+        53.85% {
             top: -14rem;
         }
 
-        66.66% {
+        61.54% {
             top: -16rem;
         }
 
-        74.99% {
+        69.23% {
             top: -18rem;
         }
 
-        83.33% {
+        76.92% {
             top: -20rem;
         }
 
-        91.66% {
+        84.62% {
             top: -22rem;
+        }
+
+        92.31% {
+            top: -24rem;
+        }
+
+        99.99% {
+            top: -26rem;
         }
     }
 
@@ -2051,7 +2077,7 @@ div.proficiencyCard {
         color: #333 !important;
         font-weight: 600 !important;
     }
-    
+
     /* Show preview software names with smaller size */
     div.gallery-preview .preview-software,
     div.video-gallery-preview .vid-prev-software {
@@ -2085,7 +2111,7 @@ div.proficiencyCard {
         visibility: visible !important;
         opacity: 1 !important;
     }
-    
+
     /* Keep software and title elements visible within padding */
     div.gallery-preview div[style*="padding:10px"] .preview-software,
     div.gallery-preview div[style*="padding:10px"] .preview-title,
@@ -2370,48 +2396,56 @@ div.desc {
             top: 0;
         }
 
-        8.33% {
+        7.69% {
             top: -2rem;
         }
 
-        16.66% {
+        15.38% {
             top: -4rem;
         }
 
-        24.99% {
+        23.07% {
             top: -6rem;
         }
 
-        33.33% {
+        30.77% {
             top: -8rem;
         }
 
-        41.66% {
+        38.46% {
             top: -10rem;
         }
 
-        49.99% {
+        48.15% {
             top: -12rem;
         }
 
-        58.33% {
+        53.85% {
             top: -14rem;
         }
 
-        66.66% {
+        61.54% {
             top: -16rem;
         }
 
-        74.99% {
+        69.23% {
             top: -18rem;
         }
 
-        83.33% {
+        76.92% {
             top: -20rem;
         }
 
-        91.66% {
+        84.62% {
             top: -22rem;
+        }
+
+        92.31% {
+            top: -24rem;
+        }
+
+        99.99% {
+            top: -26rem;
         }
     }
 
@@ -2667,48 +2701,56 @@ div.desc {
                 top: 0;
             }
 
-            8.33% {
+            7.69% {
                 top: -2rem;
             }
 
-            16.66% {
+            15.38% {
                 top: -4rem;
             }
 
-            24.99% {
+            23.07% {
                 top: -6rem;
             }
 
-            33.33% {
+            30.77% {
                 top: -8rem;
             }
 
-            41.66% {
+            38.46% {
                 top: -10rem;
             }
 
-            49.99% {
+            48.15% {
                 top: -12rem;
             }
 
-            58.33% {
+            53.85% {
                 top: -14rem;
             }
 
-            66.66% {
+            61.54% {
                 top: -16rem;
             }
 
-            74.99% {
+            69.23% {
                 top: -18rem;
             }
 
-            83.33% {
+            76.92% {
                 top: -20rem;
             }
 
-            91.66% {
+            84.62% {
                 top: -22rem;
+            }
+
+            92.31% {
+                top: -24rem;
+            }
+
+            99.99% {
+                top: -26rem;
             }
         }
 
