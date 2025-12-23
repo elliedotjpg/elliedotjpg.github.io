@@ -866,6 +866,8 @@ div.proficiencyCard {
         float: left;
         /* Ensure proper aspect ratio maintenance */
         display: block;
+        /* Use CSS aspect-ratio property for better aspect ratio handling */
+        aspect-ratio: var(--preview-aspect-ratio, auto);
     }
 
     /* Keep only preview-titles visible on mobile, hide other text */
@@ -873,32 +875,38 @@ div.proficiencyCard {
     div.gallery-preview .preview-description,
     div.video-gallery-preview .vid-prev-software,
     div.video-gallery-preview .vid-prev-description {
-        display: none !important;
+        display: none;
     }
 
-    /* Show preview titles with smaller size */
+    /* Show preview titles with appropriate size */
     div.gallery-preview .preview-title,
     div.video-gallery-preview .vid-prev-title {
-        font-size: xx-small !important;
-        display: block !important;
+        font-size: 12px;
+        display: block;
         text-align: center;
-        margin: 2px 0;
+        margin: 4px 0;
         line-height: 1.2;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
-    /* Adjust padding div to only show title */
+    /* Adjust padding div to show title properly */
     div.gallery-preview div[style*="padding:10px"],
     div.video-gallery-preview div[style*="padding:10px"] {
-        padding: 5px !important;
+        padding: 8px !important;
         text-align: center;
+        min-height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    /* Hide software and description elements within padding */
-    div.gallery-preview div[style*="padding:10px"] .preview-software,
-    div.gallery-preview div[style*="padding:10px"] .preview-description,
-    div.video-gallery-preview div[style*="padding:10px"] .vid-prev-software,
-    div.video-gallery-preview div[style*="padding:10px"] .vid-prev-description {
-        display: none !important;
+    /* Ensure title elements are visible */
+    div.gallery-preview .preview-title,
+    div.video-gallery-preview .vid-prev-title {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     div.gallery-preview:hover,
@@ -1790,6 +1798,8 @@ div.proficiencyCard {
         float: left;
         /* Ensure proper aspect ratio maintenance */
         display: block;
+        /* Use CSS aspect-ratio property for better aspect ratio handling */
+        aspect-ratio: var(--preview-aspect-ratio, auto);
     }
 
     /* Keep only preview-titles visible on mobile, hide other text */
