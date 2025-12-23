@@ -122,7 +122,14 @@ div.proficiencyCard {
     /* Ensure the element can be relatively positioned for transform to work correctly in some contexts */
     position: relative;
     /* Apply the animation */
-    animation: float 3s ease-in-out infinite;
+    animation: float 5s ease-in-out infinite;
+}
+
+.floating-image-two {
+    /* Ensure the element can be relatively positioned for transform to work correctly in some contexts */
+    position: relative;
+    /* Apply the animation */
+    animation: float 4s ease-in-out infinite;
 }
 
 /* Define the keyframes for the floating animation */
@@ -133,7 +140,7 @@ div.proficiencyCard {
     }
 
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-5px);
         /* Move up by 10 pixels at the midpoint */
     }
 
@@ -585,10 +592,15 @@ div.proficiencyCard {
 
 @media only screen and (min-width: 300px) and (max-width:700px) {
 
+    .lips {
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+    }
 
     .aboutmeContainer {
         margin: 1vw;
-        margin-top: 1vh;
+        /* margin-top: 1vh; */
         display: flex;
         flex-direction: column;
         text-align: center;
