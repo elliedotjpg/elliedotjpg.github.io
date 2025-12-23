@@ -31,7 +31,7 @@ center {
 }
 
 .contactMe {
-    font-weight:400;
+    font-weight: 700;
     font-size: 20px;
     letter-spacing: 2px;
     text-align: right;
@@ -722,7 +722,6 @@ div.proficiencyCard {
 @media only screen and (min-width: 601px) and (max-width: 955px) {
 
     .contactMe {
-        font-weight:400;
         font-size: 20px;
         letter-spacing: 2px;
         text-align: center;
@@ -733,6 +732,10 @@ div.proficiencyCard {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+
+    .knowMore .flexContainer{
+        flex-direction:row;
     }
 
     .navbar {
@@ -968,8 +971,10 @@ div.proficiencyCard {
         overflow: hidden;
         max-width: calc(50vw - 10px);
         /* Limit max width on small screens */
-        max-height: 200px;
-        /* Limit max height on small screens */
+        max-height: 250px;
+        /* Increased max height to accommodate content */
+        display: flex;
+        flex-direction: column;
     }
 
     div.gallery-preview img,
@@ -980,21 +985,24 @@ div.proficiencyCard {
         width: 100%;
         height: auto;
         /* Changed to auto to maintain aspect ratio */
-        max-height: 120px;
-        /* Limit max height on small screens */
+        max-height: 150px;
+        /* Increased max height to show more of the image/video */
         float: left;
         /* Ensure proper aspect ratio maintenance */
         display: block;
         /* Use CSS aspect-ratio property for better aspect ratio handling */
         aspect-ratio: var(--preview-aspect-ratio, auto);
+        flex-shrink: 0;
     }
 
-    /* Keep only preview-titles visible on mobile, hide other text */
+    /* Keep preview content visible at all screen sizes */
     div.gallery-preview .preview-software,
     div.gallery-preview .preview-description,
     div.video-gallery-preview .vid-prev-software,
     div.video-gallery-preview .vid-prev-description {
-        display: none;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     /* Show preview titles with appropriate size */
@@ -1007,17 +1015,32 @@ div.proficiencyCard {
         line-height: 1.2;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        color: #333;
+        font-weight: 600;
+    }
+    
+    /* Show preview software names with appropriate size */
+    div.gallery-preview .preview-software,
+    div.video-gallery-preview .vid-prev-software {
+        font-size: 10px;
+        display: block;
+        text-align: center;
+        margin: 2px 0;
+        line-height: 1.2;
+        color: #666;
+        font-style: italic;
     }
 
-    /* Adjust padding div to show title properly */
+    /* Adjust padding div to show title and software properly */
     div.gallery-preview div[style*="padding:10px"],
     div.video-gallery-preview div[style*="padding:10px"] {
         padding: 8px !important;
         text-align: center;
-        min-height: 40px;
+        min-height: 60px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        flex-shrink: 0;
     }
 
     /* Ensure title elements are visible */
@@ -1026,6 +1049,17 @@ div.proficiencyCard {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
+        color: #333 !important;
+    }
+    
+    /* Ensure software elements are visible */
+    div.gallery-preview .preview-software,
+    div.video-gallery-preview .vid-prev-software {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #666 !important;
+        font-style: italic !important;
     }
 
     div.gallery-preview:hover,
@@ -1429,8 +1463,10 @@ div.proficiencyCard {
         -ms-text-size-adjust: auto;
         max-width: calc(50vw - 20px);
         /* Limit max width on medium screens */
-        max-height: 250px;
-        /* Limit max height on medium screens */
+        max-height: 300px;
+        /* Increased max height to accommodate content */
+        display: flex;
+        flex-direction: column;
     }
 
     /* Dynamic sizing classes for photography gallery */
@@ -1520,6 +1556,7 @@ div.proficiencyCard {
         width: 100%;
         height: calc(100% - 60px);
         float: none;
+        flex-shrink: 0;
     }
 
     div.gallery-preview:hover {
@@ -1895,8 +1932,8 @@ div.proficiencyCard {
         flex-direction: column;
         max-width: 100%;
         /* Ensure it doesn't exceed container */
-        max-height: 180px;
-        /* Limit height on mobile */
+        max-height: 220px;
+        /* Increased height to accommodate content */
         /* Ensure proper aspect ratio handling */
         position: relative;
     }
@@ -1952,46 +1989,80 @@ div.proficiencyCard {
         width: 100%;
         height: auto;
         /* Changed to auto to maintain aspect ratio */
-        max-height: 150px;
-        /* Limit max height on medium screens */
+        max-height: 160px;
+        /* Increased max height to show more of the image/video */
         float: left;
         /* Ensure proper aspect ratio maintenance */
         display: block;
         /* Use CSS aspect-ratio property for better aspect ratio handling */
         aspect-ratio: var(--preview-aspect-ratio, auto);
+        flex-shrink: 0;
     }
 
-    /* Keep only preview-titles visible on mobile, hide other text */
+    /* Keep preview content visible on mobile as well */
     div.gallery-preview .preview-software,
     div.gallery-preview .preview-description,
     div.video-gallery-preview .vid-prev-software,
     div.video-gallery-preview .vid-prev-description {
-        display: none !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     /* Show preview titles with smaller size */
     div.gallery-preview .preview-title,
     div.video-gallery-preview .vid-prev-title {
-        font-size: xx-small !important;
+        font-size: 11px !important;
         display: block !important;
         text-align: center;
         margin: 2px 0;
         line-height: 1.2;
+        color: #333 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Show preview software names with smaller size */
+    div.gallery-preview .preview-software,
+    div.video-gallery-preview .vid-prev-software {
+        font-size: 9px !important;
+        display: block !important;
+        text-align: center;
+        margin: 1px 0;
+        line-height: 1.2;
+        color: #666 !important;
+        font-style: italic !important;
     }
 
-    /* Adjust padding div to only show title */
+    /* Adjust padding div to show title and software */
     div.gallery-preview div[style*="padding:20px"],
     div.video-gallery-preview div[style*="padding:20px"] {
         padding: 5px !important;
         text-align: center;
+        min-height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
-    /* Hide software and description elements within padding */
+    /* Keep software and description elements visible within padding */
     div.gallery-preview div[style*="padding:20px"] .preview-software,
     div.gallery-preview div[style*="padding:20px"] .preview-description,
     div.video-gallery-preview div[style*="padding:20px"] .vid-prev-software,
     div.video-gallery-preview div[style*="padding:20px"] .vid-prev-description {
-        display: none !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Keep software and title elements visible within padding */
+    div.gallery-preview div[style*="padding:10px"] .preview-software,
+    div.gallery-preview div[style*="padding:10px"] .preview-title,
+    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-software,
+    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-title {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     div.gallery-preview:hover,
@@ -2348,13 +2419,12 @@ div.desc {
 /* Responsive design for flippable cards */
 @media only screen and (min-width: 300px) and (max-width: 740px) {
     .contactMe {
-        font-weight:400;
         font-size: 20px;
         letter-spacing: 2px;
         text-align: center;
         color: #2B3E70;
     }
-    
+
     .idoContainer {
         margin: auto;
         display: flex;

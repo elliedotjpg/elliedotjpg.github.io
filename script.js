@@ -59,14 +59,14 @@ class GalleryPreview extends HTMLElement {
         const isTablet = viewportWidth > 599 && viewportWidth <= 955;
         
         if (isMobile) {
-          // Mobile sizing
-          const maxHeight = 120;
+          // Mobile sizing - increased height to accommodate content
+          const maxHeight = 160;
           const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 2 - 10);
           element.style.width = width + 'px';
           element.style.height = maxHeight + 'px';
         } else if (isTablet) {
-          // Tablet sizing
-          const maxHeight = 180;
+          // Tablet sizing - increased height to accommodate content
+          const maxHeight = 220;
           const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 3 - 10);
           element.style.width = width + 'px';
           element.style.height = maxHeight + 'px';
@@ -149,20 +149,20 @@ class GalleryPreview extends HTMLElement {
         const isTablet = viewportWidth > 599 && viewportWidth <= 955;
         
         if (isMobile) {
-          // Mobile sizing for videos
-          const maxHeight = 120;
+          // Mobile sizing for videos - increased height to accommodate content
+          const maxHeight = 160;
           const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 2 - 10);
           element.style.width = width + 'px';
           element.style.height = maxHeight + 'px';
         } else if (isTablet) {
-          // Tablet sizing for videos
-          const maxHeight = 180;
+          // Tablet sizing for videos - increased height to accommodate content
+          const maxHeight = 220;
           const width = Math.min(Math.round(aspectRatio * maxHeight), viewportWidth / 3 - 10);
           element.style.width = width + 'px';
           element.style.height = maxHeight + 'px';
         } else {
-          // Desktop sizing for videos
-          const baseHeight = 200;
+          // Desktop sizing for videos - increased height to accommodate content
+          const baseHeight = 240;
           const calculatedWidth = aspectRatio * baseHeight;
           element.style.width = Math.min(Math.max(calculatedWidth, 150), 400) + 'px';
           element.style.height = baseHeight + 'px';
@@ -465,7 +465,7 @@ class GalleryPreview extends HTMLElement {
       if (isSmallScreen) {
         // For small screens, limit size to prevent overflow
         // Calculate height based on aspect ratio to maintain proportions
-        const maxHeight = 150; // Max height for mobile
+        const maxHeight = 160; // Increased max height for mobile to accommodate content
         height = Math.min(rowHeight, maxHeight);
         width = Math.min(Math.round(preview.aspectRatio * height), containerWidth / 2 - gap);
         
@@ -474,7 +474,7 @@ class GalleryPreview extends HTMLElement {
         height = Math.max(height, 80);
       } else if (isMediumScreen) {
         // For medium screens
-        const maxHeight = 200; // Max height for tablets
+        const maxHeight = 220; // Increased max height for tablets to accommodate content
         height = Math.min(rowHeight, maxHeight);
         width = Math.min(Math.round(preview.aspectRatio * height), containerWidth / 3 - gap);
         
@@ -482,8 +482,8 @@ class GalleryPreview extends HTMLElement {
         width = Math.max(width, 100);
         height = Math.max(height, 100);
       } else {
-        // For desktop
-        height = rowHeight;
+        // For desktop - increased height to accommodate content
+        height = rowHeight + 40; // Add extra space for content
         width = Math.round(preview.aspectRatio * height);
       }
       
