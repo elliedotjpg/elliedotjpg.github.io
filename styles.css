@@ -30,6 +30,13 @@ center {
 
 }
 
+.contactMe {
+    font-weight:400;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: right;
+    color: #2B3E70;
+}
 
 .sectionOne {
     display: flex;
@@ -713,6 +720,14 @@ div.proficiencyCard {
 }
 
 @media only screen and (min-width: 601px) and (max-width: 955px) {
+
+    .contactMe {
+        font-weight:400;
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #2B3E70;
+    }
 
     .flexContainer {
         flex-direction: column;
@@ -2332,7 +2347,14 @@ div.desc {
 
 /* Responsive design for flippable cards */
 @media only screen and (min-width: 300px) and (max-width: 740px) {
-
+    .contactMe {
+        font-weight:400;
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #2B3E70;
+    }
+    
     .idoContainer {
         margin: auto;
         display: flex;
