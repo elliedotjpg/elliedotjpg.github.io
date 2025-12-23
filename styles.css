@@ -30,6 +30,16 @@ center {
 
 }
 
+
+.sectionOne {
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    font-weight: 800;
+}
+
 .about {
     font-size: medium;
 }
@@ -292,9 +302,13 @@ div.proficiencyCard {
 .idoContainer {
     display: flex;
     flex-direction: row;
-    /* grid-column: span 2; */
     margin-top: 2vh;
     align-items: center;
+
+    place-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    font-weight: 800;
 }
 
 .hoverButton {
@@ -321,10 +335,13 @@ div.proficiencyCard {
     line-height: 4rem;
     position: relative;
     overflow: hidden;
-    width: 100%;
+    width: min(250px, 90%);
     display: flex;
     justify-content: center;
     align-items: center;
+
+    max-width: 30%;
+    /* Never exceed 350px or 100% of parent */
 
     color: #fff;
 }
@@ -333,6 +350,9 @@ div.proficiencyCard {
     position: absolute;
     top: 0;
     animation: slide 8s infinite;
+    white-space: nowrap;
+    overflow: visible;
+    width:100%;
 }
 
 @keyframes slide {
@@ -581,21 +601,18 @@ div.proficiencyCard {
 }
 
 @media only screen and (min-width: 400px) {
-    .idoContainer {
-        display: flex;
-        flex-direction: column;
-        margin-top: 2vh;
-        align-items: center;
-    }
 
     .roller {
         height: 2.15rem;
         line-height: 2rem;
+        width:90vw;
+        max-width:100%;
     }
 
 
     .roller #rolltext {
         animation: slide-mob 8s infinite;
+        width:100%;
     }
 
     @keyframes slide-mob {
@@ -1112,11 +1129,13 @@ div.proficiencyCard {
     .roller {
         height: 2.15rem;
         line-height: 2rem;
+        width: min(200px, 90%);
     }
 
 
     .roller #rolltext {
         animation: slide-mob 8s infinite;
+        width: max-content;
     }
 
     @keyframes slide-mob {
@@ -2182,16 +2201,12 @@ div.desc {
 /* Additional responsive styles for knowMore section on very small devices */
 @media only screen and (max-width: 400px) {
 
-    .idoContainer {
-        display: flex;
-        flex-direction: column;
-        margin-top: 2vh;
-        align-items: center;
-    }
 
     .roller {
         height: 2.15rem;
         line-height: 2rem;
+        width:90vw;
+        max-width:100%;
     }
 
 
@@ -2283,6 +2298,16 @@ div.desc {
 
 /* Responsive design for flippable cards */
 @media only screen and (min-width: 300px) and (max-width: 740px) {
+
+    .idoContainer {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+        margin-top: 2vh;
+        align-items: center;
+    }
+
     .flippable-card-container {
         width: 100px;
         height: 100px;
@@ -2729,4 +2754,38 @@ div.desc {
         grid-column: span 2;
     }
 
+}
+
+@media only screen and (min-width: 956px) and (max-width: 1100px) {
+    .idoContainer {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2vh;
+        align-items: center;
+
+        place-items: center;
+        justify-content: center;
+        font-family: Montserrat;
+        font-weight: 800;
+    }
+
+    .roller {
+        height: 2.15rem;
+        line-height: 2rem;
+        width: min(250px, 90%);
+        /* Restrict width to prevent unwanted wrapping */
+        overflow: hidden;
+    }
+
+    .roller #rolltext {
+        white-space: nowrap;
+        /* Prevent text wrapping */
+        font-size: 2.5vh;
+        /* Adjust font size for this range */
+    }
+
+    /* Adjust the I DO text size to match */
+    .idoContainer div[style*="font-size:3vh"] {
+        font-size: 2.5vh;
+    }
 }
