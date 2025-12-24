@@ -485,16 +485,24 @@ div.proficiencyCard {
 
 .modalContainer {
     background-color: #fff;
-    border-radius: 30px;
-    padding: 30px;
-    margin: 80px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    position: relative;
 }
 
 .VideeoModalContainer {
     background-color: #fff;
-    border-radius: 30px;
-    padding: 30px;
-    margin: 80px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    position: relative;
 }
 
 /* The Modal (background) */
@@ -503,19 +511,16 @@ div.proficiencyCard {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 1000;
     /* Sit on top */
-    padding-top: 20px;
-    /* Location of the box */
-    padding-bottom: 20px;
     left: 0;
     top: 0;
     width: 100%;
     /* Full width */
     height: 100%;
     /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
+    overflow: hidden;
+    /* Prevent body scroll */
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.9);
@@ -524,6 +529,8 @@ div.proficiencyCard {
     /* Horizontally centers the modal */
     align-items: center;
     /* Vertically centers the modal */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .VideoModal {
@@ -531,19 +538,16 @@ div.proficiencyCard {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 1000;
     /* Sit on top */
-    padding-top: 20px;
-    /* Location of the box */
-    padding-bottom: 20px;
     left: 0;
     top: 0;
     width: 100%;
     /* Full width */
     height: 100%;
     /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
+    overflow: hidden;
+    /* Prevent body scroll */
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.9);
@@ -552,30 +556,34 @@ div.proficiencyCard {
     /* Horizontally centers the modal */
     align-items: center;
     /* Vertically centers the modal */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Modal Content (Image) */
 .modal-content img {
     margin: 0 auto;
     display: block;
-    max-width: 50vw;
-    height: 50vh;
+    max-width: calc(100vw - 100px);
+    max-height: calc(100vh - 150px);
     width: auto;
     height: auto;
     object-fit: contain;
     object-position: center;
+    border-radius: 10px;
 }
 
 /* Modal Content (Video) */
 .video-modal-content video {
     margin: 0 auto;
     display: block;
-    max-width: 50vw;
-    height: 50vh;
+    max-width: calc(100vw - 100px);
+    max-height: calc(100vh - 150px);
     width: auto;
     height: auto;
     object-fit: contain;
     object-position: center;
+    border-radius: 10px;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -587,19 +595,48 @@ div.proficiencyCard {
     text-align: center;
     color: #ccc;
     padding: 10px 0;
-    height: 150px;
+    height: auto;
+    min-height: 60px;
+}
+
+/* Modal description styling */
+#prevDesc {
+    color: #333;
+    text-align: center;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 100%;
+    overflow-y: auto;
+}
+
+#prevDesc h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: #2B3E70;
+    word-wrap: break-word;
+}
+
+#prevDesc p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+    word-wrap: break-word;
 }
 
 /* Add Animation - Zoom in the Modal */
 .modal-content,
-#caption {
+#caption,
+#prevDesc {
     animation-name: zoom;
     animation-duration: 0.6s;
 }
 
 /* Add Animation - Zoom in the Modal */
 .video-modal-content,
-#caption {
+#caption,
+#prevDesc {
     animation-name: zoom;
     animation-duration: 0.6s;
 }
@@ -616,20 +653,33 @@ div.proficiencyCard {
 }
 
 .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
 }
 
 .close:hover,
 .close:focus {
-    color: #bbb;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
     text-decoration: none;
     cursor: pointer;
+    outline: none;
 }
 
 @media only screen and (min-width: 300px) and (max-width:700px) {
@@ -1137,18 +1187,43 @@ div.proficiencyCard {
     }
 
     .modal-content img {
-        max-width: 90vw;
+        max-width: calc(100vw - 40px);
+        max-height: calc(100vh - 120px);
         height: auto;
     }
 
     .video-modal-content video {
-        max-width: 90vw;
+        max-width: calc(100vw - 40px);
+        max-height: calc(100vh - 120px);
         height: auto;
     }
 
     .modalContainer {
-        margin: 20px;
-        padding: 15px;
+        margin: 10px;
+        padding: 10px;
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 20px);
+    }
+
+    .close {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #prevDesc {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    #prevDesc h2 {
+        font-size: 1.2rem;
+    }
+
+    #prevDesc p {
+        font-size: 0.85rem;
     }
 }
 
