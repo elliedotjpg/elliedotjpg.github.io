@@ -900,13 +900,14 @@
 
     <!-- Gallery Preview Template -->
     <template id="preview-template" style="font-family:Montserrat">
-        <div class="gallery-preview" style="width:fit-content; height:fit-content; display:flex; flex-direction:column">
+        <div class="gallery-preview" style="width:fit-content; height:fit-content; display:flex; flex-direction:column; place-self: end; padding-bottom:2vh">
             <img class="preview-image" onclick="onClick(this)" />
-            <div style="padding:10px; text-align: center; display:flex; flex-direction:column; justify-content:center">
+            <div style="padding:10px; text-align: center; display:flex; flex-direction:column; justify-content:center;">
                 <h3 class="preview-title" style="font-size:medium; margin:0 0 4px 0"></h3>
                 <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
                 </h1>
             </div>
+            
         </div>
     </template>
 

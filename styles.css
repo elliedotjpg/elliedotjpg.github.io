@@ -2167,6 +2167,29 @@ div.desc {
     text-align: center;
 }
 
+/* Fix for gallery preview text visibility issue - ensure text remains visible on all screen sizes */
+.gallery-preview .preview-title,
+.gallery-preview .preview-software,
+.video-gallery-preview .vid-prev-title,
+.video-gallery-preview .vid-prev-software {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    white-space: normal; /* Allow text to wrap */
+    overflow: visible; /* Prevent text from being hidden */
+    text-align: center;
+}
+
+/* Ensure text containers have proper minimum height */
+.gallery-preview div[style*="padding:20px"],
+.video-gallery-preview div[style*="padding:20px"] {
+    min-height: 60px; /* Ensure enough space for text */
+    padding: 10px !important; /* Ensure proper padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .categoryDesc {
     font-family: 'Montserrat';
     color: #ffffffa9;
@@ -2182,6 +2205,29 @@ div.desc {
     font-size: xx-large;
     margin-left: 2vh;
     margin-bottom: 2vh;
+}
+
+/* Fix for larger screens (601px and up) */
+@media only screen and (min-width: 601px) {
+    .gallery-preview,
+    .video-gallery-preview {
+        overflow: visible; /* Prevent content from being hidden */
+    }
+    
+    .gallery-preview .preview-title,
+    .video-gallery-preview .vid-prev-title {
+        font-size: 14px; /* Consistent font size */
+        line-height: 1.4; /* Better text readability */
+        margin: 4px 0;
+    }
+    
+    .gallery-preview .preview-software,
+    .video-gallery-preview .vid-prev-software {
+        font-size: 12px; /* Consistent font size */
+        line-height: 1.4; /* Better text readability */
+        margin: 2px 0;
+        font-style: italic;
+    }
 }
 
 .navbar {
