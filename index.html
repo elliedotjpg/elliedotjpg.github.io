@@ -21,6 +21,7 @@
             <a class="active textHover" href="#home">home</a>
             <a class="textHover" href="#aboutme">about</a>
             <a class="textHover" href="#portfolio">portfolio</a>
+            <a class="textHover" href="#testimonials">testimonials</a>
         </nav>
     </div>
 
@@ -82,7 +83,7 @@
                                     style="text-decoration:none">
                                     <button class="hoverButton"
                                         style="font-weight:bold; letter-spacing: 0.1vh; display:flex; justify-content:center; align-items:center;">
-                                        <img src="./assets/upwork logo 1.svg" style="margin-right:.8vw" />
+                                        <img src="./assets/upwork logo 1.svg" style="margin-right:.8vw"/>
                                         <p style="color: #ffffff; font-family: Montserrat; font-size:medium">upwork</p>
                                     </button>
                                 </a>
@@ -509,7 +510,7 @@
                                     style="font-weight:bold; letter-spacing: 0.1vh; display:flex; justify-content:center; align-items:center;">
 
                                     <img src="./assets/Icons/wanderfell.png"
-                                        style="margin-right:.8vw; width:2vw; height:3vh" />
+                                        style="margin-right:.8vw; display:block; max-width:20px" />
                                     <p style="color: #2B3E70; font-family: Montserrat; font-size:small">wanderfell</p>
                                 </button>
                             </a>
@@ -520,7 +521,7 @@
                                 <button class="gameLink"
                                     style="font-weight:bold; letter-spacing: 0.1vh; display:flex; justify-content:center; align-items:center;">
                                     <img src="./assets/Icons/dysglopia-origins.png"
-                                        style="margin-right:.8vw; width:1.5vw; height:3vh" />
+                                        style="margin-right:.8vw;  display:block; max-width:20px" />
                                     <p style="color: #2B3E70; font-family: Montserrat; font-size:small">dysglopia
                                         origins</p>
                                 </button>
@@ -530,9 +531,9 @@
                         <div>
                             <a href="https://travelers.itch.io/sin" style="text-decoration:none;">
                                 <button class="gameLink"
-                                    style="font-weight:bold; letter-spacing: 0.1vh; display:flex; justify-content:center; align-items:center;">
+                                    style="font-weight:bold; letter-spacing: 0.1vh; justify-content:center; align-items:center;">
                                     <img src="./assets/Icons/sin.png"
-                                        style="margin-right:.8vw; width:1.5vw; height:3vh" />
+                                        style="margin-right:.8vw; display:block; max-width:20px" />
                                     <p style="color: #2B3E70; font-family: Montserrat; font-size:small">sin</p>
                                 </button>
                             </a>
@@ -805,6 +806,91 @@
             </div>
         </div>
 
+        <!-- TESTIMONIALS SECTION -->
+        <!-- To add a new testimonial, use the createTestimonialCard function in script.js or duplicate one of the existing cards -->
+        <div class="testimonialsContainer" id="testimonials">
+            <div class="testimonialsTitle">
+                <h2>Client Testimonials</h2>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="carousel-nav prev" onclick="moveCarousel(-1)">❮</div>
+                <div class="carousel-track">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-photo">
+                            <img src="./assets/testimonial-placeholder.jpg" alt="Client Photo">
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-info">
+                                <h3 class="testimonial-name">John Doe</h3>
+                                <p class="testimonial-title">CEO</p>
+                                <p class="testimonial-company">Tech Innovations Inc.</p>
+                            </div>
+                            <div class="testimonial-testimony">
+                                <p>"Ellie's design work transformed our brand identity completely! Her attention to detail and creative vision exceeded our expectations."</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-photo">
+                            <img src="./assets/testimonial-placeholder.jpg" alt="Client Photo">
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-info">
+                                <h3 class="testimonial-name">Jane Smith</h3>
+                                <p class="testimonial-title">Marketing Director</p>
+                                <p class="testimonial-company">Creative Solutions Ltd.</p>
+                            </div>
+                            <div class="testimonial-testimony">
+                                <p>"The animations created for our campaign were absolutely stunning. Ellie brought our vision to life with exceptional skill and creativity."</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial Card 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-photo">
+                            <img src="./assets/testimonial-placeholder.jpg" alt="Client Photo">
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-info">
+                                <h3 class="testimonial-name">Mike Johnson</h3>
+                                <p class="testimonial-title">Product Manager</p>
+                                <p class="testimonial-company">Digital Dynamics</p>
+                            </div>
+                            <div class="testimonial-testimony">
+                                <p>"Working with Ellie was a seamless experience from start to finish. Her professionalism and talent made our project a huge success."</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav next" onclick="moveCarousel(1)">❯</div>
+            </div>
+        </div>
+
 
 
 
@@ -851,7 +937,7 @@
         </footer>
 
         <!--The Modal-->
-        <div id="myModal" class="modal" onclick="closeModal(this)">
+        <div id="myModal" class="modal" onclick="handleModalClick(event)">
             <div class="modalContainer">
                 <span class="close" onclick="closeModal(document.getElementById('myModal'))">&times;</span>
 
@@ -859,7 +945,7 @@
                     <div class="flexContainer">
                         <img id="myImg" />
                         <video id="myVideo" />
-                        <div id="prevDesc"></div>
+                        <div id="prevDesc"> </div>
                     </div>
 
                 </div>
@@ -928,6 +1014,32 @@
                     <div class="card-proficiency">
                         <div class="proficiency-dots"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Testimonial Card Template -->
+    <template id="testimonial-card-template">
+        <div class="testimonial-card">
+            <div class="testimonial-photo">
+                <img src="" alt="Client Photo">
+            </div>
+            <div class="testimonial-content">
+                <div class="testimonial-info">
+                    <h3 class="testimonial-name"></h3>
+                    <p class="testimonial-title"></p>
+                    <p class="testimonial-company"></p>
+                </div>
+                <div class="testimonial-testimony">
+                    <p></p>
+                </div>
+                <div class="testimonial-rating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
                 </div>
             </div>
         </div>
@@ -1041,19 +1153,35 @@
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
 
+        // Handle modal click - only close if clicking outside content
+        function handleModalClick(event) {
+            const modal = document.getElementById("myModal");
+            const modalContainer = modal.querySelector('.modalContainer');
+            
+            // Check if the click is outside the modal container (on the backdrop)
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        }
+        
         // Modal close function
         function closeModal(modal) {
             modal.style.display = 'none';
+
+            // Pause modal video and reset it
+            const modalVideo = document.getElementById("myVideo");
+            modalVideo.pause();
+            modalVideo.currentTime = 0; // Reset video to beginning
+            modalVideo.src = ''; // Clear video source to stop audio
 
             // Resume preview videos when modal is closed
             const previewVideos = document.querySelectorAll('.preview-video');
             previewVideos.forEach(video => {
                 video.play().catch(e => console.log('Resume play failed:', e));
             });
-
-            // Pause modal video
-            const modalVideo = document.getElementById("myVideo");
-            modalVideo.pause();
+           
+            // Remove window resize listener when modal is closed
+            window.removeEventListener('resize', handleModalVideoResize);
         }
 
         // OnClick function for images
@@ -1082,6 +1210,49 @@
             modal.style.display = "flex";
         }
 
+        // Carousel navigation function
+        function moveCarousel(direction) {
+            const track = document.querySelector('.carousel-track');
+            const cards = document.querySelectorAll('.testimonial-card');
+            const cardWidth = cards[0].offsetWidth + 30; // Width + gap
+            const scrollAmount = cardWidth * direction;
+             
+            track.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to create testimonial cards from template
+        function createTestimonialCard(name, title, company, testimony, photoSrc) {
+            // Get the template
+            const template = document.getElementById('testimonial-card-template');
+            
+            // Clone the template content
+            const clone = template.content.cloneNode(true);
+            
+            // Fill in the data
+            clone.querySelector('.testimonial-name').textContent = name;
+            clone.querySelector('.testimonial-title').textContent = title;
+            clone.querySelector('.testimonial-company').textContent = company;
+            clone.querySelector('.testimonial-testimony p').textContent = testimony;
+            
+            // Set photo if provided
+            if (photoSrc) {
+                clone.querySelector('.testimonial-photo img').src = photoSrc;
+                clone.querySelector('.testimonial-photo img').alt = `${name} - ${title} at ${company}`;
+            }
+            
+            // Return the complete card element
+            return clone.firstElementChild;
+        }
+        
+        // Function to add a new testimonial to the carousel
+        function addTestimonial(name, title, company, testimony, photoSrc) {
+            const track = document.querySelector('.carousel-track');
+            const newCard = createTestimonialCard(name, title, company, testimony, photoSrc);
+            track.appendChild(newCard);
+        }
     </script>
 
     <!-- END OF TEMPLATES-->

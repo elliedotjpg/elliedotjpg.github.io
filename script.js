@@ -304,6 +304,96 @@ class GalleryPreview extends HTMLElement {
     
     // Store reference to preview video to resume it later
     modal.dataset.previewVideo = element.src;
+    
+    // Add click event listener to modal video for play/pause functionality
+    // Remove any existing listener first to prevent duplicates
+    modalVideo.removeEventListener('click', handleVideoClick);
+    modalVideo.addEventListener('click', handleVideoClick);
+    
+    // Handle video aspect ratio for proper modal display
+    element.addEventListener('loadedmetadata', function() {
+      const aspectRatio = element.videoWidth / element.videoHeight;
+      
+      // Remove any existing aspect ratio classes
+      modalVideo.classList.remove('portrait-video', 'tall-portrait-video', 'landscape-video', 'square-video');
+      
+      // Add appropriate class based on aspect ratio
+      if (aspectRatio < 0.67) {
+        // Tall portrait
+        modalVideo.classList.add('tall-portrait-video');
+        // For tall portrait, adjust max dimensions to fit screen
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const maxHeight = viewportHeight - 150; // Account for modal padding and description
+        const maxWidth = viewportWidth - 100; // Account for modal padding
+        
+        // Calculate dimensions to fit within viewport while maintaining aspect ratio
+        if (maxHeight * aspectRatio <= maxWidth) {
+          modalVideo.style.height = maxHeight + 'px';
+          modalVideo.style.width = (maxHeight * aspectRatio) + 'px';
+        } else {
+          modalVideo.style.width = maxWidth + 'px';
+          modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+        }
+      } else if (aspectRatio < 0.8) {
+        // Regular portrait
+        modalVideo.classList.add('portrait-video');
+        // For portrait, adjust max dimensions to fit screen
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const maxHeight = viewportHeight - 150; // Account for modal padding and description
+        const maxWidth = viewportWidth - 100; // Account for modal padding
+        
+        // Calculate dimensions to fit within viewport while maintaining aspect ratio
+        if (maxHeight * aspectRatio <= maxWidth) {
+          modalVideo.style.height = maxHeight + 'px';
+          modalVideo.style.width = (maxHeight * aspectRatio) + 'px';
+        } else {
+          modalVideo.style.width = maxWidth + 'px';
+          modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+        }
+      } else if (aspectRatio > 1.5) {
+        // Wide landscape
+        modalVideo.classList.add('landscape-video');
+        // For wide landscape, use width as limiting factor
+        const viewportWidth = window.innerWidth;
+        const maxWidth = viewportWidth - 100; // Account for modal padding
+        modalVideo.style.width = maxWidth + 'px';
+        modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+      } else {
+        // Regular landscape or square
+        modalVideo.classList.add('square-video');
+        // For regular landscape or square, use standard sizing
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const maxWidth = viewportWidth - 100;
+        const maxHeight = viewportHeight - 150;
+        
+        // Calculate dimensions to fit within viewport while maintaining aspect ratio
+        if (maxWidth / aspectRatio <= maxHeight) {
+          modalVideo.style.width = maxWidth + 'px';
+          modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+        } else {
+          modalVideo.style.height = maxHeight + 'px';
+          modalVideo.style.width = (maxHeight * aspectRatio) + 'px';
+        }
+      }
+    }, { once: true });
+    
+    // Add window resize listener for modal video
+    window.addEventListener('resize', handleModalVideoResize);
+  }
+  
+  // Handle video click for play/pause functionality
+  function handleVideoClick(event) {
+    event.stopPropagation(); // Prevent the click from propagating to the modal
+    const video = event.target;
+    
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
   }
 
   // Flippable Card Custom Element
@@ -624,4 +714,111 @@ class GalleryPreview extends HTMLElement {
     }
     
     return bestRowHeight;
+  }
+  
+  // Testimonial Card Custom Element
+  class TestimonialCard extends HTMLElement {
+      connectedCallback() {
+          const template = document.querySelector('#testimonial-card-template');
+          const templateContent = template.content.cloneNode(true);
+          
+          // Get attributes
+          const name = this.getAttribute('name') || 'Client Name';
+          const title = this.getAttribute('title') || 'Job Title';
+          const company = this.getAttribute('company') || 'Company Name';
+          const testimony = this.getAttribute('testimony') || 'Testimonial text goes here...';
+          const photoSrc = this.getAttribute('photo-src') || './assets/testimonial-placeholder.jpg';
+          
+          // Populate template
+          templateContent.querySelector('.testimonial-name').textContent = name;
+          templateContent.querySelector('.testimonial-title').textContent = title;
+          templateContent.querySelector('.testimonial-company').textContent = company;
+          templateContent.querySelector('.testimonial-testimony p').textContent = testimony;
+          templateContent.querySelector('.testimonial-photo img').src = photoSrc;
+          templateContent.querySelector('.testimonial-photo img').alt = `${name} - ${title} at ${company}`;
+          
+          this.appendChild(templateContent);
+      }
+  }
+  
+  // Register testimonial card custom element
+  customElements.define('testimonial-card', TestimonialCard);
+  
+  // Function to create testimonial cards from template
+  function createTestimonialCard(name, title, company, testimony, photoSrc) {
+      // Get template
+      const template = document.getElementById('testimonial-card-template');
+      
+      // Clone template content
+      const clone = template.content.cloneNode(true);
+      
+      // Fill in data
+      clone.querySelector('.testimonial-name').textContent = name;
+      clone.querySelector('.testimonial-title').textContent = title;
+      clone.querySelector('.testimonial-company').textContent = company;
+      clone.querySelector('.testimonial-testimony p').textContent = testimony;
+      
+      // Set photo if provided
+      if (photoSrc) {
+          clone.querySelector('.testimonial-photo img').src = photoSrc;
+          clone.querySelector('.testimonial-photo img').alt = `${name} - ${title} at ${company}`;
+      }
+      
+      // Handle window resize for modal video
+      function handleModalVideoResize() {
+          const modal = document.getElementById("myModal");
+          const modalVideo = document.getElementById("myVideo");
+          
+          // Only resize if modal is visible and video is displayed
+          if (modal && modal.style.display === "flex" && modalVideo && modalVideo.style.display === "block") {
+              // Get the video aspect ratio from the video element
+              const videoWidth = modalVideo.videoWidth || modalVideo.naturalWidth;
+              const videoHeight = modalVideo.videoHeight || modalVideo.naturalHeight;
+              
+              if (videoWidth && videoHeight) {
+                  const aspectRatio = videoWidth / videoHeight;
+                  
+                  // Remove any existing aspect ratio classes
+                  modalVideo.classList.remove('portrait-video', 'tall-portrait-video', 'landscape-video', 'square-video');
+                  
+                  // Add appropriate class based on aspect ratio
+                  if (aspectRatio < 0.67) {
+                      modalVideo.classList.add('tall-portrait-video');
+                  } else if (aspectRatio < 0.8) {
+                      modalVideo.classList.add('portrait-video');
+                  } else if (aspectRatio > 1.5) {
+                      modalVideo.classList.add('landscape-video');
+                  } else {
+                      modalVideo.classList.add('square-video');
+                  }
+                  
+                  // Calculate new dimensions based on current viewport
+                  const viewportHeight = window.innerHeight;
+                  const viewportWidth = window.innerWidth;
+                  const maxHeight = viewportHeight - 150; // Account for modal padding and description
+                  const maxWidth = viewportWidth - 100; // Account for modal padding
+                  
+                  // Calculate dimensions to fit within viewport while maintaining aspect ratio
+                  if (maxHeight * aspectRatio <= maxWidth) {
+                      modalVideo.style.height = maxHeight + 'px';
+                      modalVideo.style.width = (maxHeight * aspectRatio) + 'px';
+                  } else {
+                      modalVideo.style.width = maxWidth + 'px';
+                      modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+                  }
+              }
+          }
+      }
+      
+      // Return complete card element
+      return clone.firstElementChild;
+  }
+  
+  // Function to add a new testimonial to the carousel
+  function addTestimonial(name, title, company, testimony, photoSrc) {
+      const track = document.querySelector('.carousel-track');
+      if (track) {
+          const newCard = createTestimonialCard(name, title, company, testimony, photoSrc);
+          track.appendChild(newCard);
+      }
   }
