@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body style="font-family:Montserrat; background-color:#191a24;">
+    <div style="padding: 20px;">
+        <h1 style="color: white;">Modal Test</h1>
+        
+        <!-- Test Image -->
+        <gallery-preview src="./images/bposeats/14.png" title="Test Image Title" software="Figma"></gallery-preview>
+        
+        <!-- Test Video -->
+        <video-gallery-preview video-src="./images/other-videos/THEO.mp4" video-title="Test Video Title" video-software="Adobe Premiere Pro"></video-gallery-preview>
+    </div>
+
+    <!--The Modal-->
+    <div id="myModal" class="modal" onclick="closeModal(this)">
+        <div class="modalContainer">
+            <span class="close" onclick="closeModal(document.getElementById('myModal'))">&times;</span>
+
+            <div class="modal-content">
+                <img id="myImg" style="max-width: 100%; max-height: 70vh; object-fit: contain;" />
+                <video id="myVideo" style="max-width: 100%; max-height: 70vh; object-fit: contain;" controls />
+                <div id="prevDesc" style="margin-top: 15px; text-align: center;">
+                    <h2 id="modalTitle" style="margin: 0 0 10px 0; color: #2B3E70; font-size: 1.5rem;"></h2>
+                    <p id="modalSoftware" style="margin: 0; color: #666; font-style: italic;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

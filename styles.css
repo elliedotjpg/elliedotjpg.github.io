@@ -492,6 +492,10 @@ div.proficiencyCard {
     max-height: calc(100vh - 40px);
     overflow: auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .VideeoModalContainer {
@@ -609,6 +613,9 @@ div.proficiencyCard {
     border-radius: 10px;
     max-width: 100%;
     overflow-y: auto;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 #prevDesc h2 {
@@ -616,6 +623,8 @@ div.proficiencyCard {
     font-size: 1.5rem;
     color: #2B3E70;
     word-wrap: break-word;
+    display: block !important;
+    visibility: visible !important;
 }
 
 #prevDesc p {
@@ -623,6 +632,53 @@ div.proficiencyCard {
     font-size: 1rem;
     color: #666;
     word-wrap: break-word;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Ensure modal content container displays properly */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.modal-content img,
+.modal-content video {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Ensure modal description is always visible */
+.modal-content #prevDesc {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-content #modalTitle {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #2B3E70 !important;
+    font-size: 1.5rem !important;
+    margin: 0 0 10px 0 !important;
+}
+
+.modal-content #modalSoftware {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #666 !important;
+    font-style: italic !important;
+    margin: 0 !important;
 }
 
 /* Add Animation - Zoom in the Modal */
