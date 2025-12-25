@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-video {
+            width: 300px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        .instructions {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Modal Video Test</h1>
+        
+        <div class="instructions">
+            <h2>Testing Instructions:</h2>
+            <ol>
+                <li>Click on the video below to open it in the modal</li>
+                <li>Once the modal is open, try clicking on the video to play/pause it</li>
+                <li>Close the modal using the X button</li>
+                <li>Verify that the audio stops playing when the modal is closed</li>
+            </ol>
+        </div>
+        
+        <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay>
+            <source src="./images/other-videos/weathering with you but it's a thriller trailer.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!--The Modal-->
+    <div id="myModal" class="modal" onclick="handleModalClick(event)">
+        <div class="modalContainer">
+            <span class="close" onclick="closeModal(document.getElementById('myModal'))">&times;</span>
+
+            <div class="modal-content">
+                <div class="flexContainer">
+                    <img id="myImg" />
+                    <video id="myVideo" />
+                    <div id="prevDesc"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video click handler for modal
+        function onVideoClick(element) {
+            const modal = document.getElementById("myModal");
+            const modalVideo = document.getElementById("myVideo");
+            const modalImg = document.getElementById("myImg");
+            const modalDesc = document.getElementById("prevDesc");
+            
+            // Pause the preview video
+            element.pause();
+            
+            // Hide image, show video
+            modalImg.style.display = "none";
+            modalVideo.style.display = "block";
+            modalVideo.src = element.src;
+            modalVideo.controls = true;
+            modalVideo.muted = false;
+            modalVideo.playsinline = false;
+            
+            modalDesc.innerHTML = `
+                <h2>Test Video</h2>
+                <p><em>Software: Test Software</em></p>
+            `;
+            
+            modal.style.display = "flex";
+            
+            // Add click event listener to modal video for play/pause functionality
+            modalVideo.removeEventListener('click', handleVideoClick);
+            modalVideo.addEventListener('click', handleVideoClick);
+            
+            // Handle video aspect ratio for proper modal display
+            element.addEventListener('loadedmetadata', function() {
+                const aspectRatio = element.videoWidth / element.videoHeight;
+                
+                // Remove any existing aspect ratio classes
+                modalVideo.classList.remove('portrait-video', 'tall-portrait-video', 'landscape-video', 'square-video');
+                
+                // Add appropriate class based on aspect ratio
+                if (aspectRatio < 0.67) {
+                    modalVideo.classList.add('tall-portrait-video');
+                } else if (aspectRatio < 0.8) {
+                    modalVideo.classList.add('portrait-video');
+                } else if (aspectRatio > 1.5) {
+                    modalVideo.classList.add('landscape-video');
+                } else {
+                    modalVideo.classList.add('square-video');
+                }
+            }, { once: true });
+        }
+        
+        // Handle video click for play/pause functionality
+        function handleVideoClick(event) {
+            event.stopPropagation(); // Prevent click from propagating to the modal
+            const video = event.target;
+            
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+        
+        // Handle modal click - only close if clicking outside content
+        function handleModalClick(event) {
+            const modal = document.getElementById("myModal");
+            const modalContainer = modal.querySelector('.modalContainer');
+            
+            // Check if click is outside the modal container (on the backdrop)
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        }
+        
+        // Modal close function
+        function closeModal(modal) {
+            modal.style.display = 'none';
+
+            // Pause modal video and reset it
+            const modalVideo = document.getElementById("myVideo");
+            modalVideo.pause();
+            modalVideo.currentTime = 0; // Reset video to beginning
+            modalVideo.src = ''; // Clear video source to stop audio
+
+            // Resume preview videos when modal is closed
+            const previewVideos = document.querySelectorAll('.preview-video');
+            previewVideos.forEach(video => {
+                video.play().catch(e => console.log('Resume play failed:', e));
+            });
+        }
+    </script>
+</body>
+</html>
