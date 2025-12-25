@@ -942,12 +942,12 @@
                 <span class="close" onclick="closeModal(document.getElementById('myModal'))">&times;</span>
 
                 <div class="modal-content">
-                    <div class="flexContainer">
-                        <img id="myImg" />
-                        <video id="myVideo" />
-                        <div id="prevDesc"> </div>
+                    <img id="myImg" style="max-width: 100%; max-height: 70vh; object-fit: contain;" />
+                    <video id="myVideo" style="max-width: 100%; max-height: 70vh; object-fit: contain;" controls />
+                    <div id="prevDesc" style="margin-top: 15px; text-align: center;">
+                        <h2 id="modalTitle" style="margin: 0 0 10px 0; color: #2B3E70; font-size: 1.5rem;"></h2>
+                        <p id="modalSoftware" style="margin: 0; color: #666; font-style: italic;"></p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1189,7 +1189,8 @@
             const modal = document.getElementById("myModal");
             const modalVideo = document.getElementById("myVideo");
             const modalImg = document.getElementById("myImg");
-            const modalDesc = document.getElementById("prevDesc");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalSoftware = document.getElementById("modalSoftware");
 
             // Show image, hide video
             modalImg.style.display = "block";
@@ -1199,13 +1200,16 @@
             // Get the parent gallery preview element to extract title and software
             const galleryPreview = element.closest('.gallery-preview');
             if (galleryPreview) {
-                const title = galleryPreview.querySelector('.preview-title').textContent;
-                const software = galleryPreview.querySelector('.preview-software').textContent;
-
-                modalDesc.innerHTML = `
-                    <h2>${title}</h2>
-                    <p><em>Software: ${software}</em></p>
-                `;
+                const titleElement = galleryPreview.querySelector('.preview-title');
+                const softwareElement = galleryPreview.querySelector('.preview-software');
+                
+                // Set title with fallback to filename if no title is available
+                const title = titleElement && titleElement.textContent ? titleElement.textContent : '';
+                modalTitle.textContent = title;
+                
+                // Set software with fallback
+                const software = softwareElement && softwareElement.textContent ? softwareElement.textContent : '';
+                modalSoftware.textContent = software ? `Software: ${software}` : '';
             }
             modal.style.display = "flex";
         }

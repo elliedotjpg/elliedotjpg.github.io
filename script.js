@@ -275,7 +275,8 @@ class GalleryPreview extends HTMLElement {
     const modal = document.getElementById("myModal");
     const modalVideo = document.getElementById("myVideo");
     const modalImg = document.getElementById("myImg");
-    const modalDesc = document.getElementById("prevDesc");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalSoftware = document.getElementById("modalSoftware");
     
     // Pause the preview video
     element.pause();
@@ -291,13 +292,16 @@ class GalleryPreview extends HTMLElement {
     // Get the parent gallery preview element to extract title and software
     const galleryPreview = element.closest('.video-gallery-preview');
     if (galleryPreview) {
-      const title = galleryPreview.querySelector('.vid-prev-title').textContent;
-      const software = galleryPreview.querySelector('.vid-prev-software').textContent;
+      const titleElement = galleryPreview.querySelector('.vid-prev-title');
+      const softwareElement = galleryPreview.querySelector('.vid-prev-software');
       
-      modalDesc.innerHTML = `
-        <h2>${title}</h2>
-        <p><em>Software: ${software}</em></p>
-      `;
+      // Set title with fallback to filename if no title is available
+      const title = titleElement && titleElement.textContent ? titleElement.textContent : '';
+      modalTitle.textContent = title;
+      
+      // Set software with fallback
+      const software = softwareElement && softwareElement.textContent ? softwareElement.textContent : '';
+      modalSoftware.textContent = software ? `Software: ${software}` : '';
     }
     
     modal.style.display = "flex";
