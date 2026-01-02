@@ -500,12 +500,14 @@ div.proficiencyCard {
     margin: 20px;
     max-width: calc(100vw - 40px);
     max-height: calc(100vh - 40px);
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 90vw;
+    height: 90vh;
 }
 
 .VideeoModalContainer {
@@ -680,19 +682,38 @@ div.proficiencyCard {
 /* Ensure modal content container displays properly */
 .modal-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-media {
+    flex: 1 1 60%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.modal-info {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    border-left: 1px solid #eee;
 }
 
 .modal-content img,
 .modal-content video {
     max-width: 100%;
-    max-height: 70vh;
+    max-height: 100%;
     object-fit: contain;
     border-radius: 10px;
-    margin-bottom: 15px;
 }
 
 /* Ensure modal description is always visible */
@@ -701,7 +722,7 @@ div.proficiencyCard {
     visibility: visible !important;
     opacity: 1 !important;
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 .modal-content #modalTitle {
@@ -1273,55 +1294,51 @@ div.proficiencyCard {
 }
 
 @media only screen and (max-width: 700px) {
-    .modal-content {
-        width: 95%;
-        margin: 0 auto;
-    }
-
-    .video-modal-content {
-        width: 95%;
-        margin: 0 auto;
-    }
-
-    .modal-content img {
-        max-width: calc(100vw - 40px);
-        max-height: calc(100vh - 120px);
-        height: auto;
-    }
-
-    .video-modal-content video {
-        max-width: calc(100vw - 40px);
-        max-height: calc(100vh - 120px);
-        height: auto;
-    }
-    
-    #myVideo {
-        max-width: calc(100vw - 40px);
-        max-height: calc(100vh - 120px);
-        height: auto;
-    }
-    
-    #myVideo.portrait-video {
-        max-width: calc(100vw - 40px);
-        max-height: calc(100vh - 120px);
-        width: auto;
-        height: auto;
-        object-fit: contain;
-    }
-    
-    #myVideo.tall-portrait-video {
-        max-width: calc(100vw - 40px);
-        max-height: calc(100vh - 120px);
-        width: auto;
-        height: auto;
-        object-fit: contain;
-    }
-
     .modalContainer {
+        flex-direction: column;
+        width: 95vw;
+        height: auto;
+        max-height: 95vh;
         margin: 10px;
         padding: 10px;
-        max-width: calc(100vw - 20px);
-        max-height: calc(100vh - 20px);
+    }
+
+    .modal-content {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-media {
+        flex: 1 1 auto;
+        width: 100%;
+        max-height: 60vh;
+        padding: 5px;
+    }
+
+    .modal-info {
+        flex: 1 1 auto;
+        width: 100%;
+        padding: 15px;
+        border-left: none;
+        border-top: 1px solid #eee;
+    }
+
+    .modal-content img,
+    .modal-content video,
+    #myVideo {
+        max-width: 100%;
+        max-height: 60vh;
+        height: auto;
+    }
+    
+    #myVideo.portrait-video,
+    #myVideo.tall-portrait-video {
+        max-width: 100%;
+        max-height: 60vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
 
     .close {
@@ -1335,14 +1352,17 @@ div.proficiencyCard {
     #prevDesc {
         padding: 10px;
         font-size: 0.9rem;
+        text-align: center;
     }
 
     #prevDesc h2 {
         font-size: 1.2rem;
+        text-align: center;
     }
 
     #prevDesc p {
         font-size: 0.85rem;
+        text-align: center;
     }
 }
 
@@ -3264,7 +3284,7 @@ div.desc {
     text-align: center;
     margin-bottom: 40px;
     color: white;
-    font-size: 2.5rem;
+    font-size: 1rem;
 }
 
 .testimonials-carousel {
@@ -3273,6 +3293,9 @@ div.desc {
     scroll-behavior: smooth;
     padding: 30px 0;
     position: relative;
+    place-content: center;
+    align-content:center;
+    place-items: center;
 }
 
 .carousel-track {
@@ -3292,6 +3315,17 @@ div.desc {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+
+    place-items: center;
+    place-content: center;
+
+    align-items: center;
+    align-content: center;
+    
 }
 
 .testimonial-photo {
@@ -3304,7 +3338,7 @@ div.desc {
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #FFB703;
+    /* border: 4px solid #FFB703; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -3315,6 +3349,7 @@ div.desc {
     flex-grow: 1;
 }
 
+
 .testimonial-info {
     text-align: center;
     margin-bottom: 15px;
@@ -3322,27 +3357,27 @@ div.desc {
 
 .testimonial-name {
     color: white;
-    font-size: 1.4rem;
+    font-size: 1rem;
     margin: 0 0 5px 0;
 }
 
 .testimonial-title {
     color: #FFB703;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0 0 5px 0;
     font-weight: 600;
 }
 
 .testimonial-company {
     color: #e0e0e0;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     margin: 0;
     font-style: italic;
 }
 
 .testimonial-testimony {
     color: #e0e0e0;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     line-height: 1.5;
     margin-bottom: 15px;
     flex-grow: 1;
@@ -3357,20 +3392,8 @@ div.desc {
     left: 0;
     top: 0;
     color: rgba(255, 183, 3, 0.3);
-    font-size: 2rem;
+    font-size: 0.8rem;
     line-height: 1;
-}
-
-.testimonial-rating {
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
-}
-
-.star {
-    color: #FFB703;
-    font-size: 1.2rem;
-    margin: 0 2px;
 }
 
 /* Center card styling */
@@ -3440,7 +3463,7 @@ div.desc {
     }
     
     .testimonialsTitle {
-        font-size: 2rem;
+        font-size: 1rem;
         margin-bottom: 30px;
     }
 }
@@ -3456,7 +3479,7 @@ div.desc {
     }
     
     .testimonial-name {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .testimonial-title {
@@ -3464,11 +3487,11 @@ div.desc {
     }
     
     .testimonial-company {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     
     .testimonial-testimony {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
     
     .testimonialsContainer {
@@ -3476,7 +3499,7 @@ div.desc {
     }
     
     .testimonialsTitle {
-        font-size: 1.8rem;
+        font-size: 1rem;
     }
     
     .carousel-nav {

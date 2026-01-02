@@ -117,8 +117,8 @@ class GalleryPreview extends HTMLElement {
       video.src = this.getAttribute('src') || this.getAttribute('video-src');
       video.setAttribute('data-title', this.getAttribute('title') || this.getAttribute('video-title'));
       
-      videoTemplateContent.querySelector('.vid-prev-software').textContent = this.getAttribute('software') || this.getAttribute('video-software');
-      videoTemplateContent.querySelector('.vid-prev-title').textContent = this.getAttribute('title') || this.getAttribute('video-title');
+      videoTemplateContent.querySelector('.video-prev-software').textContent = this.getAttribute('software') || this.getAttribute('video-software');
+      videoTemplateContent.querySelector('.video-prev-title').textContent = this.getAttribute('title') || this.getAttribute('video-title');
   
       this.appendChild(videoTemplateContent);
       
@@ -292,8 +292,8 @@ class GalleryPreview extends HTMLElement {
     // Get the parent gallery preview element to extract title and software
     const galleryPreview = element.closest('.video-gallery-preview');
     if (galleryPreview) {
-      const titleElement = galleryPreview.querySelector('.vid-prev-title');
-      const softwareElement = galleryPreview.querySelector('.vid-prev-software');
+      const titleElement = galleryPreview.querySelector('.video-prev-title');
+      const softwareElement = galleryPreview.querySelector('.video-prev-software');
       
       // Set title with fallback to filename if no title is available
       const title = titleElement && titleElement.textContent ? titleElement.textContent : '';
@@ -799,16 +799,21 @@ class GalleryPreview extends HTMLElement {
                   // Calculate new dimensions based on current viewport
                   const viewportHeight = window.innerHeight;
                   const viewportWidth = window.innerWidth;
-                  const maxHeight = viewportHeight - 150; // Account for modal padding and description
-                  const maxWidth = viewportWidth - 100; // Account for modal padding
+                  const modalMedia = document.querySelector('.modal-media');
                   
-                  // Calculate dimensions to fit within viewport while maintaining aspect ratio
-                  if (maxHeight * aspectRatio <= maxWidth) {
-                      modalVideo.style.height = maxHeight + 'px';
-                      modalVideo.style.width = (maxHeight * aspectRatio) + 'px';
-                  } else {
-                      modalVideo.style.width = maxWidth + 'px';
-                      modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+                  if (modalMedia) {
+                      // For side-by-side layout, calculate dimensions based on the media container
+                      const maxHeight = modalMedia.clientHeight - 20; // Account for padding
+                      const maxWidth = modalMedia.clientWidth - 20; // Account for padding
+                      
+                      // Calculate dimensions to fit within container while maintaining aspect ratio
+                      if (maxHeight * aspectRatio <= maxWidth) {
+                          modalVideo.style.height = maxHeight + 'px';
+                          modalVideo.style.width = (maxHeight * aspectRatio) + 'px';
+                      } else {
+                          modalVideo.style.width = maxWidth + 'px';
+                          modalVideo.style.height = (maxWidth / aspectRatio) + 'px';
+                      }
                   }
               }
           }

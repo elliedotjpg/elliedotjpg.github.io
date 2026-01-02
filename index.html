@@ -806,11 +806,11 @@
             </div>
         </div>
 
-        <!-- TESTIMONIALS SECTION -->
+        TESTIMONIALS SECTION
         <!-- To add a new testimonial, use the createTestimonialCard function in script.js or duplicate one of the existing cards -->
         <div class="testimonialsContainer" id="testimonials">
             <div class="testimonialsTitle">
-                <h2>Client Testimonials</h2>
+                <h2>testimonials</h2>
             </div>
             <div class="testimonials-carousel">
                 <div class="carousel-nav prev" onclick="moveCarousel(-1)">❮</div>
@@ -818,23 +818,16 @@
                     <!-- Testimonial Card 1 -->
                     <div class="testimonial-card">
                         <div class="testimonial-photo">
-                            <img src="./assets/testimonial-placeholder.jpg" alt="Client Photo">
+                            <!-- <img src="./assets/placeholder-testimony.jpg" alt="Client Photo"> -->
                         </div>
                         <div class="testimonial-content">
                             <div class="testimonial-info">
-                                <h3 class="testimonial-name">John Doe</h3>
-                                <p class="testimonial-title">CEO</p>
-                                <p class="testimonial-company">Tech Innovations Inc.</p>
+                                <h3 class="testimonial-name">Anili Butcon</h3>
+                                <!-- <p class="testimonial-title">Teacher at Niue</p> -->
+                                <p class="testimonial-company">Former XUJHS Yearbook Moderator</p>
                             </div>
                             <div class="testimonial-testimony">
                                 <p>"Ellie's design work transformed our brand identity completely! Her attention to detail and creative vision exceeded our expectations."</p>
-                            </div>
-                            <div class="testimonial-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
                             </div>
                         </div>
                     </div>
@@ -842,23 +835,16 @@
                     <!-- Testimonial Card 2 -->
                     <div class="testimonial-card">
                         <div class="testimonial-photo">
-                            <img src="./assets/testimonial-placeholder.jpg" alt="Client Photo">
+                            <img src="./assets/placeholder-testimony.jpg" alt="Client Photo">
                         </div>
                         <div class="testimonial-content">
                             <div class="testimonial-info">
-                                <h3 class="testimonial-name">Jane Smith</h3>
-                                <p class="testimonial-title">Marketing Director</p>
-                                <p class="testimonial-company">Creative Solutions Ltd.</p>
+                                <h3 class="testimonial-name">Nicole Pangilinan</h3>
+                                <p class="testimonial-title">Marketing Executive at Good Totes</p>
+                                <p class="testimonial-company">Former Marketing Officer at Cleio Productions</p>
                             </div>
                             <div class="testimonial-testimony">
                                 <p>"The animations created for our campaign were absolutely stunning. Ellie brought our vision to life with exceptional skill and creativity."</p>
-                            </div>
-                            <div class="testimonial-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
                             </div>
                         </div>
                     </div>
@@ -866,23 +852,16 @@
                     <!-- Testimonial Card 3 -->
                     <div class="testimonial-card">
                         <div class="testimonial-photo">
-                            <img src="./assets/testimonial-placeholder.jpg" alt="Client Photo">
+                            <img src="./assets/placeholder-testimony.jpg" alt="Client Photo">
                         </div>
                         <div class="testimonial-content">
                             <div class="testimonial-info">
-                                <h3 class="testimonial-name">Mike Johnson</h3>
-                                <p class="testimonial-title">Product Manager</p>
-                                <p class="testimonial-company">Digital Dynamics</p>
+                                <h3 class="testimonial-name">Drix Ponteres</h3>
+                                <p class="testimonial-title">UI/UX Developer at BPOSeats.com</p>
+                                <p class="testimonial-company">Former Head Lead at BPOSeats</p>
                             </div>
                             <div class="testimonial-testimony">
                                 <p>"Working with Ellie was a seamless experience from start to finish. Her professionalism and talent made our project a huge success."</p>
-                            </div>
-                            <div class="testimonial-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
                             </div>
                         </div>
                     </div>
@@ -942,11 +921,15 @@
                 <span class="close" onclick="closeModal(document.getElementById('myModal'))">&times;</span>
 
                 <div class="modal-content">
-                    <img id="myImg" style="max-width: 100%; max-height: 70vh; object-fit: contain;" />
-                    <video id="myVideo" style="max-width: 100%; max-height: 70vh; object-fit: contain;" controls />
-                    <div id="prevDesc" style="margin-top: 15px; text-align: center;">
-                        <h2 id="modalTitle" style="margin: 0 0 10px 0; color: #2B3E70; font-size: 1.5rem;"></h2>
-                        <p id="modalSoftware" style="margin: 0; color: #666; font-style: italic;"></p>
+                    <div class="modal-media">
+                        <img id="myImg" style="max-width: 100%; max-height: 70vh; object-fit: contain;" />
+                        <video id="myVideo" style="max-width: 100%; max-height: 70vh; object-fit: contain;" controls />
+                    </div>
+                    <div class="modal-info">
+                        <div id="prevDesc">
+                            <h2 id="modalTitle" style="margin: 0 0 10px 0; color: #2B3E70; font-size: 1.5rem;"></h2>
+                            <p id="modalSoftware" style="margin: 0; color: #666; font-style: italic;"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -989,8 +972,8 @@
         <div class="video-gallery-preview" style="display:flex; flex-direction:column">
             <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay></video>
             <div style="padding:20px; text-align: center; display:flex; flex-direction:column; justify-content:center">
-                <h3 class="vid-prev-title" style="font-size:medium; margin:0 0 4px 0"></h3>
-                <h1 class="vid-prev-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
+                <h3 class="video-prev-title" style="font-size:medium; margin:0 0 4px 0"></h3>
+                <h1 class="video-prev-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
                 </h1>
             </div>
         </div>
