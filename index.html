@@ -559,21 +559,20 @@
                             <gallery-preview src="./images/dysglopia/Absorb.gif" title="Absorb | Normal Skill"
                                 software="Clip Studio Paint"
                                 desc="Animation of the Absorb skill. Its ability is to steal health power of up to 20% of the enemy gloop with the highest remaining HP."></gallery-preview>
+
                         </div>
 
                         <div class="flexColumns">
-                            <gallery-preview src="./images/dysglopia/Absorb.gif" title="Absorb | Normal Skill"
+                            <video-gallery-preview video-src="./images/other-videos/paper-express.mp4"
+                                video-title="Paper Express" video-software="Clip Studio Paint"
+                                video-desc="A short animation project me and my BSEMC class made for our Animation subject. For this project, I mainly worked on 2D Lineart and Coloring. Though I did create the base of the plot and assisted with the scriptwriting to help make it more understandable for us animators."></video-gallery-preview>
+                            <gallery-preview src="./images/dysglopia/Normal Attack_1.gif" title="Normal Attack"
                                 software="Clip Studio Paint"
-                                desc="Animation of the Absorb skill. Its ability is to steal health power of up to 20% of the enemy gloop with the highest remaining HP."></gallery-preview>
-                            <gallery-preview src="./images/dysglopia/absorbHeal.gif"
-                                title="Absorb - Heal | Normal Skill" software="Clip Studio Paint"
-                                desc="This is the animation that is triggered to appear above the gloop who just used this skill to receive the health taken from the enemy gloop."></gallery-preview>
+                                desc="Animation of the normal attack that a gloop shoots at the enemy when they're not using their skill."></gallery-preview>
                             <gallery-preview src="./images/dysglopia/earthStrikeVFX.gif"
                                 title="Earth Strike | Normal Skill" software="Clip Studio Paint"
                                 desc="Animation of the Earth Strike skill. It summons a large, sharp rock from the earth to strike the enemy gloop."></gallery-preview>
-                            <gallery-preview src="./images/dysglopia/absorbHeal.gif"
-                                title="Absorb - Heal | Normal Skill" software="Clip Studio Paint"
-                                desc="This is the animation that is triggered to appear above the gloop who just used this skill to receive the health taken from the enemy gloop."></gallery-preview>
+
                         </div>
 
                         <div class="flexColumns">
@@ -584,9 +583,7 @@
                             <gallery-preview src="./images/dysglopia/initial toxinGloopprint.gif"
                                 title="Toxin Gloopprint | Special Skill" software="Clip Studio Paint"
                                 desc="Animation of the Toxin Gloopprint Skill. It lets the user gloop imprint a marking on an enemy gloop which slowly poisons the enemy, lasting around 7 seconds."></gallery-preview>
-                            <gallery-preview src="./images/dysglopia/Normal Attack_1.gif" title="Normal Attack"
-                                software="Clip Studio Paint"
-                                desc="Animation of the normal attack that a gloop shoots at the enemy when they're not using their skill."></gallery-preview>
+
                         </div>
                     </div>
                 </div>
@@ -1002,10 +999,9 @@
     <!-- Gallery Preview Template -->
     <template id="preview-template" style="font-family:Montserrat">
         <div class="gallery-preview"
-            style="width:fit-content; height:fit-content; display:flex; flex-direction:column; place-self: end; padding-bottom:2vh">
+            style="width:fit-content; height:fit-content; display:flex; flex-direction:column; place-self: end;">
             <img class="preview-image" onclick="onClick(this)" />
-            <div class="preview-info"
-                style="padding:10px; text-align: center; display:flex; flex-direction:column; justify-content:center;">
+            <div class="preview-info">
                 <h3 class="preview-title" style="font-size:medium; margin:0 0 4px 0"></h3>
                 <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
                 </h1>
@@ -1018,8 +1014,7 @@
     <template id="video-preview-template" style="font-family:Montserrat">
         <div class="video-gallery-preview" style="display:flex; flex-direction:column">
             <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay></video>
-            <div class="preview-info"
-                style="padding:20px; text-align: center; display:flex; flex-direction:column; justify-content:center">
+            <div class="preview-info">
                 <h3 class="video-prev-title" style="font-size:medium; margin:0 0 4px 0"></h3>
                 <h1 class="video-prev-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
                 </h1>
