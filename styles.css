@@ -318,7 +318,8 @@ div.proficiencyCard {
 
 .gameLink img {
     width: auto;
-    height: 1.2em; /* Match image height to text height */
+    height: 1.2em;
+    /* Match image height to text height */
     object-fit: contain;
 }
 
@@ -1331,7 +1332,7 @@ div.proficiencyCard {
         max-height: 60vh;
         height: auto;
     }
-    
+
     #myVideo.portrait-video,
     #myVideo.tall-portrait-video {
         max-width: 100%;
@@ -3294,7 +3295,7 @@ div.desc {
     padding: 30px 0;
     position: relative;
     place-content: center;
-    align-content:center;
+    align-content: center;
     place-items: center;
 }
 
@@ -3325,7 +3326,7 @@ div.desc {
 
     align-items: center;
     align-content: center;
-    
+
 }
 
 .testimonial-photo {
@@ -3447,21 +3448,21 @@ div.desc {
     .testimonial-card {
         flex: 0 0 280px;
     }
-    
+
     .testimonial-card:nth-child(2) {
         transform: scale(1.05);
     }
-    
+
     .testimonial-photo img {
         width: 80px;
         height: 80px;
     }
-    
+
     .testimonialsContainer {
         padding: 40px 15px;
         margin: 20px auto;
     }
-    
+
     .testimonialsTitle {
         font-size: 1rem;
         margin-bottom: 30px;
@@ -3472,39 +3473,104 @@ div.desc {
     .testimonial-card {
         flex: 0 0 250px;
     }
-    
+
     .testimonial-photo img {
         width: 70px;
         height: 70px;
     }
-    
+
     .testimonial-name {
         font-size: 1rem;
     }
-    
+
     .testimonial-title {
         font-size: 0.9rem;
     }
-    
+
     .testimonial-company {
         font-size: 0.7rem;
     }
-    
+
     .testimonial-testimony {
         font-size: 0.8rem;
     }
-    
+
     .testimonialsContainer {
         padding: 30px 10px;
     }
-    
+
     .testimonialsTitle {
         font-size: 1rem;
     }
-    
+
     .carousel-nav {
         width: 35px;
         height: 35px;
         font-size: 1rem;
     }
+}
+
+/* Modal Gallery Styles */
+.modal-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.modal-gallery-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 6px;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.modal-gallery-thumb:hover,
+.modal-gallery-thumb.active {
+    opacity: 1;
+    border-color: #2B3E70;
+    transform: scale(1.05);
+}
+
+
+/* Updated Modal Layout Styles */
+.software-tag {
+    background-color: #eee;
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.modal-gallery {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px !important;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.modal-gallery-thumb {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #ddd;
+    opacity: 1;
+    transition: transform 0.2s ease;
+}
+
+.modal-gallery-thumb:hover {
+    transform: scale(1.02);
+}
+
+.modal-gallery-thumb.active {
+    border: 3px solid #FFB703;
 }

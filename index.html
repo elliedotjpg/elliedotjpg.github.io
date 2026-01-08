@@ -308,7 +308,10 @@
 
                     <div class="flexRow">
                         <div class="flexColumns">
-                            <gallery-preview src="./images/bposeats/14.png" software="Figma"></gallery-preview>
+                            <gallery-preview src="./images/bposeats/14.png" title="What Our Clients Say"
+                                software="Figma"
+                                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                extra-images="./images/bposeats/15.png, ./images/bposeats/16.png"></gallery-preview>
                             <gallery-preview src="./images/hestia/IG_Sep25.png"
                                 software="Adobe Photoshop"></gallery-preview>
                             <gallery-preview src="./images/medrx/takeabreak.png"
@@ -638,8 +641,8 @@
                             <gallery-preview src="./images/medrx/theBoard.png" title="MedRx Branding Board"
                                 software="Adobe Photoshop"
                                 desc="The final branding board or mockup design with the MedRx logo."></gallery-preview>
-                            <gallery-preview src="./images/paraluman/logoSample-2.png"
-                                title="Paraluman Rebrand Logo" software="Blender, Adobe Photoshop"
+                            <gallery-preview src="./images/paraluman/logoSample-2.png" title="Paraluman Rebrand Logo"
+                                software="Blender, Adobe Photoshop"
                                 desc="The first variation I made of the Paraluman logo for its rebranding which I plastered onto a mockup."></gallery-preview>
                         </div>
                         <div class="flexColumns">
@@ -961,8 +964,18 @@
                     <div class="modal-info">
                         <div id="prevDesc">
                             <h2 id="modalTitle" style="margin: 0 0 10px 0; color: #2B3E70; font-size: 1.5rem;"></h2>
-                            <p id="modalSoftware" style="margin: 0; color: #666; font-style: italic;"></p>
+                            <div class="software-container" style="margin-bottom: 20px;">
+                                <div style="font-size: 0.8rem; color: #999; margin-bottom: 8px;">Software Used</div>
+                                <div id="modalSoftwareTags" class="software-tags"
+                                    style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+                            </div>
+                            <p id="modalDescription" style="margin: 0 0 20px 0; color: #666; line-height: 1.5;"></p>
+
+
                         </div>
+
+                        <!-- Gallery Container -->
+                        <div id="modalGallery" class="modal-gallery"></div>
                     </div>
                 </div>
             </div>
@@ -1223,11 +1236,88 @@
                 const title = titleElement && titleElement.textContent ? titleElement.textContent : '';
                 modalTitle.textContent = title;
 
-                // Set software with fallback
+                // Set description
+                const modalDescription = document.getElementById("modalDescription");
+                const desc = element.getAttribute('data-desc') || '';
+                modalDescription.textContent = desc;
+
+                // Handle software tags
+                const modalSoftwareTags = document.getElementById("modalSoftwareTags");
+                modalSoftwareTags.innerHTML = '';
                 const software = softwareElement && softwareElement.textContent ? softwareElement.textContent : '';
-                modalSoftware.textContent = software ? `Software: ${software}` : '';
+
+                if (software) {
+                    const softwareList = software.split(',').map(s => s.trim());
+                    softwareList.forEach(sw => {
+                        const tag = document.createElement('div');
+                        tag.className = 'software-tag';
+                        tag.textContent = sw;
+                        modalSoftwareTags.appendChild(tag);
+                    });
+                }
             }
+
+            // Handle extra images gallery
+            const modalGallery = document.getElementById("modalGallery");
+            modalGallery.innerHTML = '';
+            modalGallery.style.display = 'none';
+
+            const extraImages = element.getAttribute('data-extra-images');
+            if (extraImages) {
+                const images = extraImages.split(',').map(s => s.trim());
+                if (images.length > 0) {
+
+                    modalGallery.style.display = 'grid'; // Use grid for new layout
+
+                    // Add the main image as the first thumbnail (active)
+                    const mainThumb = document.createElement('img');
+                    mainThumb.src = element.src;
+                    mainThumb.className = 'modal-gallery-thumb active';
+                    mainThumb.onclick = function () {
+                        updateModalMainImage(this.src);
+                        setActiveThumb(this);
+                    };
+                    modalGallery.appendChild(mainThumb);
+
+                    // Add extra images
+                    images.forEach(imgSrc => {
+                        const thumb = document.createElement('img');
+                        thumb.src = imgSrc;
+                        thumb.className = 'modal-gallery-thumb';
+                        thumb.onclick = function () {
+                            updateModalMainImage(this.src);
+                            setActiveThumb(this);
+                        };
+                        modalGallery.appendChild(thumb);
+                    });
+                }
+            }
+
             modal.style.display = "flex";
+        }
+
+        function updateModalMainImage(src) {
+            const modalImg = document.getElementById("myImg");
+            const modalVideo = document.getElementById("myVideo");
+
+            // If it's a video (check extension), switch to video view
+            if (src.match(/\.(mp4|webm|ogg)$/i)) {
+                modalImg.style.display = "none";
+                modalVideo.style.display = "block";
+                modalVideo.src = src;
+                modalVideo.play();
+            } else {
+                modalVideo.pause();
+                modalVideo.style.display = "none";
+                modalImg.style.display = "block";
+                modalImg.src = src;
+            }
+        }
+
+        function setActiveThumb(activeThumb) {
+            const thumbs = document.querySelectorAll('.modal-gallery-thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            activeThumb.classList.add('active');
         }
 
         // Carousel navigation function
