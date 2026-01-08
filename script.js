@@ -1,5 +1,8 @@
 class GalleryPreview extends HTMLElement {
   connectedCallback() {
+    if (this.querySelector('.gallery-preview')) {
+      return;
+    }
     const template = document.querySelector('#preview-template');
     const templateContent = template.content.cloneNode(true);
     // Populate content with attributes from HTML
@@ -87,6 +90,9 @@ class GalleryPreview extends HTMLElement {
 
 class VideoGalleryPreview extends HTMLElement {
   connectedCallback() {
+    if (this.querySelector('.video-gallery-preview')) {
+      return;
+    }
     const videoTemplate = document.querySelector('#video-preview-template');
     const videoTemplateContent = videoTemplate.content.cloneNode(true);
     // Populate content with attributes from HTML
@@ -492,8 +498,86 @@ customElements.define('flippable-card', FlippableCard);
 
 // Initialize dynamic layout calculation
 document.addEventListener('DOMContentLoaded', () => {
-  // DOMContentLoaded logic if needed, currently empty as we removed manual layout
+  // Handle initial layout check
+  handleGalleryLayout();
+
+  // Create a debounced resize handler
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleGalleryLayout, 100);
+  });
 });
+
+function handleGalleryLayout() {
+  const width = window.innerWidth;
+  // Match the CSS media query breakpoints for 2-column layout
+  // 1. max-width: 538px
+  // 2. min-width: 955px and max-width: 1040px
+  // Also consider natural wrapping if width is smaller than what fits 3 columns (~790px)
+  const isTwoColumnMode = (width <= 538) || (width >= 955 && width <= 1315);
+
+  // Find all gallery directories
+  const galleries = document.querySelectorAll('.galleryDirectoryContent .flexRow');
+
+  galleries.forEach(gallery => {
+    // Check if this gallery has 3 columns directly
+    const columns = Array.from(gallery.children).filter(child => child.classList.contains('flexColumns'));
+
+    if (columns.length >= 3) {
+      const col1 = columns[0];
+      const col2 = columns[1];
+      const col3 = columns[2];
+
+      if (isTwoColumnMode) {
+        // We need to move items from col3 to col1 and col2
+        // Only if col3 is visible/has content we haven't engaged with yet
+        if (col3.style.display !== 'none') {
+          // Get all items from col3
+          const items = Array.from(col3.children);
+
+          items.forEach((item, index) => {
+            // Store original parent to restore later
+            item.dataset.originalCol = '3';
+
+            // Distribute evenly
+            if (index % 2 === 0) {
+              col1.appendChild(item);
+            } else {
+              col2.appendChild(item);
+            }
+          });
+
+          // Hide the third column
+          col3.style.display = 'none';
+        }
+      } else {
+        // Restore items to col3 if we are in 3-column mode
+        if (col3.style.display === 'none') {
+          col3.style.display = 'flex'; // Restore display
+
+          // Find all items that belong to col3 in col1 and col2
+          const col1Items = Array.from(col1.children).filter(item => item.dataset.originalCol === '3');
+          const col2Items = Array.from(col2.children).filter(item => item.dataset.originalCol === '3');
+
+          // Combine and sort them to try and maintain order?
+          // The order they were appended was: 0->col1, 1->col2, 2->col1, 3->col2
+          // So if we pull them out, we should try to put them back in order.
+
+          // Let's gather them all and sort by some index? Or just append all?
+          // Since we didn't store index, just appending works, but order might be slightly shuffled if we did strict even distribution.
+          // However, for masonry, shuffle is often fine.
+
+          // To be safer, let's just append all found items back to col3.
+          [...col1Items, ...col2Items].forEach(item => {
+            col3.appendChild(item);
+            delete item.dataset.originalCol; // Clean up
+          });
+        }
+      }
+    }
+  });
+}
 
 
 
