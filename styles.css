@@ -1,3 +1,8 @@
+/* Hide preview titles and software labels container in gallery grid */
+.preview-info {
+    display: none !important;
+}
+
 body {
     background-image: url('BG.svg');
     background-size: cover;
@@ -293,7 +298,7 @@ div.proficiencyCard {
     height: 4vh;
     border-radius: 100px;
     border-width: 2px;
-    border-color: #fff"
+    border-color: #fff;
 
 }
 
@@ -337,17 +342,66 @@ div.proficiencyCard {
 .flexColumns {
     display: flex;
     flex-direction: column;
-    width: max-content;
+    flex: 1 1 0;
+    /* Grow, shrink, start from 0 */
+    width: 100%;
     align-items: center;
+    gap: 20px;
+    /* Add gap between items in column */
+    min-width: 250px;
+    /* Prevent being too small */
 }
 
 .flexRow {
     display: flex;
     flex-direction: row;
     align-content: center;
-    width: max-content;
-    height: max-content;
+    width: 100%;
+    /* Fit container */
+    height: auto;
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+    gap: 20px;
+    /* Gap between columns */
+    justify-content: center;
+    box-sizing: border-box;
 }
+
+.galleryDirectoryContent {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    /* Add some padding */
+}
+
+/* Ensure images and videos are responsive */
+gallery-preview,
+video-gallery-preview,
+.gallery-preview,
+.video-gallery-preview {
+    width: 100%;
+    display: block;
+}
+
+.preview-image,
+.preview-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+    /* Optional: smooth corners */
+}
+
+/* Dynamic Sizing classes - keeping these but ensuring they don't break flow */
+/* We can let them be width 100% and just handle aspect ratio internally via height if needed, 
+   but simplistic width: 100% is usually best for columns */
+/* Just ensure they don't force fixed widths */
+.dynamic-sizing {
+    max-width: 100%;
+}
+
 
 
 .idoContainer {
@@ -1823,11 +1877,14 @@ div.proficiencyCard {
         border: 1px solid #ccc;
         border-radius: 1vw;
         float: left;
-        width: fit-content;
-        height: fit-content;
+        /* Keep float if necessary for other logic but flex is better */
+        width: 100%;
+        /* Changed from fit-content to 100% */
+        height: auto;
+        /* Changed from fit-content to auto */
         background-color: #fff;
         -ms-text-size-adjust: auto;
-        max-width: calc(50vw - 20px);
+        /* max-width: calc(50vw - 20px); */
         /* Limit max width on medium screens */
         /* Remove max-height to allow portrait content to display properly */
         display: flex;
@@ -1837,25 +1894,26 @@ div.proficiencyCard {
     }
 
     /* Dynamic sizing classes for photography gallery */
+    /* Dynamic sizing classes for photography gallery */
     div.gallery-preview.dynamic-sizing {
-        width: auto;
+        width: 100%;
         height: auto;
-        min-width: 200px;
-        max-width: 300px;
+        /* min-width: 200px; */
+        /* max-width: 300px; */
     }
 
     div.gallery-preview.dynamic-sizing.portrait {
-        width: 200px;
+        width: 100%;
         height: auto;
     }
 
     div.gallery-preview.dynamic-sizing.landscape {
-        width: 280px;
+        width: 100%;
         height: auto;
     }
 
     div.gallery-preview.dynamic-sizing.square {
-        width: 250px;
+        width: 100%;
         height: auto;
     }
 
@@ -1877,8 +1935,10 @@ div.proficiencyCard {
         margin-bottom: 0;
         align-self: flex-start;
         /* Allow sizing based on aspect ratio while maintaining flex position */
-        width: calc(var(--aspect-ratio, 1) * 200px);
-        height: 200px;
+        /* width: calc(var(--aspect-ratio, 1) * 200px); */
+        /* height: 200px; */
+        width: 100%;
+        height: auto;
         margin: 10px;
         flex-shrink: 0;
         break-inside: avoid;
@@ -1949,13 +2009,14 @@ div.proficiencyCard {
     }
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* Extra small devices (phones, 709px and down) */
+@media only screen and (max-width: 709px) {
 
     .flexColumns {
         display: flex;
         flex-direction: column;
-        width: max-content;
+        width: 48%;
+        /* Changed from 100% to 48% to create 2 columns */
         align-items: center;
         gap: 10px;
     }
@@ -1964,9 +2025,11 @@ div.proficiencyCard {
         display: flex;
         flex-direction: row;
         align-content: center;
-        width: max-content;
-        height: max-content;
+        width: 100%;
+        height: auto;
         gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .about {
@@ -2313,7 +2376,7 @@ div.proficiencyCard {
         border-radius: 6px;
         float: none;
         width: 100%;
-        height: 100%;
+        height: auto;
         background-color: #fff;
         overflow: hidden;
         display: flex;
@@ -2332,7 +2395,7 @@ div.proficiencyCard {
     /* Dynamic sizing for mobile photography gallery */
     div.gallery-preview.dynamic-sizing {
         width: 100%;
-        height: 100%;
+        height: auto;
         grid-row: span 1;
         grid-column: span 1;
         max-width: 100%;
@@ -2525,8 +2588,8 @@ div.desc {
     margin-bottom: 2vh;
 }
 
-/* Fix for larger screens (601px and up) */
-@media only screen and (min-width: 601px) {
+/* Fix for larger screens (710px and up) */
+@media only screen and (min-width: 710px) {
 
     .gallery-preview,
     .video-gallery-preview {
@@ -2981,10 +3044,15 @@ div.desc {
     }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 955px) {
+@media only screen and (min-width: 710px) and (max-width: 1039px) {
     .flippable-card-container {
         width: 130px;
         height: 130px;
+    }
+
+    .flexColumns {
+        width: 48%;
+        /* Force 2 columns for tablet range 710px-1039px */
     }
 
     .card-icon {
@@ -3023,65 +3091,23 @@ div.desc {
     }
 
     /* Responsive styles for dynamic gallery items */
-    @media only screen and (max-width: 600px) {
-        .galleryItems {
-            gap: 5px;
-        }
+    /* 
+    @media only screen and (max-width: 600px) { ... } 
+    Removed fixed sizing to allow flexbox fluid layout
+    */
 
-        .gallery-preview.dynamic-sizing {
-            width: calc(33.33% - 6px);
-            margin: 3px;
-        }
-
-        .gallery-preview.dynamic-sizing.portrait,
-        .gallery-preview.dynamic-sizing.tall-portrait {
-            width: calc(40% - 6px);
-        }
-
-        .gallery-preview.dynamic-sizing.landscape,
-        .gallery-preview.dynamic-sizing.wide-landscape {
-            width: calc(50% - 6px);
-        }
-
-        .gallery-preview.dynamic-sizing.square {
-            width: calc(45% - 6px);
-        }
-
-    }
-
-    @media only screen and (min-width: 601px) and (max-width: 955px) {
+    @media only screen and (min-width: 710px) and (max-width: 1039px) {
         .galleryItems {
             gap: 12px;
         }
 
-        .gallery-preview.dynamic-sizing,
-        .video-gallery-preview.dynamic-sizing {
-            width: 180px;
-            margin: 8px;
-        }
-
-        .gallery-preview.dynamic-sizing.portrait,
-        .gallery-preview.dynamic-sizing.tall-portrait,
-        .video-gallery-preview.dynamic-sizing.portrait,
-        .video-gallery-preview.dynamic-sizing.tall-portrait {
-            width: 150px;
-        }
-
-        .gallery-preview.dynamic-sizing.landscape,
-        .gallery-preview.dynamic-sizing.wide-landscape,
-        .video-gallery-preview.dynamic-sizing.landscape,
-        .video-gallery-preview.dynamic-sizing.wide-landscape {
-            width: 220px;
-        }
-
-        .gallery-preview.dynamic-sizing.square,
-        .video-gallery-preview.dynamic-sizing.square {
-            width: 200px;
-        }
-
+        /* 
+        Removed fixed sizing logic to allow flexbox fluid layout.
+        The container .flexColumns now handles the width.
+        */
     }
 
-    @media only screen and (min-width: 956px) {
+    @media only screen and (min-width: 1040px) {
 
         .roller {
             height: 2.15rem;
@@ -3155,30 +3181,10 @@ div.desc {
             gap: 12px;
         }
 
-        .gallery-preview.dynamic-sizing,
-        .video-gallery-preview.dynamic-sizing {
-            width: 220px;
-            margin: 10px;
-        }
-
-        .gallery-preview.dynamic-sizing.portrait,
-        .gallery-preview.dynamic-sizing.tall-portrait,
-        .video-gallery-preview.dynamic-sizing.portrait,
-        .video-gallery-preview.dynamic-sizing.tall-portrait {
-            width: 180px;
-        }
-
-        .gallery-preview.dynamic-sizing.landscape,
-        .gallery-preview.dynamic-sizing.wide-landscape,
-        .video-gallery-preview.dynamic-sizing.landscape,
-        .video-gallery-preview.dynamic-sizing.wide-landscape {
-            width: 280px;
-        }
-
-        .gallery-preview.dynamic-sizing.square,
-        .video-gallery-preview.dynamic-sizing.square {
-            width: 250px;
-        }
+        /* 
+        Removed fixed sizing logic to allow flexbox fluid layout.
+        The container .flexColumns now handles the width.
+        */
 
     }
 
@@ -3672,4 +3678,18 @@ div.desc {
 
 .modal-gallery-thumb.active {
     border: 3px solid #FFB703;
+}
+
+@media only screen and (max-width: 538px) {
+    .flexColumns {
+        min-width: 40% !important;
+        flex-basis: 40% !important;
+    }
+}
+
+@media only screen and (min-width: 955px) and (max-width: 1040px) {
+    .flexColumns {
+        min-width: 40% !important;
+        flex-basis: 40% !important;
+    }
 }

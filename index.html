@@ -618,7 +618,7 @@
                                 software="Adobe Photoshop"
                                 desc="The page where users would be able to search different medicines and the like in the app."></gallery-preview>
                         </div>
-                        <div class="flexColumns">
+                        <div class="flexColumns" style="flex: 1.5 1 0">
                             <video-gallery-preview video-src="./images/bilibenta/bilibenta.mp4"
                                 video-title="Bilibenta App"
                                 video-software="Figma, HTML, CSS, Vue"></video-gallery-preview>
@@ -1004,7 +1004,8 @@
         <div class="gallery-preview"
             style="width:fit-content; height:fit-content; display:flex; flex-direction:column; place-self: end; padding-bottom:2vh">
             <img class="preview-image" onclick="onClick(this)" />
-            <div style="padding:10px; text-align: center; display:flex; flex-direction:column; justify-content:center;">
+            <div class="preview-info"
+                style="padding:10px; text-align: center; display:flex; flex-direction:column; justify-content:center;">
                 <h3 class="preview-title" style="font-size:medium; margin:0 0 4px 0"></h3>
                 <h1 class="preview-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
                 </h1>
@@ -1017,7 +1018,8 @@
     <template id="video-preview-template" style="font-family:Montserrat">
         <div class="video-gallery-preview" style="display:flex; flex-direction:column">
             <video class="preview-video" onclick="onVideoClick(this)" muted loop playsinline autoplay></video>
-            <div style="padding:20px; text-align: center; display:flex; flex-direction:column; justify-content:center">
+            <div class="preview-info"
+                style="padding:20px; text-align: center; display:flex; flex-direction:column; justify-content:center">
                 <h3 class="video-prev-title" style="font-size:medium; margin:0 0 4px 0"></h3>
                 <h1 class="video-prev-software" style="font-size:small; font-weight: 400; font-style: italic; margin:0">
                 </h1>
