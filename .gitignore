@@ -1,0 +1,17 @@
+# Ignore large media files
+*.mp4
+*.mov
+*.avi
+*.gif
+*.psd
+*.ai
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore node modules
+node_modules/
+
+# Ignore build artifacts
+dist/
+build/
