@@ -164,32 +164,27 @@ class VideoGalleryPreview extends HTMLElement {
   }
 
   setupVideoAutoplay(video) {
-    // Try to play the video immediately
-    const attemptPlay = () => {
-      video.play().catch(error => {
-        console.log('Autoplay prevented, waiting for user interaction');
-        // Add hover to play functionality as fallback
-        this.addEventListener('mouseenter', () => {
-          video.play().catch(e => console.log('Play on hover failed:', e));
-        }, { once: true });
-      });
-    };
-
-    // Try to play when video is loaded
-    video.addEventListener('loadeddata', attemptPlay, { once: true });
-
     // Also try when element enters viewport (Intersection Observer)
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            attemptPlay();
-            observer.unobserve(video);
+            // Play when visible
+            video.play().catch(error => {
+              // Auto-play was prevented
+              // console.log('Autoplay prevented');
+            });
+          } else {
+            // Pause when not visible
+            video.pause();
           }
         });
       }, { threshold: 0.1 });
 
       observer.observe(video);
+    } else {
+      // Fallback for no intersection observer - just try to play
+      video.play().catch(e => { });
     }
   }
 }
