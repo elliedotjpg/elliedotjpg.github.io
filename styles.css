@@ -710,10 +710,12 @@ video-gallery-preview,
     background-color: #fff;
     border-radius: 10px;
     max-width: 100%;
-    overflow-y: auto;
+    /* overflow-y: auto; removed */
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    flex: 0 0 auto;
+    /* Prevent shrinking */
 }
 
 #prevDesc h2 {
@@ -757,9 +759,10 @@ video-gallery-preview,
     flex: 1 1 40%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 20px;
-    overflow-y: auto;
+    overflow: hidden;
+    /* Changed from overflow-y: auto to prevent whole column scrolling */
     border-left: 1px solid #eee;
 }
 
@@ -3659,6 +3662,12 @@ div.desc {
     gap: 15px !important;
     margin-top: 20px;
     width: 100%;
+    flex: 1 1 auto;
+    /* Grow to fill space */
+    overflow-y: auto;
+    /* Scroll internally if needed */
+    min-height: 0;
+    /* Necessary for flex item scrolling */
 }
 
 .modal-gallery-thumb {

@@ -515,7 +515,7 @@ function handleGalleryLayout() {
   // 1. max-width: 538px
   // 2. min-width: 955px and max-width: 1040px
   // Also consider natural wrapping if width is smaller than what fits 3 columns (~790px)
-  const isTwoColumnMode = (width <= 538) || (width >= 955 && width <= 1315);
+  const isTwoColumnMode = (width < 850) || (width >= 955 && width <= 1315);
 
   // Find all gallery directories
   const galleries = document.querySelectorAll('.galleryDirectoryContent .flexRow');
