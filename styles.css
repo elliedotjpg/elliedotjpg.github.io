@@ -382,6 +382,11 @@ video-gallery-preview,
 .video-gallery-preview {
     width: 100%;
     display: block;
+    /* GPU acceleration for gallery items */
+    transform: translate3d(0,0,0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
 }
 
 .preview-image,
@@ -602,6 +607,11 @@ video-gallery-preview,
     /* Vertically centers the modal */
     padding: 20px;
     box-sizing: border-box;
+    /* Hardware acceleration for modal */
+    transform: translate3d(0,0,0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
 }
 
 .VideoModal {

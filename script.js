@@ -164,27 +164,30 @@ class VideoGalleryPreview extends HTMLElement {
   }
 
   setupVideoAutoplay(video) {
-    // Also try when element enters viewport (Intersection Observer)
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Play when visible
-            video.play().catch(error => {
-              // Auto-play was prevented
-              // console.log('Autoplay prevented');
-            });
-          } else {
-            // Pause when not visible
-            video.pause();
-          }
-        });
-      }, { threshold: 0.1 });
+    // Only autoplay if device has sufficient resources
+    if (navigator.hardwareConcurrency > 2 && navigator.deviceMemory > 2) {
+      // Preload video metadata for smoother playback
+      video.preload = 'metadata';
 
-      observer.observe(video);
-    } else {
-      // Fallback for no intersection observer - just try to play
-      video.play().catch(e => { });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Play when visible
+              video.play().catch(error => {
+                // Auto-play was prevented
+              });
+            } else {
+              // Pause when not visible
+              video.pause();
+            }
+          });
+        }, { threshold: 0.1 });
+
+        observer.observe(video);
+      } else {
+        video.play().catch(e => { });
+      }
     }
   }
 }
@@ -201,16 +204,35 @@ function onVideoClick(element) {
   const modalTitle = document.getElementById("modalTitle");
   const modalSoftware = document.getElementById("modalSoftware");
 
+  // Preload video metadata for smoother playback
+  const videoSrc = element.src;
+
+  // Add hardware acceleration class
+  modalVideo.classList.add('gpu-accelerated');
+
+  // Preload metadata directly on the modal video
+  modalVideo.preload = 'metadata';
+  modalVideo.src = videoSrc;
+
   // Pause the preview video
   element.pause();
+
+  // OPTIMIZATION: Pause ALL other preview videos to free up resources
+  document.querySelectorAll('.preview-video').forEach(vid => {
+    vid.pause();
+  });
 
   // Hide image, show video
   modalImg.style.display = "none";
   modalVideo.style.display = "block";
-  modalVideo.src = element.src;
   modalVideo.controls = true;
   modalVideo.muted = false;
   modalVideo.playsinline = false;
+
+  // Enable hardware acceleration
+  modalVideo.style.transform = 'translate3d(0,0,0)';
+  modalVideo.style.backfaceVisibility = 'hidden';
+  modalVideo.style.willChange = 'transform';
 
   // Get the parent gallery preview element to extract title and software
   const galleryPreview = element.closest('.video-gallery-preview');
