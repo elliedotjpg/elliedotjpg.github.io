@@ -576,7 +576,7 @@ video-gallery-preview,
 
 .modalContainer {
     background-color: #fff;
-    border-radius: 20px;
+    border-radius: 1vw;
     padding: 20px;
     margin: 20px;
     max-width: calc(100vw - 40px);
@@ -593,7 +593,7 @@ video-gallery-preview,
 
 .VideeoModalContainer {
     background-color: #fff;
-    border-radius: 20px;
+    border-radius: 2vw;
     padding: 20px;
     margin: 20px;
     max-width: calc(100vw - 40px);
@@ -672,7 +672,7 @@ video-gallery-preview,
     height: auto;
     object-fit: contain;
     object-position: center;
-    border-radius: 10px;
+    border-radius: 2vw;
 }
 
 /* Modal Content (Video) */
@@ -685,7 +685,7 @@ video-gallery-preview,
     height: auto;
     object-fit: contain;
     object-position: center;
-    border-radius: 10px;
+    border-radius: 2vw;
 }
 
 /* Enhanced video modal styling for portrait videos */
@@ -1392,7 +1392,7 @@ video-gallery-preview,
         padding: 0;
         overflow: hidden;
         /* Hide overflow of container, content scrolls inside */
-        border-radius: 20px;
+        border-radius: 2vw;
         background-color: #fff;
         display: flex;
     }
