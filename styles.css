@@ -344,7 +344,21 @@ div.proficiencyCard {
     color: #2B3E70;
 }
 
+.game-buttons-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 2vh;
+    flex-wrap: wrap;
+}
+
 @media (max-width: 768px) {
+    .game-buttons-container {
+        justify-content: center;
+        margin-left: 0;
+    }
+
     .gameLink {
         padding: 0.5rem 0.6rem;
         margin: 0 6px 16px 6px;
@@ -3671,4 +3685,46 @@ div.desc {
         min-width: 40% !important;
         flex-basis: 40% !important;
     }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #fff;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.loading-spinner.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Ensure gallery preview containers handle absolute positioning of spinner */
+.gallery-preview,
+.video-gallery-preview {
+    position: relative;
+    min-height: 200px;
+    /* Minimum height to ensure space for spinner */
+    background-color: #2a2a2a;
+    /* Dark background placeholder */
 }

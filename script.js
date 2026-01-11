@@ -7,7 +7,19 @@ class GalleryPreview extends HTMLElement {
     const templateContent = template.content.cloneNode(true);
     // Populate content with attributes from HTML
     const imgSrc = this.getAttribute('src');
-    templateContent.querySelector('.preview-image').src = imgSrc;
+    const imgElement = templateContent.querySelector('.preview-image');
+    imgElement.src = imgSrc;
+
+    // Hide spinner when image loads
+    imgElement.onload = () => {
+      const spinner = this.querySelector('.loading-spinner');
+      if (spinner) spinner.classList.add('hidden');
+    };
+
+    imgElement.onerror = () => {
+      const spinner = this.querySelector('.loading-spinner');
+      if (spinner) spinner.classList.add('hidden');
+    };
     templateContent.querySelector('.preview-image').alt = this.getAttribute('title');
     templateContent.querySelector('.preview-software').textContent = this.getAttribute('software');
     templateContent.querySelector('.preview-title').textContent = this.getAttribute('title');
@@ -99,6 +111,18 @@ class VideoGalleryPreview extends HTMLElement {
 
     const video = videoTemplateContent.querySelector('.preview-video');
     video.src = this.getAttribute('src') || this.getAttribute('video-src');
+
+    // Hide spinner when video loads enough data
+    video.onloadeddata = () => {
+      const spinner = this.querySelector('.loading-spinner');
+      if (spinner) spinner.classList.add('hidden');
+    };
+
+    video.onerror = () => {
+      const spinner = this.querySelector('.loading-spinner');
+      if (spinner) spinner.classList.add('hidden');
+    };
+
     video.setAttribute('data-title', this.getAttribute('title') || this.getAttribute('video-title'));
 
     videoTemplateContent.querySelector('.video-prev-software').textContent = this.getAttribute('software') || this.getAttribute('video-software');
@@ -330,8 +354,9 @@ function onVideoClick(element) {
 
   // Add click event listener to modal video for play/pause functionality
   // Remove any existing listener first to prevent duplicates
-  modalVideo.removeEventListener('click', handleVideoClick);
-  modalVideo.addEventListener('click', handleVideoClick);
+  // Native controls handle click-to-play/pause automatically. 
+  // We removed the manual listener to prevent conflict (double-toggling).
+
 
   // Handle video aspect ratio for proper modal display
   element.addEventListener('loadedmetadata', function () {
@@ -407,17 +432,7 @@ function onVideoClick(element) {
   window.addEventListener('resize', handleModalVideoResize);
 }
 
-// Handle video click for play/pause functionality
-function handleVideoClick(event) {
-  event.stopPropagation(); // Prevent the click from propagating to the modal
-  const video = event.target;
 
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
-}
 
 // Flippable Card Custom Element
 class FlippableCard extends HTMLElement {
