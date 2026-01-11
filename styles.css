@@ -308,35 +308,56 @@ div.proficiencyCard {
     border: none;
     color: #2B3E70;
     width: fit-content;
-    padding: 0.5rem 1.5rem;
-    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
     font-size: 0.8rem;
     margin: 1px 12px;
     cursor: pointer;
     margin-bottom: 2vh;
     transition-duration: 0.4s;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.8vw;
+    letter-spacing: 0.1vh;
 }
 
 .gameLink img {
     width: auto;
     height: 1.2em;
-    /* Match image height to text height */
     object-fit: contain;
+    display: block;
+    max-width: 20px;
 }
 
 .gameLink p {
     margin: 0;
     white-space: nowrap;
+    color: #2B3E70;
+    font-family: Montserrat;
+    font-size: small;
 }
 
 /* Hover state: styles when the mouse is over the button */
 .gameLink:hover {
     background-color: #FFB703;
     color: #2B3E70;
+}
+
+@media (max-width: 768px) {
+    .gameLink {
+        padding: 0.5rem 0.6rem;
+        margin: 0 6px 16px 6px;
+        gap: 4px;
+    }
+
+    .gameLink p {
+        font-size: 0.6rem;
+    }
+
+    .gameLink img {
+        max-width: 14px;
+    }
 }
 
 .flexColumns {
@@ -2456,71 +2477,13 @@ video-gallery-preview,
         flex-shrink: 0;
     }
 
-    /* Keep preview content visible on mobile as well */
-    div.gallery-preview .preview-software,
-    div.gallery-preview .preview-description,
-    div.video-gallery-preview .vid-prev-software,
-    div.video-gallery-preview .vid-prev-description {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    /* Show preview titles with smaller size */
-    div.gallery-preview .preview-title,
-    div.video-gallery-preview .vid-prev-title {
-        font-size: 11px !important;
-        display: block !important;
-        text-align: center;
-        margin: 2px 0;
-        line-height: 1.2;
-        color: #333 !important;
-        font-weight: 600 !important;
-    }
-
-    /* Show preview software names with smaller size */
-    div.gallery-preview .preview-software,
-    div.video-gallery-preview .vid-prev-software {
-        font-size: 9px !important;
-        display: block !important;
-        text-align: center;
-        margin: 1px 0;
-        line-height: 1.2;
-        color: #666 !important;
-        font-style: italic !important;
+    /* Hide preview content on mobile to match desktop/video previews */
+    .preview-info {
+        display: none !important;
     }
 
     /* Adjust padding div to show title and software */
-    div.gallery-preview div[style*="padding:20px"],
-    div.video-gallery-preview div[style*="padding:20px"] {
-        padding: 5px !important;
-        text-align: center;
-        min-height: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    /* Keep software and description elements visible within padding */
-    div.gallery-preview div[style*="padding:20px"] .preview-software,
-    div.gallery-preview div[style*="padding:20px"] .preview-description,
-    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-software,
-    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-description {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    /* Keep software and title elements visible within padding */
-    div.gallery-preview div[style*="padding:10px"] .preview-software,
-    div.gallery-preview div[style*="padding:10px"] .preview-title,
-    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-software,
-    div.video-gallery-preview div[style*="padding:20px"] .vid-prev-title {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
+    /* Removed obsolete padding adjustments for hidden content */
 
     div.gallery-preview:hover,
     div.video-gallery-preview:hover {
