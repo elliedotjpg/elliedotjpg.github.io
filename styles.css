@@ -404,7 +404,7 @@ video-gallery-preview,
     width: 100%;
     display: block;
     /* GPU acceleration for gallery items */
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     will-change: transform;
@@ -629,7 +629,7 @@ video-gallery-preview,
     padding: 20px;
     box-sizing: border-box;
     /* Hardware acceleration for modal */
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     will-change: transform;
@@ -2460,10 +2460,7 @@ video-gallery-preview,
 
     div.gallery-preview.dynamic-sizing img {
         width: 100%;
-        height: auto;
-        /* Changed to auto to maintain aspect ratio */
-        max-height: calc(100% - 40px);
-        /* Limit max height */
+        height: 100%;
         object-fit: cover;
     }
 
