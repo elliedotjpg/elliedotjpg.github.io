@@ -724,3 +724,137 @@ function addTestimonial(name, title, company, testimony, photoSrc) {
     track.appendChild(newCard);
   }
 }
+// Hero Section Slideshow Logic
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroSlider();
+});
+
+function initHeroSlider() {
+  const slider = document.getElementById('heroSlider');
+  if (!slider) return;
+
+  // 1. Gather all unique images from gallery
+  const galleryImages = [];
+  const processedSrcs = new Set();
+
+  // Get all gallery-preview elements
+  const previews = document.querySelectorAll('gallery-preview');
+
+  previews.forEach(preview => {
+    const src = preview.getAttribute('src');
+    const title = preview.getAttribute('title');
+
+    // Only add if src exists and not already added
+    if (src && !processedSrcs.has(src)) {
+      // Filter out placeholders if any
+      if (src.includes('placeholder')) return;
+
+      galleryImages.push({
+        src: src,
+        title: title || '',
+        element: preview // Store reference to original element
+      });
+      processedSrcs.add(src);
+    }
+  });
+
+  // Shuffle images to keep it fresh
+  shuffleArray(galleryImages);
+
+  // Take top 8 images for the slider to keep DOM light
+  const heroImages = galleryImages.slice(0, 8);
+
+  if (heroImages.length === 0) return;
+
+  // 2. Build Slides
+  heroImages.forEach((imgData, index) => {
+    const slide = document.createElement('div');
+    slide.className = 'hero-slide';
+
+    // Background container for zoom effect
+    const bg = document.createElement('div');
+    bg.className = 'hero-slide-bg';
+    bg.style.backgroundImage = `url('${imgData.src}')`;
+    bg.style.filter = 'brightness(0.8)'; // Moved dimming here
+    slide.appendChild(bg);
+
+    if (index === 0) slide.classList.add('active');
+
+    // Add Caption
+    if (imgData.title) {
+      const caption = document.createElement('div');
+      caption.className = 'hero-slide-caption';
+      caption.textContent = imgData.title;
+      slide.appendChild(caption);
+    }
+
+    // Add Click Event to Navigate
+    slide.addEventListener('click', () => {
+      const targetElement = imgData.element;
+      if (!targetElement) return;
+
+      // Find which tab this element belongs to
+      const parentContent = targetElement.closest('.galleryDirectoryContent');
+      if (parentContent) {
+        const tabId = parentContent.id;
+
+        // Find the tab button (handling both quote types in onclick attribute)
+        const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
+          document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
+
+        if (tabBtn) {
+          tabBtn.click();
+
+          // Scroll to element after a short delay to allow tab switch
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Add a temporary subtle highlight animation
+            const originalTransform = targetElement.style.transform;
+            targetElement.style.transition = 'transform 0.4s ease';
+            targetElement.style.transform = 'scale(1.02)';
+
+            setTimeout(() => {
+              targetElement.style.transform = originalTransform;
+            }, 800);
+          }, 100);
+        }
+      }
+    });
+
+    slider.appendChild(slide);
+  });
+
+  // 3. Start Auto-Play
+  let currentSlide = 0;
+  const slideCount = heroImages.length;
+
+  // Only start interval if we have more than 1 slide
+  if (slideCount > 1) {
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slideCount;
+
+      // Update transform
+      slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+
+      // Update active class for captions and zoom effect
+      const slides = slider.querySelectorAll('.hero-slide');
+      slides.forEach((s, i) => {
+        if (i === currentSlide) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+
+    }, 5000); // 5 seconds per slide
+  }
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
