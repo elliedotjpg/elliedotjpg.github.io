@@ -785,90 +785,89 @@ function initHeroSlider() {
     if (imgData.element) {
       const extraImagesStr = imgData.element.getAttribute('extra-images');
       if (extraImagesStr) {
-        if (extraImagesStr) {
-          extraImages = extraImagesStr.split(',').map(s => s.trim()).filter(s => s.length > 0);
-        }
+        extraImages = extraImagesStr.split(',').map(s => s.trim()).filter(s => s.length > 0);
       }
+    }
 
-      // Determine the sequence of images
-      let imagesToShow = [];
+    // Determine the sequence of images
+    let imagesToShow = [];
 
-      if (extraImages.length >= 2) {
-        // Case 1: > 1 extra image => Pattern: [Extra 1] [Main] [Extra 2]
-        // Repeated twice to ensure coverage: 6 images
-        imagesToShow = [extraImages[0], mainSrc, extraImages[1], extraImages[0], mainSrc, extraImages[1]];
-      } else if (extraImages.length === 1) {
-        // Case 2: 1 extra image => Pattern: [Main] [Extra 1] [Main]
-        // Repeated twice to ensure coverage: 6 images
-        imagesToShow = [mainSrc, extraImages[0], mainSrc, mainSrc, extraImages[0], mainSrc];
-      } else {
-        // Fallback: [Main] [Main] [Main] [Main] [Main]
-        // Repeats to fill space. Increased to 7 to ensure coverage on wider screens/mobile.
-        imagesToShow = [mainSrc, mainSrc, mainSrc, mainSrc, mainSrc, mainSrc, mainSrc];
-      }
+    if (extraImages.length >= 2) {
+      // Case 1: > 1 extra image => Pattern: [Extra 1] [Main] [Extra 2]
+      // Repeated twice to ensure coverage: 6 images
+      imagesToShow = [extraImages[0], mainSrc, extraImages[1], extraImages[0], mainSrc, extraImages[1]];
+    } else if (extraImages.length === 1) {
+      // Case 2: 1 extra image => Pattern: [Main] [Extra 1] [Main]
+      // Repeated twice to ensure coverage: 6 images
+      imagesToShow = [mainSrc, extraImages[0], mainSrc, mainSrc, extraImages[0], mainSrc];
+    } else {
+      // Fallback: [Main] [Main] [Main] [Main] [Main]
+      // Repeats to fill space. Increased to 7 to ensure coverage on wider screens/mobile.
+      imagesToShow = [mainSrc, mainSrc, mainSrc, mainSrc, mainSrc, mainSrc, mainSrc];
+    }
 
-      // Create the strip
-      imagesToShow.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.className = 'hero-strip-item';
-        img.loading = 'lazy'; // Optimization
-        bg.appendChild(img);
-      });
-
-      slide.appendChild(bg);
-
-      // Delay adding active class to trigger transition animation
-      if (index === 0) {
-        setTimeout(() => {
-          slide.classList.add('active');
-        }, 100);
-      }
-
-      // Add Caption
-      if (imgData.title) {
-        const caption = document.createElement('div');
-        caption.className = 'hero-slide-caption';
-        caption.textContent = imgData.title;
-        slide.appendChild(caption);
-      }
-
-      // Add Click Event to Navigate
-      slide.addEventListener('click', () => {
-        const targetElement = imgData.element;
-        if (!targetElement) return;
-
-        // Find which tab this element belongs to
-        const parentContent = targetElement.closest('.galleryDirectoryContent');
-        if (parentContent) {
-          const tabId = parentContent.id;
-
-          // Find the tab button (handling both quote types in onclick attribute)
-          const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
-            document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
-
-          if (tabBtn) {
-            tabBtn.click();
-
-            // Scroll to element after a short delay to allow tab switch
-            setTimeout(() => {
-              targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-              // Add a temporary subtle highlight animation
-              const originalTransform = targetElement.style.transform;
-              targetElement.style.transition = 'transform 0.4s ease';
-              targetElement.style.transform = 'scale(1.02)';
-
-              setTimeout(() => {
-                targetElement.style.transform = originalTransform;
-              }, 800);
-            }, 100);
-          }
-        }
-      });
-
-      slider.appendChild(slide);
+    // Create the strip
+    imagesToShow.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'hero-strip-item';
+      img.loading = 'lazy'; // Optimization
+      bg.appendChild(img);
     });
+
+    slide.appendChild(bg);
+
+    // Delay adding active class to trigger transition animation
+    if (index === 0) {
+      setTimeout(() => {
+        slide.classList.add('active');
+      }, 100);
+    }
+
+    // Add Caption
+    if (imgData.title) {
+      const caption = document.createElement('div');
+      caption.className = 'hero-slide-caption';
+      caption.textContent = imgData.title;
+      slide.appendChild(caption);
+    }
+
+    // Add Click Event to Navigate
+    slide.addEventListener('click', () => {
+      const targetElement = imgData.element;
+      if (!targetElement) return;
+
+      // Find which tab this element belongs to
+      const parentContent = targetElement.closest('.galleryDirectoryContent');
+      if (parentContent) {
+        const tabId = parentContent.id;
+
+        // Find the tab button (handling both quote types in onclick attribute)
+        const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
+          document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
+
+        if (tabBtn) {
+          tabBtn.click();
+
+          // Scroll to element after a short delay to allow tab switch
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Add a temporary subtle highlight animation
+            const originalTransform = targetElement.style.transform;
+            targetElement.style.transition = 'transform 0.4s ease';
+            targetElement.style.transform = 'scale(1.02)';
+
+            setTimeout(() => {
+              targetElement.style.transform = originalTransform;
+            }, 800);
+          }, 100);
+        }
+      }
+    });
+
+    slider.appendChild(slide);
+  });
 
   // 3. Start Auto-Play
   let currentSlide = 0;
