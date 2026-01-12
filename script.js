@@ -770,8 +770,9 @@ function initHeroSlider() {
   heroImages.forEach((imgData, index) => {
     const slide = document.createElement('div');
     slide.className = 'hero-slide';
+    // Store index for click handling
+    slide.dataset.index = index;
 
-    // Background container for zoom effect
     // Background container for zoom effect
     const bg = document.createElement('div');
     bg.className = 'hero-slide-bg';
@@ -832,56 +833,76 @@ function initHeroSlider() {
       slide.appendChild(caption);
     }
 
-    // Add Click Event to Navigate
-    slide.addEventListener('click', () => {
-      const targetElement = imgData.element;
-      if (!targetElement) return;
-
-      // Find which tab this element belongs to
-      const parentContent = targetElement.closest('.galleryDirectoryContent');
-      if (parentContent) {
-        const tabId = parentContent.id;
-
-        // Find the tab button (handling both quote types in onclick attribute)
-        const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
-          document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
-
-        if (tabBtn) {
-          tabBtn.click();
-
-          // Scroll to element after a short delay to allow tab switch
-          setTimeout(() => {
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Add a temporary subtle highlight animation
-            const originalTransform = targetElement.style.transform;
-            targetElement.style.transition = 'transform 0.4s ease';
-            targetElement.style.transform = 'scale(1.02)';
-
-            setTimeout(() => {
-              targetElement.style.transform = originalTransform;
-            }, 800);
-          }, 100);
-        }
-      }
-    });
-
     slider.appendChild(slide);
+  });
+
+  // Clone the first slide to create an infinite loop effect
+  if (heroImages.length > 0) {
+    const firstSlide = slider.querySelector('.hero-slide');
+    if (firstSlide) {
+      const clone = firstSlide.cloneNode(true);
+      clone.classList.remove('active');
+      slider.appendChild(clone);
+    }
+  }
+
+  // Refactored Click Event for Navigation (Delegation handles clone too)
+  slider.addEventListener('click', (e) => {
+    const slide = e.target.closest('.hero-slide');
+    if (!slide) return;
+
+    const index = parseInt(slide.dataset.index);
+    if (isNaN(index)) return;
+
+    const imgData = heroImages[index];
+    if (!imgData) return;
+
+    const targetElement = imgData.element;
+    if (!targetElement) return;
+
+    // Find which tab this element belongs to
+    const parentContent = targetElement.closest('.galleryDirectoryContent');
+    if (parentContent) {
+      const tabId = parentContent.id;
+
+      // Find the tab button (handling both quote types in onclick attribute)
+      const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
+        document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
+
+      if (tabBtn) {
+        tabBtn.click();
+
+        // Scroll to element after a short delay to allow tab switch
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Add a temporary subtle highlight animation
+          const originalTransform = targetElement.style.transform;
+          targetElement.style.transition = 'transform 0.4s ease';
+          targetElement.style.transform = 'scale(1.02)';
+
+          setTimeout(() => {
+            targetElement.style.transform = originalTransform;
+          }, 800);
+        }, 100);
+      }
+    }
   });
 
   // 3. Start Auto-Play
   let currentSlide = 0;
-  const slideCount = heroImages.length;
+  const slideCount = heroImages.length; // Original count
 
-  // Only start interval if we have more than 1 slide
+  // Only start interval if we have more than 1 slide (plus the clone makes it >2 items in DOM)
   if (slideCount > 1) {
     setInterval(() => {
-      currentSlide = (currentSlide + 1) % slideCount;
+      currentSlide++;
 
-      // Update transform
+      // Apply transition and move
+      slider.style.transition = 'transform 1s ease-in-out';
       slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
 
-      // Update active class for captions and zoom effect
+      // Update active class for zoom effects
       const slides = slider.querySelectorAll('.hero-slide');
       slides.forEach((s, i) => {
         if (i === currentSlide) {
@@ -890,6 +911,31 @@ function initHeroSlider() {
           s.classList.remove('active');
         }
       });
+
+      // If we reached the clone (last position), reset to start seamlessly
+      if (currentSlide === slideCount) {
+        setTimeout(() => {
+          // Disable transition to jump instantly
+          slider.style.transition = 'none';
+
+          // Reset to 0
+          currentSlide = 0;
+          slider.style.transform = 'translateX(0%)';
+
+          // Force reflow
+          void slider.offsetWidth;
+
+          // Ensure 0 is active for the zoom effect continuity
+          slides.forEach((s, i) => {
+            if (i === 0) {
+              s.classList.add('active');
+            } else {
+              s.classList.remove('active');
+            }
+          });
+
+        }, 1000); // Wait for the transition duration (1s)
+      }
 
     }, 5000); // 5 seconds per slide
   }
