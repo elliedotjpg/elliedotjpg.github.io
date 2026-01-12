@@ -12,12 +12,12 @@ class GalleryPreview extends HTMLElement {
 
     // Hide spinner when image loads
     imgElement.onload = () => {
-      const spinner = this.querySelector('.loading-spinner');
+      const spinner = this.querySelector('.loading-skeleton');
       if (spinner) spinner.classList.add('hidden');
     };
 
     imgElement.onerror = () => {
-      const spinner = this.querySelector('.loading-spinner');
+      const spinner = this.querySelector('.loading-skeleton');
       if (spinner) spinner.classList.add('hidden');
     };
     templateContent.querySelector('.preview-image').alt = this.getAttribute('title');
@@ -114,12 +114,12 @@ class VideoGalleryPreview extends HTMLElement {
 
     // Hide spinner when video loads enough data
     video.onloadeddata = () => {
-      const spinner = this.querySelector('.loading-spinner');
+      const spinner = this.querySelector('.loading-skeleton');
       if (spinner) spinner.classList.add('hidden');
     };
 
     video.onerror = () => {
-      const spinner = this.querySelector('.loading-spinner');
+      const spinner = this.querySelector('.loading-skeleton');
       if (spinner) spinner.classList.add('hidden');
     };
 
