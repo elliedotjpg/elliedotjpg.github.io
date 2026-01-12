@@ -3865,9 +3865,13 @@ div.desc {
     }
 
     .hero-slide-caption {
-        font-size: 3vh;
+        font-size: 2vh;
+        /* Decreased from 3vh */
         bottom: 4vh;
         left: 4vw;
+        text-align: left;
+        max-width: 70%;
+        /* Prevent it from being too wide and overlapping right side too much */
     }
 }
 
