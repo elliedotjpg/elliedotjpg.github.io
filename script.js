@@ -772,10 +772,47 @@ function initHeroSlider() {
     slide.className = 'hero-slide';
 
     // Background container for zoom effect
+    // Background container for zoom effect
     const bg = document.createElement('div');
     bg.className = 'hero-slide-bg';
-    bg.style.backgroundImage = `url('${imgData.src}')`;
     bg.style.filter = 'brightness(0.8)'; // Moved dimming here
+
+    // Logic to build the image strip based on user request
+    const mainSrc = imgData.src;
+    let extraImages = [];
+
+    // Parse extra-images if available
+    if (imgData.element) {
+      const extraImagesStr = imgData.element.getAttribute('extra-images');
+      if (extraImagesStr) {
+        extraImages = extraImagesStr.split(',').map(s => s.trim());
+      }
+    }
+
+    // Determine the sequence of images
+    let imagesToShow = [];
+
+    if (extraImages.length >= 2) {
+      // Case 1: > 1 extra image => [Extra 1] [Main] [Extra 2] (based on photo 1)
+      imagesToShow = [extraImages[0], mainSrc, extraImages[1]];
+    } else if (extraImages.length === 1) {
+      // Case 2: 1 extra image => [Main] [Extra 1] [Main] (based on photo 2)
+      imagesToShow = [mainSrc, extraImages[0], mainSrc];
+    } else {
+      // Fallback: [Main] [Main] [Main] [Main] [Main]
+      // Mimics repeats to fill space. 5 should cover most wide screens.
+      imagesToShow = [mainSrc, mainSrc, mainSrc, mainSrc, mainSrc];
+    }
+
+    // Create the strip
+    imagesToShow.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'hero-strip-item';
+      img.loading = 'lazy'; // Optimization
+      bg.appendChild(img);
+    });
+
     slide.appendChild(bg);
 
     if (index === 0) slide.classList.add('active');

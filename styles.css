@@ -3771,11 +3771,26 @@ div.desc {
 .hero-slide-bg {
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    /* Removed background-image logic */
     transition: transform 6s ease-out;
     /* Smooth zoom */
     transform-origin: center;
+}
+
+.hero-strip-item {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+    /* Optional: Add a gap between images if requested. 
+       The user's layout implies distinct boxes. 
+       For now, we keep them touching or add a small margin if needed. 
+       We will assume touching is fine as per previous "tiling" behavior, 
+       but if distinct is key, we can add gap in .hero-slide-bg later. */
 }
 
 .hero-slide.active .hero-slide-bg {
