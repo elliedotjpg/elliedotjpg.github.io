@@ -2607,19 +2607,17 @@ div.desc {
 }
 
 .navbar {
-    width: 90%;
-    max-width: 800px;
+    width: 100%;
     z-index: 2;
     font-style: bold;
     display: flex;
     text-align: center;
     overflow: hidden;
-    margin: 8vh auto;
+    margin-bottom: 8vh;
     padding: .2vh;
     padding-right: 2vh;
     padding-left: 2vh;
-    background-color: white;
-    border-radius: 40px;
+    background-color: #1b212a;
     box-sizing: border-box;
     height: auto;
     box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
@@ -2628,7 +2626,7 @@ div.desc {
 
 .navbar a {
     position: relative;
-    color: #2B3E70;
+    color: #fff;
     text-align: center;
     padding: 15px 10px;
     margin: 5px;
@@ -2637,7 +2635,7 @@ div.desc {
     font-size: 17px;
     letter-spacing: 2px;
     font-variant: small-caps;
-    background-color: white;
+    /* background-color: white; */
     text-decoration: none;
     flex: 1;
 }
@@ -2660,7 +2658,7 @@ div.desc {
 }
 
 .textHover {
-    color: #2B3E70;
+    color: #fff;
 }
 
 .textHover:hover {
