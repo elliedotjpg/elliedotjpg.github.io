@@ -48,6 +48,7 @@ center {
 }
 
 .resumeButton:hover {
+    text-decoration: none;
     background-color: #FFB703;
     color: #2B3E70;
 }
@@ -58,6 +59,10 @@ center {
     letter-spacing: 2px;
     text-align: right;
     color: #2B3E70;
+}
+
+.knowMore a {
+    text-decoration: none;
 }
 
 .sectionOne {
@@ -1136,12 +1141,12 @@ video-gallery-preview,
         text-align: center;
     }
 
-    .knowMore .download-btn {
+    .knowMore .resumeButton {
         margin: 10px auto;
         text-align: center;
     }
 
-    .knowMore .download-btn img {
+    .knowMore .resumeButton img {
         max-width: fit-content;
         height: auto;
     }
@@ -1599,7 +1604,7 @@ video-gallery-preview,
     z-index: 2;
 }
 
-.download-btn {
+.resumeButton {
     margin: 20px 30px 20px 0px;
     transition: margin 0.2s ease-in-out;
 }
@@ -2163,12 +2168,12 @@ video-gallery-preview,
         text-align: center;
     }
 
-    .knowMore .download-btn {
+    .knowMore .resumeButton {
         margin: 10px auto;
         text-align: center;
     }
 
-    .knowMore .download-btn img {
+    .knowMore .resumeButton img {
         max-width: 120px;
         height: auto;
     }
@@ -2916,7 +2921,7 @@ div.desc {
         max-width: none;
     }
 
-    .knowMore .download-btn img {
+    .knowMore .resumeButton img {
         max-width: 100px;
         height: auto;
     }
