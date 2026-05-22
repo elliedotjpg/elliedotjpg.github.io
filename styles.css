@@ -1181,6 +1181,15 @@ video-gallery-preview,
         text-align: left;
     }
 
+    .portfolioSubtext {
+        color: #fff;
+        font-size: medium;
+        font-weight: 300;
+        margin-top: 2vh;
+        margin-right: 4vw;
+        margin-left: 4vw
+    }
+
     .hoverButton {
         width: 25vh;
         font-size: 14px;
@@ -1765,6 +1774,15 @@ video-gallery-preview,
         color: #2B3E70
     }
 
+    .portfolioSubtext {
+        color: #fff;
+        font-size: large;
+        font-weight: 300;
+        margin-top: 2vh;
+        margin-right: 4vw;
+        margin-left: 4vw
+    }
+
     .galleryContainer {
         width: calc(100% - 80px);
         height: auto;
@@ -2219,6 +2237,15 @@ video-gallery-preview,
     .portfolioTitle {
         font-size: 16px;
         text-align: left;
+    }
+
+    .portfolioSubtext {
+        color: #fff;
+        font-size: smaller;
+        font-weight: 300;
+        margin-top: 2vh;
+        margin-right: 4vw;
+        margin-left: 4vw
     }
 
     .hoverButton {
