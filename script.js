@@ -725,6 +725,10 @@ function addTestimonial(name, title, company, testimony, photoSrc) {
   }
 }
 // Hero Section Slideshow Logic
+let heroAutoplayInterval = null;
+let heroCurrentSlide = 0;
+let heroSlideCount = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeroSlider();
 });
@@ -732,6 +736,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function initHeroSlider() {
   const slider = document.getElementById('heroSlider');
   if (!slider) return;
+
+  // Clear existing autoplay interval if it exists
+  if (heroAutoplayInterval) {
+    clearInterval(heroAutoplayInterval);
+    heroAutoplayInterval = null;
+  }
+
+  // Clear existing slide elements and reset position
+  slider.innerHTML = '';
+  slider.style.transition = 'none';
+  slider.style.transform = 'translateX(0%)';
+  heroCurrentSlide = 0;
 
   // 1. Gather all unique images from gallery
   const galleryImages = [];
@@ -763,8 +779,9 @@ function initHeroSlider() {
 
   // Take top 8 images for the slider to keep DOM light
   const heroImages = galleryImages.slice(0, 8);
+  heroSlideCount = heroImages.length;
 
-  if (heroImages.length === 0) return;
+  if (heroSlideCount === 0) return;
 
   // 2. Build Slides
   heroImages.forEach((imgData, index) => {
@@ -795,15 +812,12 @@ function initHeroSlider() {
 
     if (extraImages.length >= 2) {
       // Case 1: > 1 extra image => Pattern: [Extra 1] [Main] [Extra 2]
-      // Repeated twice to ensure coverage: 6 images
       imagesToShow = [extraImages[0], mainSrc, extraImages[1], extraImages[0], mainSrc, extraImages[1]];
     } else if (extraImages.length === 1) {
       // Case 2: 1 extra image => Pattern: [Main] [Extra 1] [Main]
-      // Repeated twice to ensure coverage: 6 images
       imagesToShow = [mainSrc, extraImages[0], mainSrc, mainSrc, extraImages[0], mainSrc];
     } else {
-      // Fallback: [Main] [Main] [Main] [Main] [Main]
-      // Repeats to fill space. Increased to 7 to ensure coverage on wider screens/mobile.
+      // Fallback: [Main] [Main] [Main]
       imagesToShow = [mainSrc, mainSrc, mainSrc, mainSrc, mainSrc, mainSrc, mainSrc];
     }
 
@@ -837,7 +851,7 @@ function initHeroSlider() {
   });
 
   // Clone the first slide to create an infinite loop effect
-  if (heroImages.length > 0) {
+  if (heroSlideCount > 0) {
     const firstSlide = slider.querySelector('.hero-slide');
     if (firstSlide) {
       const clone = firstSlide.cloneNode(true);
@@ -846,99 +860,202 @@ function initHeroSlider() {
     }
   }
 
-  // Refactored Click Event for Navigation (Delegation handles clone too)
-  slider.addEventListener('click', (e) => {
-    const slide = e.target.closest('.hero-slide');
-    if (!slide) return;
-
-    const index = parseInt(slide.dataset.index);
-    if (isNaN(index)) return;
-
-    const imgData = heroImages[index];
-    if (!imgData) return;
-
-    const targetElement = imgData.element;
-    if (!targetElement) return;
-
-    // Find which tab this element belongs to
-    const parentContent = targetElement.closest('.galleryDirectoryContent');
-    if (parentContent) {
-      const tabId = parentContent.id;
-
-      // Find the tab button (handling both quote types in onclick attribute)
-      const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
-        document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
-
-      if (tabBtn) {
-        tabBtn.click();
-
-        // Scroll to element after a short delay to allow tab switch
-        setTimeout(() => {
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-          // Add a temporary subtle highlight animation
-          const originalTransform = targetElement.style.transform;
-          targetElement.style.transition = 'transform 0.4s ease';
-          targetElement.style.transform = 'scale(1.02)';
-
-          setTimeout(() => {
-            targetElement.style.transform = originalTransform;
-          }, 800);
-        }, 100);
-      }
-    }
-  });
+  // Bind controls
+  setupHeroControls(slider, heroImages);
 
   // 3. Start Auto-Play
-  let currentSlide = 0;
-  const slideCount = heroImages.length; // Original count
+  startHeroAutoplay();
+}
 
-  // Only start interval if we have more than 1 slide (plus the clone makes it >2 items in DOM)
-  if (slideCount > 1) {
-    setInterval(() => {
-      currentSlide++;
+function setupHeroControls(slider, heroImages) {
+  const prevBtn = document.getElementById('heroPrevBtn');
+  const nextBtn = document.getElementById('heroNextBtn');
+  const refreshBtn = document.getElementById('heroRefreshBtn');
 
-      // Apply transition and move
-      slider.style.transition = 'transform 1s ease-in-out';
-      slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  // Bind previous arrow button
+  if (prevBtn && !prevBtn.dataset.listenerAdded) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const sliderEl = document.getElementById('heroSlider');
+      if (sliderEl) heroPrevSlide(sliderEl);
+    });
+    prevBtn.dataset.listenerAdded = 'true';
+  }
 
-      // Update active class for zoom effects
-      const slides = slider.querySelectorAll('.hero-slide');
-      slides.forEach((s, i) => {
-        if (i === currentSlide) {
-          s.classList.add('active');
-        } else {
-          s.classList.remove('active');
+  // Bind next arrow button
+  if (nextBtn && !nextBtn.dataset.listenerAdded) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const sliderEl = document.getElementById('heroSlider');
+      if (sliderEl) heroNextSlide(sliderEl);
+    });
+    nextBtn.dataset.listenerAdded = 'true';
+  }
+
+  // Bind refresh/reload button
+  if (refreshBtn && !refreshBtn.dataset.listenerAdded) {
+    refreshBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // Trigger spin animation
+      refreshBtn.classList.add('refreshing');
+
+      // Re-initialize the slider content
+      initHeroSlider();
+
+      // Remove the class after the animation completes
+      setTimeout(() => {
+        refreshBtn.classList.remove('refreshing');
+      }, 600);
+    });
+    refreshBtn.dataset.listenerAdded = 'true';
+  }
+
+  // Click handler on slide items to scroll to portfolio element
+  if (slider && !slider.dataset.listenerAdded) {
+    slider.addEventListener('click', (e) => {
+      const slide = e.target.closest('.hero-slide');
+      if (!slide) return;
+
+      const index = parseInt(slide.dataset.index);
+      if (isNaN(index)) return;
+
+      const currentHeroImages = slider.heroImages;
+      if (!currentHeroImages) return;
+
+      const imgData = currentHeroImages[index];
+      if (!imgData) return;
+
+      const targetElement = imgData.element;
+      if (!targetElement) return;
+
+      // Find which tab this element belongs to
+      const parentContent = targetElement.closest('.galleryDirectoryContent');
+      if (parentContent) {
+        const tabId = parentContent.id;
+
+        // Find the tab button
+        const tabBtn = document.querySelector(`.tablinks[onclick*="'${tabId}'"]`) ||
+          document.querySelector(`.tablinks[onclick*='"${tabId}"']`);
+
+        if (tabBtn) {
+          tabBtn.click();
+
+          // Scroll to element after a short delay
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Add a temporary subtle highlight animation
+            const originalTransform = targetElement.style.transform;
+            targetElement.style.transition = 'transform 0.4s ease';
+            targetElement.style.transform = 'scale(1.02)';
+
+            setTimeout(() => {
+              targetElement.style.transform = originalTransform;
+            }, 800);
+          }, 100);
         }
-      });
-
-      // If we reached the clone (last position), reset to start seamlessly
-      if (currentSlide === slideCount) {
-        setTimeout(() => {
-          // Disable transition to jump instantly
-          slider.style.transition = 'none';
-
-          // Reset to 0
-          currentSlide = 0;
-          slider.style.transform = 'translateX(0%)';
-
-          // Force reflow
-          void slider.offsetWidth;
-
-          // Ensure 0 is active for the zoom effect continuity
-          slides.forEach((s, i) => {
-            if (i === 0) {
-              s.classList.add('active');
-            } else {
-              s.classList.remove('active');
-            }
-          });
-
-        }, 1000); // Wait for the transition duration (1s)
       }
+    });
+    slider.dataset.listenerAdded = 'true';
+  }
 
+  // Keep a reference to the active list of hero images on the slider
+  slider.heroImages = heroImages;
+}
+
+function startHeroAutoplay() {
+  if (heroAutoplayInterval) {
+    clearInterval(heroAutoplayInterval);
+  }
+  if (heroSlideCount > 1) {
+    heroAutoplayInterval = setInterval(() => {
+      const slider = document.getElementById('heroSlider');
+      if (slider) heroNextSlide(slider);
     }, 5000); // 5 seconds per slide
   }
+}
+
+function stopHeroAutoplay() {
+  if (heroAutoplayInterval) {
+    clearInterval(heroAutoplayInterval);
+    heroAutoplayInterval = null;
+  }
+}
+
+function goToHeroSlide(slider, targetIndex) {
+  heroCurrentSlide = targetIndex;
+
+  // Apply transition and move
+  slider.style.transition = 'transform 1s cubic-bezier(0.25, 1, 0.5, 1)';
+  slider.style.transform = `translateX(-${heroCurrentSlide * 100}%)`;
+
+  updateHeroActiveClasses(slider);
+
+  // If we reached the clone (last position), reset to start seamlessly
+  if (heroCurrentSlide === heroSlideCount) {
+    setTimeout(() => {
+      // Disable transition to jump instantly
+      slider.style.transition = 'none';
+
+      // Reset to 0
+      heroCurrentSlide = 0;
+      slider.style.transform = 'translateX(0%)';
+
+      // Force reflow
+      void slider.offsetWidth;
+
+      // Ensure 0 is active for the zoom effect continuity
+      updateHeroActiveClasses(slider);
+    }, 1000); // Wait for the transition duration (1s)
+  }
+}
+
+function heroNextSlide(slider) {
+  // Prevent transitioning while resetting/wrapping is happening
+  if (heroCurrentSlide >= heroSlideCount) return;
+
+  // Reset autoplay timer on interaction
+  startHeroAutoplay();
+
+  goToHeroSlide(slider, heroCurrentSlide + 1);
+}
+
+function heroPrevSlide(slider) {
+  // Prevent transitioning while resetting/wrapping is happening
+  if (heroCurrentSlide >= heroSlideCount) return;
+
+  // Reset autoplay timer on interaction
+  startHeroAutoplay();
+
+  if (heroCurrentSlide === 0) {
+    // Jump instantly to the clone position (index heroSlideCount)
+    slider.style.transition = 'none';
+    heroCurrentSlide = heroSlideCount;
+    slider.style.transform = `translateX(-${heroCurrentSlide * 100}%)`;
+
+    // Force reflow
+    void slider.offsetWidth;
+
+    // Transition smoothly to heroSlideCount - 1
+    setTimeout(() => {
+      goToHeroSlide(slider, heroSlideCount - 1);
+    }, 20);
+  } else {
+    goToHeroSlide(slider, heroCurrentSlide - 1);
+  }
+}
+
+function updateHeroActiveClasses(slider) {
+  const slides = slider.querySelectorAll('.hero-slide');
+  slides.forEach((s, i) => {
+    const isSlideActive = (i === heroCurrentSlide) || (heroCurrentSlide === heroSlideCount && i === 0);
+    if (isSlideActive) {
+      s.classList.add('active');
+    } else {
+      s.classList.remove('active');
+    }
+  });
 }
 
 function shuffleArray(array) {

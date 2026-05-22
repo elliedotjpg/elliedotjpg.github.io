@@ -3931,3 +3931,116 @@ div.desc {
         width: min(350px, 90%) !important;
     }
 }
+
+/* Hero Section Controls (Navigation and Refresh) */
+.hero-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(25, 26, 36, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-nav-btn:hover {
+    background: rgba(255, 183, 3, 0.85);
+    color: #191a24;
+    border-color: #FFB703;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 183, 3, 0.4);
+}
+
+.hero-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.prev-btn {
+    left: 24px;
+}
+
+.next-btn {
+    right: 24px;
+}
+
+.hero-refresh-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(25, 26, 36, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-refresh-btn:hover {
+    background: rgba(255, 183, 3, 0.85);
+    color: #191a24;
+    border-color: #FFB703;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 183, 3, 0.4);
+}
+
+.hero-refresh-btn svg {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-refresh-btn:hover svg {
+    transform: rotate(360deg);
+}
+
+.hero-refresh-btn:active {
+    transform: scale(0.95);
+}
+
+/* Refresh Spin Animation */
+@keyframes spin-once {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero-refresh-btn.refreshing svg {
+    animation: spin-once 0.6s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .prev-btn {
+        left: 12px;
+    }
+    .next-btn {
+        right: 12px;
+    }
+    .hero-refresh-btn {
+        width: 36px;
+        height: 36px;
+        top: 12px;
+        right: 12px;
+    }
+}
